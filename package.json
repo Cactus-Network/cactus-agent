@@ -1,7 +1,7 @@
 {
   "name": "cactus-agent",
   "version": "13.0.0",
-  "author": "CactusMineJP <admin@cactusmine.jp>",
+  "author": "Dommer <dommer@cactus-network.net>",
   "description": "cactus rpc/websocket client library",
   "license": "MIT",
   "repository": {
@@ -31,7 +31,7 @@
     "node": ">=12.13.0"
   },
   "dependencies": {
-    "@cactusmine/json-bigint": "^1.0.3",
+    "@chiamine/json-bigint": "^1.0.3",
     "ws": "^8.5.0",
     "yaml": "^2.2.2"
   },
