@@ -62,7 +62,7 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `TConnectionGeneral`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/types.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/types.ts
 
 ---
 
@@ -151,9 +151,9 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `ProofOfSpace`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/proof_of_space.ts  
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/proof_of_space.ts  
 For content of `NewSignagePoint`  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/farmer_protocol.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/protocols/farmer_protocol.ts
 
 ---
 
@@ -208,7 +208,7 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `Plot`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
 
 ---
 
@@ -287,7 +287,7 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `DeclareProofOfSpace`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/farmer_protocol.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/protocols/farmer_protocol.ts
 
 ---
 

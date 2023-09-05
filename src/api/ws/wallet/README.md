@@ -62,7 +62,7 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `TConnectionGeneral`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/types.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/types.ts
 
 ### `on_state_changed_of_wallet`
 Capture broadcast message of command `state_changed` from `cactus_wallet` service.
@@ -112,7 +112,7 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `TransactionRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 

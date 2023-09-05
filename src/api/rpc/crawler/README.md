@@ -18,7 +18,7 @@ const response = await get_ips_after_timestamp(agent, {...});
 
 /*
  * You can instantiate `agent` with hostname/port.
- * See https://github.com/Cactus-Mine/cactus-agent/blob/main/src/rpc/index.ts
+ * See https://github.com/Cactus-Network/cactus-agent/blob/main/src/rpc/index.ts
  */
 const agent = new RPCAgent({
   protocol: "https",

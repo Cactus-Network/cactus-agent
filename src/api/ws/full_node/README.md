@@ -62,7 +62,7 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `TConnectionFullNode`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/ws/full_node/index.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/ws/full_node/index.ts
 
 ---
 
@@ -169,7 +169,7 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `ReceiveBlockResult`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/consensus/blockchain.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/consensus/blockchain.ts
 
 ---
 
@@ -209,4 +209,4 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `NewSignagePoint`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/farmer_protocol.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/protocols/farmer_protocol.ts

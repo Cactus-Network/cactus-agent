@@ -151,7 +151,7 @@ const response = await post_farmer(agent, params);
 }
 ```
 For content of `G1Element` / `G2Element`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/_python_types_.ts  
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/_python_types_.ts  
 
 ---
 
@@ -188,7 +188,7 @@ const response = await put_farmer(agent, params);
 }
 ```
 For content of `G1Element` / `G2Element`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/_python_types_.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/_python_types_.ts
 
 ---
 
@@ -224,9 +224,9 @@ const response = await partial(agent, params);
 }
 ```
 For content of `G2Element`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/_python_types_.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/_python_types_.ts
 For content of `ProofOfSpace`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/proof_of_space.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/proof_of_space.ts
 
 ---
 

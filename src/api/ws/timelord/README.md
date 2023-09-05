@@ -66,11 +66,11 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `Chain`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/timelord/types.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/timelord/types.ts
 For content of `VDFInfo`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/vdf.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/vdf.ts
 For content of `VDFProof`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/vdf.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/vdf.ts
 
 ---
 

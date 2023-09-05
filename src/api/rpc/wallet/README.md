@@ -16,7 +16,7 @@ const response = await get_public_keys(agent, {...});
 
 /*
  * You can instantiate `agent` with hostname/port.
- * See https://github.com/Cactus-Mine/cactus-agent/blob/main/src/rpc/index.ts
+ * See https://github.com/Cactus-Network/cactus-agent/blob/main/src/rpc/index.ts
  */
 const agent = new RPCAgent({
   protocol: "https",
@@ -392,7 +392,7 @@ AutoClaimSettings
 AutoClaimSettings
 ```
 For content of `AutoClaimSettings`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/puzzles/clawback/metadata.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/puzzles/clawback/metadata.ts
 
 ---
 
@@ -409,7 +409,7 @@ const response = await get_auto_claim(agent);
 AutoClaimSettings
 ```
 For content of `AutoClaimSettings`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/puzzles/clawback/metadata.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/puzzles/clawback/metadata.ts
 
 ---
 
@@ -471,7 +471,7 @@ const response = await get_wallets(agent, params);
 }
 ```
 For content of `WalletInfo`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/wallet_info.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/wallet_info.ts
 
 ---
 
@@ -587,9 +587,9 @@ type TCreateWalletErrorResponse = {
 };
 ```
 For content of `Coin`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts  
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts  
 For content of `TransactionRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -619,7 +619,7 @@ const response = await get_wallet_balance(agent, params);
 }
 ```
 For content of `Balance`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/wallet_node.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/wallet_node.ts
 
 ---
 
@@ -649,7 +649,7 @@ const response = await get_wallet_balances(agent, params);
 }
 ```
 For content of `Balance`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/wallet_node.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/wallet_node.ts
 
 ---
 
@@ -675,7 +675,7 @@ const response = await get_transaction(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -708,9 +708,9 @@ const response = await get_transactions(agent, params);
 }
 ```
 For content of `TransactionRecordConvenienceWithMetadata`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts  
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts  
 For content of `TransactionTypeFilter`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/util/quality_filter.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/util/quality_filter.ts
 
 ---
 
@@ -771,7 +771,7 @@ const response = await send_transaction(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -819,19 +819,19 @@ const response = await send_transaction_multi(agent, params);
 }
 ```
 For content of `TAdditions`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
 
 For content of `Coin`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts
 
 For content of `TCoinAnnouncement`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
 
 For content of `TPuzzleAnnouncement`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
 
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -881,9 +881,9 @@ GetCoinRecords
 }
 ```
 For content of `GetCoinRecords`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/wallet_coin_store.ts  
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/wallet_coin_store.ts  
 For content of `WalletCoinRecordWithMetadata`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/wallet_coin_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/wallet_coin_record.ts
 
 ---
 
@@ -911,7 +911,7 @@ const response = await get_transaction_count(agent, params);
 }
 ```
 For content of `TransactionTypeFilter`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/util/quality_filter.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/util/quality_filter.ts
 
 ---
 
@@ -969,19 +969,19 @@ const response = await create_signed_transaction(agent, params);
 }
 ```
 For content of `TAdditions`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
 
 For content of `Coin`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts
 
 For content of `TCoinAnnouncement`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
 
 For content of `TPuzzleAnnouncement`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
 
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -1032,7 +1032,7 @@ const response = await select_coins(agent, params);
 }
 ```
 For content of `Coin`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts
 
 ---
 
@@ -1070,9 +1070,9 @@ const response = await get_spendable_coins(agent, params);
 }
 ```
 For content of `CoinRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/coin_records.ts  
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/coin_records.ts  
 For content of `Coin`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts
 
 ---
 
@@ -1106,7 +1106,7 @@ const response = await get_coin_records_by_names(agent, params);
 }
 ```
 For content of `CoinRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/coin_records.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/coin_records.ts
 
 ---
 
@@ -1227,7 +1227,7 @@ const response = await send_notification(agent, params);
 }
 ```
 For content of `TransactionRecord` and `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -1261,7 +1261,7 @@ const response = await verify_signature(agent, params);
 }
 ```
 For content of `SigningMode,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/signing_mode.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/signing_mode.ts
 
 ---
 
@@ -1316,7 +1316,7 @@ const response = await sign_message_by_address(agent, params);
 }
 ```
 For content of `SigningMode`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/signing_mode.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/signing_mode.ts
 
 ---
 
@@ -1352,7 +1352,7 @@ const response = await sign_message_by_id(agent, params);
 }
 ```
 For content of `SigningMode`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/signing_mode.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/signing_mode.ts
 
 ---
 
@@ -1435,7 +1435,7 @@ const response = await nft_mint_bulk(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
@@ -1471,7 +1471,7 @@ const response = await nft_set_did_bulk(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
@@ -1507,7 +1507,7 @@ const response = await nft_transfer_bulk(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
@@ -1526,7 +1526,7 @@ const response = await get_cat_list(agent);
 }
 ```
 For content of `CAT`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/cat_wallet/cat_constants.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/cat_wallet/cat_constants.ts
 
 ---
 
@@ -1662,7 +1662,7 @@ const response = await cat_spend(agent, params);
 }
 ```
 For content of `TransactionRecord` and `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -1719,9 +1719,9 @@ const response = await create_offer_for_ids(agent, params);
 }
 ```
 For content of `TradeRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/trade_record.ts  
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/trade_record.ts  
 For content of `TDriverDict`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/puzzle_drivers.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/puzzle_drivers.ts
 
 ---
 
@@ -1753,7 +1753,7 @@ const response = await get_offer_summary(agent, params);
 }
 ```
 For content of `TDriverDict`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/puzzle_drivers.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/puzzle_drivers.ts
 
 ---
 
@@ -1807,7 +1807,7 @@ const response = await take_offer(agent, params);
 }
 ```
 For content of `TradeRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/trade_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/trade_record.ts
 
 ---
 
@@ -1834,7 +1834,7 @@ const response = await get_offer(agent, params);
 }
 ```
 For content of `TradeRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/trade_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/trade_record.ts
 
 ---
 
@@ -1867,7 +1867,7 @@ const response = await get_all_offers(agent, params);
 }
 ```
 For content of `TradeRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/trade_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/trade_record.ts
 
 ---
 
@@ -2046,7 +2046,7 @@ const response = await did_update_metadata(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
@@ -2126,7 +2126,7 @@ const response = await did_recovery_spend(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
@@ -2424,7 +2424,7 @@ const response = await did_transfer_did(agent, params);
 }
 ```
 For content of `TransactionRecord` and `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -2466,7 +2466,7 @@ const response = await nft_mint_nft(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 ---
@@ -2527,7 +2527,7 @@ const response = await nft_get_nfts(agent, params);
 }
 ```
 For content of `NFTInfo`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/nft_wallet/neft_info.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/nft_wallet/neft_info.ts
 
 ---
 
@@ -2561,7 +2561,7 @@ const response = await nft_set_nft_did(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
@@ -2693,7 +2693,7 @@ const response = await nft_transfer_nft(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
@@ -2724,7 +2724,7 @@ const response = await nft_get_info(agent, params);
 }
 ```
 For content of `NFTInfo`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/nft_wallet/neft_info.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/nft_wallet/neft_info.ts
 
 ---
 
@@ -2756,7 +2756,7 @@ const response = await nft_add_uri(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
@@ -2790,7 +2790,7 @@ const response = await pw_join_pool(agent, params);
 }
 ```
 For content of `TransactionRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -2818,7 +2818,7 @@ const response = await pw_self_pool(agent, params);
 };
 ```
 For content of `TransactionRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -2847,10 +2847,10 @@ const response = await pw_absorb_rewards(agent, params);
 };
 ```
 For content of `PoolWalletInfo`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/pools/pool_wallet_info.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/pools/pool_wallet_info.ts
 
 For content of `TransactionRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -2876,10 +2876,10 @@ const response = await pw_status(agent, params);
 }
 ```
 For content of `PoolWalletInfo`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/pools/pool_wallet_info.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/pools/pool_wallet_info.ts
 
 For content of `TransactionRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -2910,7 +2910,7 @@ const response = await create_new_dl(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -2978,7 +2978,7 @@ const response = await dl_latest_singleton(agent, params);
 }
 ```
 For content of `SingletonRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/lineage_proof.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/lineage_proof.ts
 
 ---
 
@@ -3004,7 +3004,7 @@ const response = await dl_singletons_by_root(agent, params);
 }
 ```
 For content of `SingletonRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/lineage_proof.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/lineage_proof.ts
 
 ---
 
@@ -3031,7 +3031,7 @@ const response = await dl_update_root(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -3056,7 +3056,7 @@ const response = await dl_update_multiple(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -3085,7 +3085,7 @@ const response = await dl_history(agent, params);
 }
 ```
 For content of `SingletonRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/lineage_proof.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/lineage_proof.ts
 
 ---
 
@@ -3105,7 +3105,7 @@ const response = await dl_owned_singletons(agent);
 }
 ```
 For content of `SingletonRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/lineage_proof.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/lineage_proof.ts
 
 ---
 
@@ -3130,7 +3130,7 @@ const response = await dl_get_mirrors(agent, params);
 }
 ```
 For content of `Mirror`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/data_layer/data_layer_wallet.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/data_layer/data_layer_wallet.ts
 
 ---
 
@@ -3158,7 +3158,7 @@ const response = await dl_new_mirror(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -3184,7 +3184,7 @@ const response = await dl_delete_mirror(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -3212,9 +3212,9 @@ const response = await vc_mint(agent, params);
 }
 ```
 For content of `VCRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/vc_wallet/vc_store.ts  
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/vc_wallet/vc_store.ts  
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -3239,7 +3239,7 @@ const response = await vc_get(agent, params);
 }
 ```
 For content of `VCRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/vc_wallet/vc_store.ts  
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/vc_wallet/vc_store.ts  
 
 ---
 
@@ -3266,7 +3266,7 @@ const response = await vc_get_list(agent, params);
 }
 ```
 For content of `VCRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/vc_wallet/vc_store.ts  
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/vc_wallet/vc_store.ts  
 
 ---
 
@@ -3296,7 +3296,7 @@ const response = await vc_spend(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -3369,4 +3369,4 @@ const response = await vc_revoke(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts

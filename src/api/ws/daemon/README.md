@@ -501,7 +501,7 @@ const response = await get_key(daemon, params);
 }
 ```
 For content of `KeyData`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/util/keychain.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/util/keychain.ts
 
 ---
 
@@ -532,7 +532,7 @@ const response = await get_keys(daemon, params);
 }
 ```
 For content of `KeyData`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/util/keychain.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/util/keychain.ts
 
 ---
 
@@ -859,7 +859,7 @@ const response = await get_plotters(daemon);
 }
 ```
 For content of `chiapos_install_info`, `bladebit_install_info`, `madmax_install_info`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/plotters/
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/plotters/
 
 ---
 

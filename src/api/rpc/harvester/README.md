@@ -16,7 +16,7 @@ const response = await add_plot_directory(agent, {...});
 
 /*
  * You can instantiate `agent` with hostname/port.
- * See https://github.com/Cactus-Mine/cactus-agent/blob/main/src/rpc/index.ts
+ * See https://github.com/Cactus-Network/cactus-agent/blob/main/src/rpc/index.ts
  */
 const agent = new RPCAgent({
   protocol: "https",
@@ -47,7 +47,7 @@ const response = await get_plots(agent);
 }
 ```
 For content of `Plot`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/harvester/harvester.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/harvester/harvester.ts
 
 ---
 

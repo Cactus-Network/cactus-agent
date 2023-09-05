@@ -62,7 +62,7 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `TConnectionGeneral`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/types.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/types.ts
 
 ---
 
@@ -104,7 +104,7 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `Plot`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/harvester/harvester.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/harvester/harvester.ts
 
 ---
 

@@ -18,7 +18,7 @@ const response = await get_signage_point(agent, {...});
 
 /*
  * You can instantiate `agent` with hostname/port.
- * See https://github.com/Cactus-Mine/cactus-agent/blob/main/src/rpc/index.ts
+ * See https://github.com/Cactus-Network/cactus-agent/blob/main/src/rpc/index.ts
  */
 const agent = new RPCAgent({
   protocol: "https",
@@ -61,7 +61,7 @@ const response = await get_signage_point(agent, params);
 }
 ```
 For content of `ProofOfSpace`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/proof_of_space.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/proof_of_space.ts
 
 ---
 
@@ -149,7 +149,7 @@ const response = await get_pool_state(agent);
 }
 ```
 For content of `PoolState`,  
-see [https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/farmer/farmer.ts](../../cactus/farmer/farmer.ts)
+see [https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/farmer/farmer.ts](../../cactus/farmer/farmer.ts)
 
 ---
 
@@ -207,7 +207,7 @@ const response = await get_harvesters(agent);
 }
 ```
 For content of `Plot`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
 
 ---
 
@@ -243,7 +243,7 @@ const response = await get_harvesters_summary(agent);
 }
 ```
 For content of `Plot`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
 
 ---
 
@@ -277,7 +277,7 @@ const response = await get_harvester_plots_valid(agent, params);
 }
 ```
 For content of `Plot`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
 
 ---
 
@@ -310,7 +310,7 @@ const response = await get_harvester_plots_invalid(agent, params);
 }
 ```
 For content of `Plot`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
 
 ---
 
@@ -343,7 +343,7 @@ const response = await get_harvester_plots_keys_missing(agent, params);
 }
 ```
 For content of `Plot`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
 
 ---
 
@@ -376,7 +376,7 @@ const response = await get_harvester_plots_duplicates(agent, params);
 }
 ```
 For content of `Plot`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
 
 ---
 

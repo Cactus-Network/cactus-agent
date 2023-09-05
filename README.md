@@ -3,7 +3,7 @@
 
 cactus rpc/websocket client library for NodeJS.  
 Supports all RPC/Websocket API available at `cactus 2.0.0`.  
-\(If you need previous version, search for the corresponding release [here](https://github.com/Cactus-Mine/cactus-agent/releases)\)
+\(If you need previous version, search for the corresponding release [here](https://github.com/Cactus-Network/cactus-agent/releases)\)
 
 you can develop your own nodejs script with `cactus-agent` to:
 - retrieve latest data from RPC servers like `farmer`, `harvester`, `full_node`, `wallet`, `pool`, `data_layer`, `crawler`.
@@ -112,22 +112,22 @@ setTimeout(async () => {
 ```
 
 ## API Reference
-[See Documentation here](https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/README.md)
+[See Documentation here](https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/README.md)
 
 ## Examples
-[See documentation here](https://github.com/Cactus-Mine/cactus-agent/blob/main/example)
+[See documentation here](https://github.com/Cactus-Network/cactus-agent/blob/main/example)
 
 Here are some of those examples
-- [Send email when proof is found](https://github.com/Cactus-Mine/cactus-agent/blob/main/example/send_email_when_proof_is_found)
-- [RPC API code sample to show block record in certain height](https://github.com/Cactus-Mine/cactus-agent/blob/main/example/get_block_by_height)
-- [Create multiple plots with javascript](https://github.com/Cactus-Mine/cactus-agent/blob/main/example/create_plots)
+- [Send email when proof is found](https://github.com/Cactus-Network/cactus-agent/blob/main/example/send_email_when_proof_is_found)
+- [RPC API code sample to show block record in certain height](https://github.com/Cactus-Network/cactus-agent/blob/main/example/get_block_by_height)
+- [Create multiple plots with javascript](https://github.com/Cactus-Network/cactus-agent/blob/main/example/create_plots)
 
 ## Build from source
 Once source files is build by `npm run build:prod`, files will be output to `/dist` directory.  
 Then the files/directories are published to npm registry.  
 Please note it does not upload files in project root to npm registry, but files inside '/dist'.
 
-[Read details here](https://github.com/Cactus-Mine/cactus-agent/blob/main/BUILD.md)
+[Read details here](https://github.com/Cactus-Network/cactus-agent/blob/main/BUILD.md)
 
 ## Donation
 For continuous development, please support me with donation

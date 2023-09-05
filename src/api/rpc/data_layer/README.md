@@ -18,7 +18,7 @@ const response = await create_data_store(agent, {...});
 
 /*
  * You can instantiate `agent` with hostname/port.
- * See https://github.com/Cactus-Mine/cactus-agent/blob/main/src/rpc/index.ts
+ * See https://github.com/Cactus-Network/cactus-agent/blob/main/src/rpc/index.ts
  */
 const agent = new RPCAgent({
   protocol: "https",
@@ -54,7 +54,7 @@ const response = await create_data_store(agent, params);
 }
 ```
 For content of `TransactionRecord`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
@@ -603,7 +603,7 @@ const response = await make_offer(agent, params);
 }
 ```
 For content of `OfferStoreMarshalled` and `OfferMarshalled`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/data_layer/data_layer.util.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/data_layer/data_layer.util.ts
 
 ---
 
@@ -630,7 +630,7 @@ const response = await take_offer(agent, params);
 }
 ```
 For content of `OfferMarshalled`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/data_layer/data_layer.util.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/data_layer/data_layer.util.ts
 
 ---
 
@@ -709,7 +709,7 @@ const response = await get_sync_status(agent, params);
 }
 ```
 For content of `SyncStatus`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/data_layer/data_layer.util.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/data_layer/data_layer.util.ts
 
 ---
 
@@ -726,7 +726,7 @@ const response = await check_plugins(agent, params);
 PluginStatusMarshalled
 ```
 For content of `PluginStatusMarshalled`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/data_layer/data_layer.util.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/data_layer/data_layer.util.ts
 
 ---
 
@@ -752,4 +752,4 @@ const response = await clear_pending_roots(agent, params);
 }
 ```
 For content of `RootMarshalled`,  
-see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/data_layer/data_layer.util.ts
+see https://github.com/Cactus-Network/cactus-agent/blob/main/src/api/cactus/data_layer/data_layer.util.ts
