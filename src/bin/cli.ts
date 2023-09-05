@@ -5,7 +5,7 @@ import {on_new_farming_info} from "../api/ws/farmer/index";
 
 setLogLevel("error");
 
-const exeCommand = "npx chia-agent"
+const exeCommand = "npx cactus-agent"
 const argv = process.argv.slice(2);
 const usage = `Usage:
 ${exeCommand} farm monitor

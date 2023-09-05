@@ -4,8 +4,8 @@
 You need to create RPC connection before actually sending rpc request to the service.  
 Please remember that all rpc API is provided as an async function.
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_signage_point} = require("chia-agent/api/rpc/farmer");
+const {RPCAgent} = require("cactus-agent");
+const {get_signage_point} = require("cactus-agent/api/rpc/farmer");
 const agent = new RPCAgent({
   service: "farmer", // connect to local farmer service using config file.
 });
@@ -18,7 +18,7 @@ const response = await get_signage_point(agent, {...});
 
 /*
  * You can instantiate `agent` with hostname/port.
- * See https://github.com/Chia-Mine/chia-agent/blob/main/src/rpc/index.ts
+ * See https://github.com/Cactus-Mine/cactus-agent/blob/main/src/rpc/index.ts
  */
 const agent = new RPCAgent({
   protocol: "https",
@@ -35,8 +35,8 @@ const agent = new RPCAgent({
 ## `get_signage_point(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_signage_point} = require("chia-agent/api/rpc/farmer");
+const {RPCAgent} = require("cactus-agent");
+const {get_signage_point} = require("cactus-agent/api/rpc/farmer");
 const agent = new RPCAgent({service: "farmer"});
 const response = await get_signage_point(agent, params);
 ```
@@ -61,15 +61,15 @@ const response = await get_signage_point(agent, params);
 }
 ```
 For content of `ProofOfSpace`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/blockchain_format/proof_of_space.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/proof_of_space.ts
 
 ---
 
 ## `get_signage_points(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_signage_points} = require("chia-agent/api/rpc/farmer");
+const {RPCAgent} = require("cactus-agent");
+const {get_signage_points} = require("cactus-agent/api/rpc/farmer");
 const agent = new RPCAgent({service: "farmer"});
 const response = await get_signage_points(agent);
 ```
@@ -85,8 +85,8 @@ const response = await get_signage_points(agent);
 ## `get_reward_targets(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_reward_targets} = require("chia-agent/api/rpc/farmer");
+const {RPCAgent} = require("cactus-agent");
+const {get_reward_targets} = require("cactus-agent/api/rpc/farmer");
 const agent = new RPCAgent({service: "farmer"});
 const response = await get_reward_targets(agent, params);
 ```
@@ -115,8 +115,8 @@ const response = await get_reward_targets(agent, params);
 ## `set_reward_targets(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {set_reward_targets} = require("chia-agent/api/rpc/farmer");
+const {RPCAgent} = require("cactus-agent");
+const {set_reward_targets} = require("cactus-agent/api/rpc/farmer");
 const agent = new RPCAgent({service: "farmer"});
 const response = await set_reward_targets(agent, params);
 ```
@@ -137,8 +137,8 @@ const response = await set_reward_targets(agent, params);
 ## `get_pool_state(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_pool_state} = require("chia-agent/api/rpc/farmer");
+const {RPCAgent} = require("cactus-agent");
+const {get_pool_state} = require("cactus-agent/api/rpc/farmer");
 const agent = new RPCAgent({service: "farmer"});
 const response = await get_pool_state(agent);
 ```
@@ -149,15 +149,15 @@ const response = await get_pool_state(agent);
 }
 ```
 For content of `PoolState`,  
-see [https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/farmer/farmer.ts](../../chia/farmer/farmer.ts)
+see [https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/farmer/farmer.ts](../../cactus/farmer/farmer.ts)
 
 ---
 
 ## `set_payout_instructions(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {set_payout_instructions} = require("chia-agent/api/rpc/farmer");
+const {RPCAgent} = require("cactus-agent");
+const {set_payout_instructions} = require("cactus-agent/api/rpc/farmer");
 const agent = new RPCAgent({service: "farmer"});
 const response = await set_payout_instructions(agent, params);
 ```
@@ -178,8 +178,8 @@ const response = await set_payout_instructions(agent, params);
 ## `get_harvesters(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_harvesters} = require("chia-agent/api/rpc/farmer");
+const {RPCAgent} = require("cactus-agent");
+const {get_harvesters} = require("cactus-agent/api/rpc/farmer");
 const agent = new RPCAgent({service: "farmer"});
 const response = await get_harvesters(agent);
 ```
@@ -207,15 +207,15 @@ const response = await get_harvesters(agent);
 }
 ```
 For content of `Plot`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/protocols/harvester_protocol.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
 
 ---
 
 ## `get_harvesters_summary(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_harvesters_summary} = require("chia-agent/api/rpc/farmer");
+const {RPCAgent} = require("cactus-agent");
+const {get_harvesters_summary} = require("cactus-agent/api/rpc/farmer");
 const agent = new RPCAgent({service: "farmer"});
 const response = await get_harvesters_summary(agent);
 ```
@@ -243,15 +243,15 @@ const response = await get_harvesters_summary(agent);
 }
 ```
 For content of `Plot`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/protocols/harvester_protocol.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
 
 ---
 
 ## `get_harvester_plots_valid(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_harvester_plots_valid} = require("chia-agent/api/rpc/farmer");
+const {RPCAgent} = require("cactus-agent");
+const {get_harvester_plots_valid} = require("cactus-agent/api/rpc/farmer");
 const agent = new RPCAgent({service: "farmer"});
 const response = await get_harvester_plots_valid(agent, params);
 ```
@@ -277,15 +277,15 @@ const response = await get_harvester_plots_valid(agent, params);
 }
 ```
 For content of `Plot`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/protocols/harvester_protocol.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
 
 ---
 
 ## `get_harvester_plots_invalid(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_harvester_plots_invalid} = require("chia-agent/api/rpc/farmer");
+const {RPCAgent} = require("cactus-agent");
+const {get_harvester_plots_invalid} = require("cactus-agent/api/rpc/farmer");
 const agent = new RPCAgent({service: "farmer"});
 const response = await get_harvester_plots_invalid(agent, params);
 ```
@@ -310,15 +310,15 @@ const response = await get_harvester_plots_invalid(agent, params);
 }
 ```
 For content of `Plot`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/protocols/harvester_protocol.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
 
 ---
 
 ## `get_harvester_plots_keys_missing(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_harvester_plots_keys_missing} = require("chia-agent/api/rpc/farmer");
+const {RPCAgent} = require("cactus-agent");
+const {get_harvester_plots_keys_missing} = require("cactus-agent/api/rpc/farmer");
 const agent = new RPCAgent({service: "farmer"});
 const response = await get_harvester_plots_keys_missing(agent, params);
 ```
@@ -343,15 +343,15 @@ const response = await get_harvester_plots_keys_missing(agent, params);
 }
 ```
 For content of `Plot`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/protocols/harvester_protocol.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
 
 ---
 
 ## `get_harvester_plots_duplicates(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_harvester_plots_duplicates} = require("chia-agent/api/rpc/farmer");
+const {RPCAgent} = require("cactus-agent");
+const {get_harvester_plots_duplicates} = require("cactus-agent/api/rpc/farmer");
 const agent = new RPCAgent({service: "farmer"});
 const response = await get_harvester_plots_duplicates(agent, params);
 ```
@@ -376,15 +376,15 @@ const response = await get_harvester_plots_duplicates(agent, params);
 }
 ```
 For content of `Plot`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/protocols/harvester_protocol.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
 
 ---
 
 ## `get_pool_login_link(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_pool_login_link} = require("chia-agent/api/rpc/farmer");
+const {RPCAgent} = require("cactus-agent");
+const {get_pool_login_link} = require("cactus-agent/api/rpc/farmer");
 const agent = new RPCAgent({service: "farmer"});
 const response = await get_pool_login_link(agent, params);
 ```

@@ -1,6 +1,6 @@
 # RPCAgent
 
-RPC client for connecting to chia services like `farmer`, `full_node`, `harvester`, `wallet`, `pool`.  
+RPC client for connecting to cactus services like `farmer`, `full_node`, `harvester`, `wallet`, `pool`.  
 
 Once RPCAgent is instantiated, you can use RPC API functions via the agent.
 ```js
@@ -14,7 +14,7 @@ const response2 = await get_sync_status(agent);
 ## new RPCAgent(options)
 
 ```js
-const {RPCAgent} = require("chia-agent");
+const {RPCAgent} = require("cactus-agent");
 const agent = new RPCAgent({...});
 ```
 
@@ -24,7 +24,7 @@ There are several ways to specify connection info.
 ---
 
 **Case 1** Connect to local rpc server by a service name.  
-If `configPath` is omitted, `chia-agent` tries to search from default config file path.
+If `configPath` is omitted, `cactus-agent` tries to search from default config file path.
 ```typescript
 options = {
   service: "farmer"|"harvester"|"full_node"|"wallet"|"crawler";
@@ -56,7 +56,7 @@ example
 const agent = new RPCAgent({
   protocol: "https",
   host: "localhost",
-  port: 8555,
+  port: 11555,
   ca_cert: fs.readFileSync("..."),
   client_cert: fs.readFileSync("..."),
   client_key: fs.readFileSync("..."),
@@ -82,7 +82,7 @@ example
 const agent = new RPCAgent({
   protocol: "https",
   host: "localhost",
-  port: 8555,
+  port: 11555,
   configPath: "...",
   skip_hostname_verification: true,
 });
@@ -104,7 +104,7 @@ example
 const agent = new RPCAgent({
   protocol: "http",
   host: "xxx.yyy.zzz",
-  port: 18555,
+  port: 111555,
 });
 ```
 

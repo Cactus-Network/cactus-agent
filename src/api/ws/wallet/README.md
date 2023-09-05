@@ -1,18 +1,18 @@
 # Websocket Message from Wallet service
 
 ### `on_message_from_wallet`
-Capture all broadcast messages coming from `chia_wallet` service.
+Capture all broadcast messages coming from `cactus_wallet` service.
 
 #### Usage
 You need to create Websocket connection before subscribing websocket messages.
 ```js
-const {getDaemon} = require("chia-agent");
-const {on_message_from_wallet} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_message_from_wallet} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 
-// Capture all messages from `chia_harvester`
+// Capture all messages from `cactus_harvester`
 const unsubscribe = await on_message_from_wallet(daemon, (event) => {
   console.log(e.data);
 
@@ -27,12 +27,12 @@ const unsubscribe = await on_message_from_wallet(daemon, (event) => {
 ---
 
 ### `on_get_connections`
-Capture broadcast message of command `get_connections` from `chia_wallet` service.
+Capture broadcast message of command `get_connections` from `cactus_wallet` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_get_connections} = require("chia-agent/api/ws/wallet");
+const {getDaemon} = require("cactus-agent");
+const {on_get_connections} = require("cactus-agent/api/ws/wallet");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -47,7 +47,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_wallet";
+  origin: "cactus_wallet";
   command: "get_connections";
   ack: boolean;
   data: /*See below*/;
@@ -62,15 +62,15 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `TConnectionGeneral`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/types.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/types.ts
 
 ### `on_state_changed_of_wallet`
-Capture broadcast message of command `state_changed` from `chia_wallet` service.
+Capture broadcast message of command `state_changed` from `cactus_wallet` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_state_changed_of_wallet} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_state_changed_of_wallet} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -85,7 +85,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_wallet";
+  origin: "cactus_wallet";
   command: "state_changed";
   ack: boolean;
   data: /*See below*/;
@@ -112,17 +112,17 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `TransactionRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ### `on_sync_changed`
-Capture broadcast message of command `sync_changed` from `chia_wallet` service.
+Capture broadcast message of command `sync_changed` from `cactus_wallet` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_sync_changed} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_sync_changed} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -137,7 +137,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_wallet";
+  origin: "cactus_wallet";
   command: "sync_changed";
   ack: boolean;
   data: /*See below*/;
@@ -153,12 +153,12 @@ unsubscribe(); // Stop subscribing messages
 ---
 
 ### `on_coin_added`
-Capture broadcast message of command `coin_added` from `chia_wallet` service.
+Capture broadcast message of command `coin_added` from `cactus_wallet` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_coin_added} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_coin_added} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -172,7 +172,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_wallet";
+  origin: "cactus_wallet";
   command: "coin_added";
   ack: boolean;
   data: /*See below*/;
@@ -191,12 +191,12 @@ unsubscribe(); // Stop subscribing messages
 ---
 
 ### `on_add_connection`
-Capture broadcast message of command `add_connection` from `chia_wallet` service.
+Capture broadcast message of command `add_connection` from `cactus_wallet` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_add_connection} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_add_connection} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -210,7 +210,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_wallet";
+  origin: "cactus_wallet";
   command: "add_connection";
   ack: boolean;
   data: /*See below*/;
@@ -228,12 +228,12 @@ unsubscribe(); // Stop subscribing messages
 ---
 
 ### `on_close_connection`
-Capture broadcast message of command `close_connection` from `chia_wallet` service.
+Capture broadcast message of command `close_connection` from `cactus_wallet` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_close_connection} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_close_connection} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -247,7 +247,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_wallet";
+  origin: "cactus_wallet";
   command: "close_connection";
   ack: boolean;
   data: /*See below*/;

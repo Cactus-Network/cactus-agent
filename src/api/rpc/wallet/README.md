@@ -4,8 +4,8 @@
 You need to create RPC connection before actually sending rpc request to the service.  
 Please remember that all rpc API is provided as an async function.
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_public_keys} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_public_keys} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({
   service: "wallet", // connect to local wallet service using config file.
 });
@@ -16,7 +16,7 @@ const response = await get_public_keys(agent, {...});
 
 /*
  * You can instantiate `agent` with hostname/port.
- * See https://github.com/Chia-Mine/chia-agent/blob/main/src/rpc/index.ts
+ * See https://github.com/Cactus-Mine/cactus-agent/blob/main/src/rpc/index.ts
  */
 const agent = new RPCAgent({
   protocol: "https",
@@ -33,8 +33,8 @@ const agent = new RPCAgent({
 ## `log_in(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {log_in} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {log_in} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await log_in(agent, params);
 ```
@@ -59,8 +59,8 @@ const response = await log_in(agent, params);
 ## `get_logged_in_fingerprint(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_logged_in_fingerprint} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_logged_in_fingerprint} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_logged_in_fingerprint(agent);
 ```
@@ -77,8 +77,8 @@ const response = await get_logged_in_fingerprint(agent);
 ## `get_public_keys(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_public_keys} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_public_keys} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_public_keys(agent);
 ```
@@ -96,8 +96,8 @@ const response = await get_public_keys(agent);
 ## `get_private_key(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_private_key} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_private_key} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_private_key(agent, params);
 ```
@@ -124,8 +124,8 @@ private_key: {
 ## `generate_mnemonic(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {generate_mnemonic} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {generate_mnemonic} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await generate_mnemonic(agent);
 ```
@@ -141,8 +141,8 @@ const response = await generate_mnemonic(agent);
 ## `add_key(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {add_key} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {add_key} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await add_key(agent, params);
 ```
@@ -168,8 +168,8 @@ const response = await add_key(agent, params);
 ## `delete_key(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {delete_key} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {delete_key} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await delete_key(agent, params);
 ```
@@ -189,8 +189,8 @@ const response = await delete_key(agent, params);
 ## `check_delete_key(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {check_delete_key} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {check_delete_key} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await check_delete_key(agent, params);
 ```
@@ -216,8 +216,8 @@ const response = await check_delete_key(agent, params);
 ## `delete_all_keys(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {delete_all_keys} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {delete_all_keys} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await delete_all_keys(agent);
 ```
@@ -235,8 +235,8 @@ No params nor response
 ## `set_wallet_resync_on_startup(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {set_wallet_resync_on_startup} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {set_wallet_resync_on_startup} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await set_wallet_resync_on_startup(agent, params);
 ```
@@ -258,8 +258,8 @@ const response = await set_wallet_resync_on_startup(agent, params);
 ## `get_sync_status(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_sync_status} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_sync_status} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_sync_status(agent);
 ```
@@ -277,8 +277,8 @@ const response = await get_sync_status(agent);
 ## `get_height_info(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_height_info} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_height_info} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_height_info(agent);
 ```
@@ -294,8 +294,8 @@ const response = await get_height_info(agent);
 ## `push_tx(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {push_tx} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {push_tx} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await push_tx(agent, params);
 ```
@@ -315,8 +315,8 @@ const response = await push_tx(agent, params);
 ## `push_transactions(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {push_transactions} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {push_transactions} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await push_transactions(agent, params);
 ```
@@ -336,8 +336,8 @@ const response = await push_transactions(agent, params);
 ## `farm_block(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {farm_block} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {farm_block} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await farm_block(agent, params);
 ```
@@ -359,8 +359,8 @@ const response = await farm_block(agent, params);
 ### Usage
 
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_timestamp_for_height} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_timestamp_for_height} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_timestamp_for_height(agent);
 ```
@@ -378,8 +378,8 @@ const response = await get_timestamp_for_height(agent);
 ## `set_auto_claim(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {set_auto_claim} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {set_auto_claim} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await set_auto_claim(agent, params);
 ```
@@ -392,15 +392,15 @@ AutoClaimSettings
 AutoClaimSettings
 ```
 For content of `AutoClaimSettings`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/puzzles/clawback/metadata.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/puzzles/clawback/metadata.ts
 
 ---
 
 ## `get_auto_claim(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_auto_claim} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_auto_claim} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_auto_claim(agent);
 ```
@@ -409,15 +409,15 @@ const response = await get_auto_claim(agent);
 AutoClaimSettings
 ```
 For content of `AutoClaimSettings`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/puzzles/clawback/metadata.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/puzzles/clawback/metadata.ts
 
 ---
 
 ## `get_initial_freeze_period_of_wallet(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_initial_freeze_period_of_wallet} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_initial_freeze_period_of_wallet} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_initial_freeze_period_of_wallet(agent);
 ```
@@ -433,8 +433,8 @@ const response = await get_initial_freeze_period_of_wallet(agent);
 ## `get_network_info_of_wallet(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_network_info_of_wallet} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_network_info_of_wallet} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_network_info_of_wallet(agent);
 ```
@@ -451,8 +451,8 @@ const response = await get_network_info_of_wallet(agent);
 ## `get_wallets(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_wallets} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_wallets} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_wallets(agent, params);
 ```
@@ -471,15 +471,15 @@ const response = await get_wallets(agent, params);
 }
 ```
 For content of `WalletInfo`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/wallet_info.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/wallet_info.ts
 
 ---
 
 ## `create_new_wallet(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {create_new_wallet} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {create_new_wallet} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await create_new_wallet(agent, params);
 ```
@@ -587,17 +587,17 @@ type TCreateWalletErrorResponse = {
 };
 ```
 For content of `Coin`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/blockchain_format/coin.ts  
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts  
 For content of `TransactionRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `get_wallet_balance(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_wallet_balance} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_wallet_balance} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_wallet_balance(agent, params);
 ```
@@ -619,15 +619,15 @@ const response = await get_wallet_balance(agent, params);
 }
 ```
 For content of `Balance`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/wallet_node.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/wallet_node.ts
 
 ---
 
 ## `get_wallet_balances(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_wallet_balances} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_wallet_balances} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_wallet_balances(agent, params);
 ```
@@ -649,15 +649,15 @@ const response = await get_wallet_balances(agent, params);
 }
 ```
 For content of `Balance`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/wallet_node.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/wallet_node.ts
 
 ---
 
 ## `get_transaction(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_transaction} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_transaction} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_transaction(agent, params);
 ```
@@ -675,15 +675,15 @@ const response = await get_transaction(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `get_transactions(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_transactions} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_transactions} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_transactions(agent, params);
 ```
@@ -708,17 +708,17 @@ const response = await get_transactions(agent, params);
 }
 ```
 For content of `TransactionRecordConvenienceWithMetadata`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts  
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts  
 For content of `TransactionTypeFilter`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/util/quality_filter.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/util/quality_filter.ts
 
 ---
 
 ## `get_next_address(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_next_address} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_next_address} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_next_address(agent, params);
 ```
@@ -742,8 +742,8 @@ const response = await get_next_address(agent, params);
 ## `send_transaction(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {send_transaction} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {send_transaction} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await send_transaction(agent, params);
 ```
@@ -771,15 +771,15 @@ const response = await send_transaction(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `send_transaction_multi(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {send_transaction_multi} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {send_transaction_multi} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await send_transaction_multi(agent, params);
 ```
@@ -819,27 +819,27 @@ const response = await send_transaction_multi(agent, params);
 }
 ```
 For content of `TAdditions`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/rpc/wallet/index.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
 
 For content of `Coin`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/blockchain_format/coin.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts
 
 For content of `TCoinAnnouncement`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/rpc/wallet/index.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
 
 For content of `TPuzzleAnnouncement`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/rpc/wallet/index.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
 
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `spend_clawback_coins(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {spend_clawback_coins} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {spend_clawback_coins} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await spend_clawback_coins(agent, params);
 ```
@@ -864,8 +864,8 @@ const response = await spend_clawback_coins(agent, params);
 ## `get_coin_records(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_coin_records} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_coin_records} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_coin_records(agent, params);
 ```
@@ -881,17 +881,17 @@ GetCoinRecords
 }
 ```
 For content of `GetCoinRecords`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/wallet_coin_store.ts  
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/wallet_coin_store.ts  
 For content of `WalletCoinRecordWithMetadata`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/wallet_coin_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/wallet_coin_record.ts
 
 ---
 
 ## `get_transaction_count(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_transaction_count} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_transaction_count} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_transaction_count(agent, params);
 ```
@@ -911,15 +911,15 @@ const response = await get_transaction_count(agent, params);
 }
 ```
 For content of `TransactionTypeFilter`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/util/quality_filter.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/util/quality_filter.ts
 
 ---
 
 ## `get_farmed_amount(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_farmed_amount} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_farmed_amount} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_farmed_amount(agent);
 ```
@@ -941,8 +941,8 @@ const response = await get_farmed_amount(agent);
 ## `create_signed_transaction(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {create_signed_transaction} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {create_signed_transaction} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await create_signed_transaction(agent, params);
 ```
@@ -969,27 +969,27 @@ const response = await create_signed_transaction(agent, params);
 }
 ```
 For content of `TAdditions`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/rpc/wallet/index.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
 
 For content of `Coin`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/blockchain_format/coin.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts
 
 For content of `TCoinAnnouncement`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/rpc/wallet/index.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
 
 For content of `TPuzzleAnnouncement`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/rpc/wallet/index.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/rpc/wallet/index.ts
 
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `delete_unconfirmed_transactions(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {delete_unconfirmed_transactions} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {delete_unconfirmed_transactions} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await delete_unconfirmed_transactions(agent, params);
 ```
@@ -1009,8 +1009,8 @@ const response = await delete_unconfirmed_transactions(agent, params);
 ## `select_coins(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {select_coins} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {select_coins} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await select_coins(agent, params);
 ```
@@ -1032,7 +1032,7 @@ const response = await select_coins(agent, params);
 }
 ```
 For content of `Coin`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/blockchain_format/coin.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts
 
 ---
 
@@ -1041,8 +1041,8 @@ see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/blockch
 ### Usage
 
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_spendable_coins} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_spendable_coins} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_spendable_coins(agent, params);
 ```
@@ -1070,9 +1070,9 @@ const response = await get_spendable_coins(agent, params);
 }
 ```
 For content of `CoinRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/coin_records.ts  
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/coin_records.ts  
 For content of `Coin`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/blockchain_format/coin.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/coin.ts
 
 ---
 
@@ -1081,8 +1081,8 @@ see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/blockch
 ### Usage
 
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_coin_records_by_names} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_coin_records_by_names} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_coin_records_by_names(agent, params);
 ```
@@ -1106,15 +1106,15 @@ const response = await get_coin_records_by_names(agent, params);
 }
 ```
 For content of `CoinRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/coin_records.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/coin_records.ts
 
 ---
 
 ## `get_current_derivation_index(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_current_derivation_index} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_current_derivation_index} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_current_derivation_index(agent);
 ```
@@ -1131,8 +1131,8 @@ const response = await get_current_derivation_index(agent);
 ## `extend_derivation_index(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {extend_derivation_index} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {extend_derivation_index} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await extend_derivation_index(agent, params);
 ```
@@ -1155,8 +1155,8 @@ const response = await extend_derivation_index(agent, params);
 ## `get_notifications(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_notifications} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_notifications} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_notifications(agent, params);
 ```
@@ -1185,8 +1185,8 @@ const response = await get_notifications(agent, params);
 ## `delete_notifications(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {delete_notifications} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {delete_notifications} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await delete_notifications(agent, params);
 ```
@@ -1206,8 +1206,8 @@ const response = await delete_notifications(agent, params);
 ## `send_notification(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {send_notification} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {send_notification} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await send_notification(agent, params);
 ```
@@ -1227,15 +1227,15 @@ const response = await send_notification(agent, params);
 }
 ```
 For content of `TransactionRecord` and `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `verify_signature(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {verify_signature} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {verify_signature} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await verify_signature(agent, params);
 ```
@@ -1261,15 +1261,15 @@ const response = await verify_signature(agent, params);
 }
 ```
 For content of `SigningMode,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/signing_mode.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/signing_mode.ts
 
 ---
 
 ## `get_transaction_memo(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_transaction_memo} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_transaction_memo} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_transaction_memo(agent, params);
 ```
@@ -1293,8 +1293,8 @@ const response = await get_transaction_memo(agent, params);
 ## `sign_message_by_address(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {sign_message_by_address} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {sign_message_by_address} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await sign_message_by_address(agent, params);
 ```
@@ -1316,15 +1316,15 @@ const response = await sign_message_by_address(agent, params);
 }
 ```
 For content of `SigningMode`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/signing_mode.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/signing_mode.ts
 
 ---
 
 ## `sign_message_by_id(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {sign_message_by_id} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {sign_message_by_id} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await sign_message_by_id(agent, params);
 ```
@@ -1352,15 +1352,15 @@ const response = await sign_message_by_id(agent, params);
 }
 ```
 For content of `SigningMode`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/signing_mode.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/signing_mode.ts
 
 ---
 
 ## `nft_calculate_royalties(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_calculate_royalties} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_calculate_royalties} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_calculate_royalties(agent, params);
 ```
@@ -1388,8 +1388,8 @@ Record<str, Array<{asset: str; address: str; amount: uint64;}>>
 ## `nft_mint_bulk(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_mint_bulk} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_mint_bulk} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_mint_bulk(agent, params);
 ```
@@ -1412,8 +1412,8 @@ const response = await nft_mint_bulk(agent, params);
   target_list?: str[];
   mint_number_start?: int;
   mint_total?: int;
-  xch_coins?: Coin[];
-  xch_change_target?: str;
+  cac_coins?: Coin[];
+  cac_change_target?: str;
   new_innerpuzhash?: str;
   new_p2_puzhash?: str;
   did_coin?: Coin;
@@ -1435,15 +1435,15 @@ const response = await nft_mint_bulk(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/spend_bundle.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
 ## `nft_set_did_bulk(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_set_did_bulk} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_set_did_bulk} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_set_did_bulk(agent, params);
 ```
@@ -1471,15 +1471,15 @@ const response = await nft_set_did_bulk(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/spend_bundle.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
 ## `nft_transfer_bulk(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_transfer_bulk} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_transfer_bulk} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_transfer_bulk(agent, params);
 ```
@@ -1507,15 +1507,15 @@ const response = await nft_transfer_bulk(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/spend_bundle.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
 ## `get_cat_list(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_cat_list} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_cat_list} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_cat_list(agent);
 ```
@@ -1526,15 +1526,15 @@ const response = await get_cat_list(agent);
 }
 ```
 For content of `CAT`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/cat_wallet/cat_constants.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/cat_wallet/cat_constants.ts
 
 ---
 
 ## `cat_set_name(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {cat_set_name} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {cat_set_name} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await cat_set_name(agent, params);
 ```
@@ -1557,8 +1557,8 @@ const response = await cat_set_name(agent, params);
 ## `cat_asset_id_to_name(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {cat_asset_id_to_name} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {cat_asset_id_to_name} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await cat_asset_id_to_name(agent, params);
 ```
@@ -1582,8 +1582,8 @@ const response = await cat_asset_id_to_name(agent, params);
 ## `cat_get_name(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {cat_get_name} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {cat_get_name} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await cat_get_name(agent, params);
 ```
@@ -1607,8 +1607,8 @@ const response = await cat_get_name(agent, params);
 ## `get_stray_cats(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_stray_cats} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_stray_cats} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_stray_cats(agent);
 ```
@@ -1629,8 +1629,8 @@ const response = await get_stray_cats(agent);
 ## `cat_spend(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {cat_spend} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {cat_spend} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await cat_spend(agent, params);
 ```
@@ -1662,15 +1662,15 @@ const response = await cat_spend(agent, params);
 }
 ```
 For content of `TransactionRecord` and `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `cat_get_asset_id(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {cat_get_asset_id} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {cat_get_asset_id} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await cat_get_asset_id(agent, params);
 ```
@@ -1693,8 +1693,8 @@ const response = await cat_get_asset_id(agent, params);
 ## `create_offer_for_ids(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {create_offer_for_ids} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {create_offer_for_ids} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await create_offer_for_ids(agent, params);
 ```
@@ -1719,17 +1719,17 @@ const response = await create_offer_for_ids(agent, params);
 }
 ```
 For content of `TradeRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/trade_record.ts  
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/trade_record.ts  
 For content of `TDriverDict`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/puzzle_drivers.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/puzzle_drivers.ts
 
 ---
 
 ## `get_offer_summary(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_offer_summary} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_offer_summary} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_offer_summary(agent, params);
 ```
@@ -1753,15 +1753,15 @@ const response = await get_offer_summary(agent, params);
 }
 ```
 For content of `TDriverDict`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/puzzle_drivers.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/puzzle_drivers.ts
 
 ---
 
 ## `check_offer_validity(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {check_offer_validity} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {check_offer_validity} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await check_offer_validity(agent, params);
 ```
@@ -1784,8 +1784,8 @@ const response = await check_offer_validity(agent, params);
 ## `take_offer(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {take_offer} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {take_offer} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await take_offer(agent, params);
 ```
@@ -1807,15 +1807,15 @@ const response = await take_offer(agent, params);
 }
 ```
 For content of `TradeRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/trade_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/trade_record.ts
 
 ---
 
 ## `get_offer(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_offer} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_offer} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_offer(agent, params);
 ```
@@ -1834,15 +1834,15 @@ const response = await get_offer(agent, params);
 }
 ```
 For content of `TradeRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/trade_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/trade_record.ts
 
 ---
 
 ## `get_all_offers(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_all_offers} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_all_offers} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_all_offers(agent, params);
 ```
@@ -1867,15 +1867,15 @@ const response = await get_all_offers(agent, params);
 }
 ```
 For content of `TradeRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/trade_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/trade_record.ts
 
 ---
 
 ## `get_offers_count(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_offers_count} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {get_offers_count} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await get_offers_count(agent);
 ```
@@ -1893,8 +1893,8 @@ const response = await get_offers_count(agent);
 ## `cancel_offer(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {cancel_offer} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {cancel_offer} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await cancel_offer(agent, params);
 ```
@@ -1916,8 +1916,8 @@ const response = await cancel_offer(agent, params);
 ## `cancel_offers(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {cancel_offers} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {cancel_offers} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await cancel_offers(agent, params);
 ```
@@ -1943,8 +1943,8 @@ const response = await cancel_offers(agent, params);
 ## `did_set_wallet_name(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_set_wallet_name} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_set_wallet_name} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_set_wallet_name(agent, params);
 ```
@@ -1971,8 +1971,8 @@ const response = await did_set_wallet_name(agent, params);
 ## `did_get_wallet_name(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_get_wallet_name} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_get_wallet_name} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_get_wallet_name(agent, params);
 ```
@@ -1996,8 +1996,8 @@ const response = await did_get_wallet_name(agent, params);
 ## `did_update_recovery_ids(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_update_recovery_ids} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_update_recovery_ids} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_update_recovery_ids(agent, params);
 ```
@@ -2020,8 +2020,8 @@ const response = await did_update_recovery_ids(agent, params);
 ## `did_update_metadata(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_update_metadata} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_update_metadata} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_update_metadata(agent, params);
 ```
@@ -2046,15 +2046,15 @@ const response = await did_update_metadata(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/spend_bundle.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
 ## `did_get_pubkey(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_get_pubkey} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_get_pubkey} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_get_pubkey(agent);
 ```
@@ -2077,8 +2077,8 @@ const response = await did_get_pubkey(agent);
 ## `did_get_did(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_get_did} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_get_did} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_get_did(agent, params);
 ```
@@ -2102,8 +2102,8 @@ const response = await did_get_did(agent, params);
 ## `did_recovery_spend(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_recovery_spend} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_recovery_spend} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_recovery_spend(agent, params);
 ```
@@ -2126,15 +2126,15 @@ const response = await did_recovery_spend(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/spend_bundle.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
 ## `did_get_recovery_list(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_get_recovery_list} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_get_recovery_list} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_get_recovery_list(agent, params);
 ```
@@ -2158,8 +2158,8 @@ const response = await did_get_recovery_list(agent, params);
 ## `did_get_metadata(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_get_metadata} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_get_metadata} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_get_metadata(agent, params);
 ```
@@ -2183,8 +2183,8 @@ const response = await did_get_metadata(agent, params);
 ## `did_create_attest(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_create_attest} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_create_attest} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_create_attest(agent, params);
 ```
@@ -2213,8 +2213,8 @@ const response = await did_create_attest(agent, params);
 ## `did_get_information_needed_for_recovery(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_get_information_needed_for_recovery} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_get_information_needed_for_recovery} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_get_information_needed_for_recovery(agent, params);
 ```
@@ -2241,8 +2241,8 @@ const response = await did_get_information_needed_for_recovery(agent, params);
 ## `did_get_current_coin_info(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_get_current_coin_info} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_get_current_coin_info} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_get_current_coin_info(agent, params);
 ```
@@ -2269,8 +2269,8 @@ const response = await did_get_current_coin_info(agent, params);
 ## `did_create_backup_file(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_create_backup_file} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_create_backup_file} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_create_backup_file(agent, params);
 ```
@@ -2296,8 +2296,8 @@ const response = await did_create_backup_file(agent, params);
 ### Usage
 
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_message_spend} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_message_spend} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_message_spend(agent, params);
 ```
@@ -2328,8 +2328,8 @@ const response = await did_message_spend(agent, params);
 ### Usage
 
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_get_info} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_get_info} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_get_info(agent, params);
 ```
@@ -2368,8 +2368,8 @@ const response = await did_get_info(agent, params);
 ## `did_find_lost_did(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_find_lost_did} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_find_lost_did} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_find_lost_did(agent, params);
 ```
@@ -2400,8 +2400,8 @@ const response = await did_find_lost_did(agent, params);
 ## `did_transfer_did(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {did_transfer_did} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {did_transfer_did} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await did_transfer_did(agent, params);
 ```
@@ -2424,15 +2424,15 @@ const response = await did_transfer_did(agent, params);
 }
 ```
 For content of `TransactionRecord` and `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `nft_mint_nft(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_mint_nft} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_mint_nft} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_mint_nft(agent, params);
 ```
@@ -2442,9 +2442,9 @@ const response = await nft_mint_nft(agent, params);
   wallet_id: uint32;
   royalty_address?: str;
   target_address?: str;
-  uris: str[]; // Reference: NFTInfo.data_uris at chia/wallet/nft_wallet/nft_info.py
-  meta_uris: str[]; // Reference: chia/wallet/nft_wallet/nft_info.py
-  license_uris: str[]; // Reference: chia/wallet/nft_wallet/nft_info.py
+  uris: str[]; // Reference: NFTInfo.data_uris at cactus/wallet/nft_wallet/nft_info.py
+  meta_uris: str[]; // Reference: cactus/wallet/nft_wallet/nft_info.py
+  license_uris: str[]; // Reference: cactus/wallet/nft_wallet/nft_info.py
   hash: str;
   edition_number: uint64;
   edition_total: uint64;
@@ -2466,7 +2466,7 @@ const response = await nft_mint_nft(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/spend_bundle.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 ---
@@ -2474,8 +2474,8 @@ see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/spend_b
 ## `nft_count_nfts(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_count_nfts} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_count_nfts} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_count_nfts(agent, params);
 ```
@@ -2504,8 +2504,8 @@ const response = await nft_count_nfts(agent, params);
 ## `nft_get_nfts(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_get_nfts} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_get_nfts} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_get_nfts(agent, params);
 ```
@@ -2527,15 +2527,15 @@ const response = await nft_get_nfts(agent, params);
 }
 ```
 For content of `NFTInfo`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/nft_wallet/neft_info.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/nft_wallet/neft_info.ts
 
 ---
 
 ## `nft_set_nft_did(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_set_nft_did} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_set_nft_did} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_set_nft_did(agent, params);
 ```
@@ -2561,15 +2561,15 @@ const response = await nft_set_nft_did(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/spend_bundle.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
 ## `nft_get_by_did(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_get_by_did} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_get_by_did} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_get_by_did(agent, params);
 ```
@@ -2595,8 +2595,8 @@ const response = await nft_get_by_did(agent, params);
 ## `nft_get_wallet_did(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_get_wallet_did} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_get_wallet_did} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_get_wallet_did(agent, params);
 ```
@@ -2619,8 +2619,8 @@ const response = await nft_get_wallet_did(agent, params);
 ## `nft_get_wallets_with_dids(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_get_wallets_with_dids} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_get_wallets_with_dids} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_get_wallets_with_dids(agent);
 ```
@@ -2641,8 +2641,8 @@ const response = await nft_get_wallets_with_dids(agent);
 ## `nft_set_nft_status(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_set_nft_status} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_set_nft_status} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_set_nft_status(agent, params);
 ```
@@ -2666,8 +2666,8 @@ const response = await nft_set_nft_status(agent, params);
 ## `nft_transfer_nft(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_transfer_nft} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_transfer_nft} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_transfer_nft(agent, params);
 ```
@@ -2693,15 +2693,15 @@ const response = await nft_transfer_nft(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/spend_bundle.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
 ## `nft_get_info(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_get_info} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_get_info} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_get_info(agent, params);
 ```
@@ -2724,15 +2724,15 @@ const response = await nft_get_info(agent, params);
 }
 ```
 For content of `NFTInfo`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/nft_wallet/neft_info.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/nft_wallet/neft_info.ts
 
 ---
 
 ## `nft_add_uri(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {nft_add_uri} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {nft_add_uri} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await nft_add_uri(agent, params);
 ```
@@ -2756,15 +2756,15 @@ const response = await nft_add_uri(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/spend_bundle.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
 ## `pw_join_pool(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {pw_join_pool} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {pw_join_pool} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await pw_join_pool(agent, params);
 ```
@@ -2790,15 +2790,15 @@ const response = await pw_join_pool(agent, params);
 }
 ```
 For content of `TransactionRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `pw_self_pool(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {pw_self_pool} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {pw_self_pool} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await pw_self_pool(agent, params);
 ```
@@ -2818,15 +2818,15 @@ const response = await pw_self_pool(agent, params);
 };
 ```
 For content of `TransactionRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `pw_absorb_rewards(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {pw_absorb_rewards} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {pw_absorb_rewards} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await pw_absorb_rewards(agent, params);
 ```
@@ -2847,18 +2847,18 @@ const response = await pw_absorb_rewards(agent, params);
 };
 ```
 For content of `PoolWalletInfo`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/pools/pool_wallet_info.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/pools/pool_wallet_info.ts
 
 For content of `TransactionRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `pw_status(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {pw_status} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {pw_status} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await pw_status(agent, params);
 ```
@@ -2876,18 +2876,18 @@ const response = await pw_status(agent, params);
 }
 ```
 For content of `PoolWalletInfo`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/pools/pool_wallet_info.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/pools/pool_wallet_info.ts
 
 For content of `TransactionRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `create_new_dl(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {create_new_dl} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {create_new_dl} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await create_new_dl(agent, params);
 ```
@@ -2910,15 +2910,15 @@ const response = await create_new_dl(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `dl_track_new(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {dl_track_new} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {dl_track_new} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await dl_track_new(agent, params);
 ```
@@ -2938,8 +2938,8 @@ const response = await dl_track_new(agent, params);
 ## `dl_stop_tracking(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {dl_stop_tracking} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {dl_stop_tracking} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await dl_stop_tracking(agent, params);
 ```
@@ -2959,8 +2959,8 @@ const response = await dl_stop_tracking(agent, params);
 ## `dl_latest_singleton(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {dl_latest_singleton} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {dl_latest_singleton} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await dl_latest_singleton(agent, params);
 ```
@@ -2978,15 +2978,15 @@ const response = await dl_latest_singleton(agent, params);
 }
 ```
 For content of `SingletonRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/lineage_proof.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/lineage_proof.ts
 
 ---
 
 ## `dl_singletons_by_root(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {dl_singletons_by_root} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {dl_singletons_by_root} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await dl_singletons_by_root(agent, params);
 ```
@@ -3004,15 +3004,15 @@ const response = await dl_singletons_by_root(agent, params);
 }
 ```
 For content of `SingletonRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/lineage_proof.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/lineage_proof.ts
 
 ---
 
 ## `dl_update_root(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {dl_update_root} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {dl_update_root} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await dl_update_root(agent, params);
 ```
@@ -3031,15 +3031,15 @@ const response = await dl_update_root(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `dl_update_multiple(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {dl_update_multiple} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {dl_update_multiple} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await dl_update_multiple(agent, params);
 ```
@@ -3056,15 +3056,15 @@ const response = await dl_update_multiple(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `dl_history(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {dl_history} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {dl_history} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await dl_history(agent, params);
 ```
@@ -3085,15 +3085,15 @@ const response = await dl_history(agent, params);
 }
 ```
 For content of `SingletonRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/lineage_proof.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/lineage_proof.ts
 
 ---
 
 ## `dl_owned_singletons(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {dl_owned_singletons} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {dl_owned_singletons} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await dl_owned_singletons(agent);
 ```
@@ -3105,15 +3105,15 @@ const response = await dl_owned_singletons(agent);
 }
 ```
 For content of `SingletonRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/lineage_proof.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/lineage_proof.ts
 
 ---
 
 ## `dl_get_mirrors(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {dl_get_mirrors} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {dl_get_mirrors} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await dl_get_mirrors(agent, params);
 ```
@@ -3130,15 +3130,15 @@ const response = await dl_get_mirrors(agent, params);
 }
 ```
 For content of `Mirror`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/data_layer/data_layer_wallet.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/data_layer/data_layer_wallet.ts
 
 ---
 
 ## `dl_new_mirror(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {dl_new_mirror} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {dl_new_mirror} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await dl_new_mirror(agent, params);
 ```
@@ -3158,15 +3158,15 @@ const response = await dl_new_mirror(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `dl_delete_mirror(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {dl_delete_mirror} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {dl_delete_mirror} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await dl_delete_mirror(agent, params);
 ```
@@ -3184,15 +3184,15 @@ const response = await dl_delete_mirror(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `vc_mint(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {vc_mint} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {vc_mint} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await vc_mint(agent, params);
 ```
@@ -3212,17 +3212,17 @@ const response = await vc_mint(agent, params);
 }
 ```
 For content of `VCRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/vc_wallet/vc_store.ts  
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/vc_wallet/vc_store.ts  
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `vc_get(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {vc_get} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {vc_get} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await vc_get(agent, params);
 ```
@@ -3239,15 +3239,15 @@ const response = await vc_get(agent, params);
 }
 ```
 For content of `VCRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/vc_wallet/vc_store.ts  
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/vc_wallet/vc_store.ts  
 
 ---
 
 ## `vc_get_list(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {vc_get_list} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {vc_get_list} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await vc_get_list(agent, params);
 ```
@@ -3266,15 +3266,15 @@ const response = await vc_get_list(agent, params);
 }
 ```
 For content of `VCRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/vc_wallet/vc_store.ts  
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/vc_wallet/vc_store.ts  
 
 ---
 
 ## `vc_spend(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {vc_spend} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {vc_spend} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await vc_spend(agent, params);
 ```
@@ -3296,15 +3296,15 @@ const response = await vc_spend(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts
 
 ---
 
 ## `vc_add_proofs(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {vc_add_proofs} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {vc_add_proofs} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await vc_add_proofs(agent, params);
 ```
@@ -3326,8 +3326,8 @@ const response = await vc_add_proofs(agent, params);
 ## `vc_get_proofs_for_root(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {vc_get_proofs_for_root} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {vc_get_proofs_for_root} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await vc_get_proofs_for_root(agent, params);
 ```
@@ -3349,8 +3349,8 @@ const response = await vc_get_proofs_for_root(agent, params);
 ## `vc_revoke(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {vc_revoke} = require("chia-agent/api/rpc/wallet");
+const {RPCAgent} = require("cactus-agent");
+const {vc_revoke} = require("cactus-agent/api/rpc/wallet");
 const agent = new RPCAgent({service: "wallet"});
 const response = await vc_revoke(agent, params);
 ```
@@ -3369,4 +3369,4 @@ const response = await vc_revoke(agent, params);
 }
 ```
 For content of `TransactionRecordConvenience`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/wallet/transaction_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/wallet/transaction_record.ts

@@ -4,8 +4,8 @@
 You need to create RPC connection before actually sending rpc request to the service.  
 Please remember that all rpc API is provided as an async function.
 ```js
-const {RPCAgent} = require("chia-agent");
-const {add_plot_directory} = require("chia-agent/api/rpc/harvester");
+const {RPCAgent} = require("cactus-agent");
+const {add_plot_directory} = require("cactus-agent/api/rpc/harvester");
 const agent = new RPCAgent({
   service: "harvester", // connect to local harvester mservice using config file.
 });
@@ -16,7 +16,7 @@ const response = await add_plot_directory(agent, {...});
 
 /*
  * You can instantiate `agent` with hostname/port.
- * See https://github.com/Chia-Mine/chia-agent/blob/main/src/rpc/index.ts
+ * See https://github.com/Cactus-Mine/cactus-agent/blob/main/src/rpc/index.ts
  */
 const agent = new RPCAgent({
   protocol: "https",
@@ -33,8 +33,8 @@ const agent = new RPCAgent({
 ## `get_plots(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_plots} = require("chia-agent/api/rpc/harvester");
+const {RPCAgent} = require("cactus-agent");
+const {get_plots} = require("cactus-agent/api/rpc/harvester");
 const agent = new RPCAgent({service: "harvester"});
 const response = await get_plots(agent);
 ```
@@ -47,15 +47,15 @@ const response = await get_plots(agent);
 }
 ```
 For content of `Plot`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/harvester/harvester.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/harvester/harvester.ts
 
 ---
 
 ## `refresh_plots(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {refresh_plots} = require("chia-agent/api/rpc/harvester");
+const {RPCAgent} = require("cactus-agent");
+const {refresh_plots} = require("cactus-agent/api/rpc/harvester");
 const agent = new RPCAgent({service: "harvester"});
 const response = await refresh_plots(agent);
 ```
@@ -69,8 +69,8 @@ const response = await refresh_plots(agent);
 ## `delete_plot(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {delete_plot} = require("chia-agent/api/rpc/harvester");
+const {RPCAgent} = require("cactus-agent");
+const {delete_plot} = require("cactus-agent/api/rpc/harvester");
 const agent = new RPCAgent({service: "harvester"});
 const response = await delete_plot(agent, params);
 ```
@@ -90,8 +90,8 @@ const response = await delete_plot(agent, params);
 ## `add_plot_directory(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {add_plot_directory} = require("chia-agent/api/rpc/harvester");
+const {RPCAgent} = require("cactus-agent");
+const {add_plot_directory} = require("cactus-agent/api/rpc/harvester");
 const agent = new RPCAgent({service: "harvester"});
 const response = await add_plot_directory(agent, params);
 ```
@@ -111,8 +111,8 @@ const response = await add_plot_directory(agent, params);
 ## `get_plot_directories(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_plot_directories} = require("chia-agent/api/rpc/harvester");
+const {RPCAgent} = require("cactus-agent");
+const {get_plot_directories} = require("cactus-agent/api/rpc/harvester");
 const agent = new RPCAgent({service: "harvester"});
 const response = await get_plot_directories(agent);
 ```
@@ -128,8 +128,8 @@ const response = await get_plot_directories(agent);
 ## `remove_plot_directory(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {remove_plot_directory} = require("chia-agent/api/rpc/harvester");
+const {RPCAgent} = require("cactus-agent");
+const {remove_plot_directory} = require("cactus-agent/api/rpc/harvester");
 const agent = new RPCAgent({service: "harvester"});
 const response = await remove_plot_directory(agent, params);
 ```
@@ -148,8 +148,8 @@ const response = await remove_plot_directory(agent, params);
 ## `get_harvester_config(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_harvester_config} = require("chia-agent/api/rpc/harvester");
+const {RPCAgent} = require("cactus-agent");
+const {get_harvester_config} = require("cactus-agent/api/rpc/harvester");
 const agent = new RPCAgent({service: "harvester"});
 const response = await get_harvester_config(agent);
 ```
@@ -173,8 +173,8 @@ const response = await get_harvester_config(agent);
 ## `update_harvester_config(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {update_harvester_config} = require("chia-agent/api/rpc/harvester");
+const {RPCAgent} = require("cactus-agent");
+const {update_harvester_config} = require("cactus-agent/api/rpc/harvester");
 const agent = new RPCAgent({service: "harvester"});
 const response = await update_harvester_config(agent, params);
 ```

@@ -4,8 +4,8 @@
 You need to create RPC connection before actually sending rpc request to the service.  
 Please remember that all rpc API is provided as an async function.
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_ips_after_timestamp} = require("chia-agent/api/rpc/crawler");
+const {RPCAgent} = require("cactus-agent");
+const {get_ips_after_timestamp} = require("cactus-agent/api/rpc/crawler");
 const agent = new RPCAgent({
   service: "crawler", // connect to local crawler service using config file.
 });
@@ -18,7 +18,7 @@ const response = await get_ips_after_timestamp(agent, {...});
 
 /*
  * You can instantiate `agent` with hostname/port.
- * See https://github.com/Chia-Mine/chia-agent/blob/main/src/rpc/index.ts
+ * See https://github.com/Cactus-Mine/cactus-agent/blob/main/src/rpc/index.ts
  */
 const agent = new RPCAgent({
   protocol: "https",
@@ -35,8 +35,8 @@ const agent = new RPCAgent({
 ## `get_peer_counts(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_peer_counts} = require("chia-agent/api/rpc/crawler");
+const {RPCAgent} = require("cactus-agent");
+const {get_peer_counts} = require("cactus-agent/api/rpc/crawler");
 const agent = new RPCAgent({service: "crawler"});
 const response = await get_peer_counts(agent);
 ```
@@ -58,8 +58,8 @@ const response = await get_peer_counts(agent);
 ## `get_ips_after_timestamp(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_ips_after_timestamp} = require("chia-agent/api/rpc/crawler");
+const {RPCAgent} = require("cactus-agent");
+const {get_ips_after_timestamp} = require("cactus-agent/api/rpc/crawler");
 const agent = new RPCAgent({service: "crawler"});
 const response = await get_ips_after_timestamp(agent, params);
 ```

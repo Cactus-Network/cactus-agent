@@ -1,5 +1,5 @@
-import {WalletInfo} from "../../chia/wallet/wallet_info";
-import {Coin} from "../../chia/types/blockchain_format/coin";
+import {WalletInfo} from "../../cactus/wallet/wallet_info";
+import {Coin} from "../../cactus/types/blockchain_format/coin";
 import {
   bool,
   bytes,
@@ -12,35 +12,35 @@ import {
   uint32,
   uint64,
   uint8
-} from "../../chia/types/_python_types_";
-import {bytes32} from "../../chia/types/blockchain_format/sized_bytes";
+} from "../../cactus/types/_python_types_";
+import {bytes32} from "../../cactus/types/blockchain_format/sized_bytes";
 import {
   TransactionRecord,
   TransactionRecordConvenience,
   TransactionRecordConvenienceWithMetadata
-} from "../../chia/wallet/transaction_record";
-import {SpendBundle} from "../../chia/types/spend_bundle";
+} from "../../cactus/wallet/transaction_record";
+import {SpendBundle} from "../../cactus/types/spend_bundle";
 import {TRPCAgent} from "../../../rpc";
-import {PoolWalletInfo} from "../../chia/pools/pool_wallet_info";
-import {TradeRecordConvenience} from "../../chia/wallet/trade_record";
-import {CAT} from "../../chia/wallet/cat_wallet/cat_constants";
-import {TDriverDict} from "../../chia/wallet/puzzle_drivers";
-import {NFTInfo} from "../../chia/wallet/nft_wallet/nft_info";
-import {Mirror, SingletonRecord} from "../../chia/data_layer/data_layer_wallet";
+import {PoolWalletInfo} from "../../cactus/pools/pool_wallet_info";
+import {TradeRecordConvenience} from "../../cactus/wallet/trade_record";
+import {CAT} from "../../cactus/wallet/cat_wallet/cat_constants";
+import {TDriverDict} from "../../cactus/wallet/puzzle_drivers";
+import {NFTInfo} from "../../cactus/wallet/nft_wallet/nft_info";
+import {Mirror, SingletonRecord} from "../../cactus/data_layer/data_layer_wallet";
 import {TPushTxResponseOfWallet} from "../index";
 import {GetMessageType, ResType} from "../../types";
 import {TDaemon} from "../../../daemon/index";
-import {CoinRecord} from "../../chia/types/coin_record";
-import {SigningMode} from "../../chia/types/signing_mode";
-import {Balance} from "../../chia/wallet/wallet_node";
-import {AutoClaimSettings} from "../../chia/wallet/puzzles/clawback/metadata";
-import {GetCoinRecords} from "../../chia/wallet/wallet_coin_store";
-import {WalletCoinRecordWithMetadata} from "../../chia/wallet/wallet_coin_record";
-import {VCRecord} from "../../chia/wallet/vc_wallet/vc_store";
-import {TransactionTypeFilter} from "../../chia/wallet/util/quality_filter";
+import {CoinRecord} from "../../cactus/types/coin_record";
+import {SigningMode} from "../../cactus/types/signing_mode";
+import {Balance} from "../../cactus/wallet/wallet_node";
+import {AutoClaimSettings} from "../../cactus/wallet/puzzles/clawback/metadata";
+import {GetCoinRecords} from "../../cactus/wallet/wallet_coin_store";
+import {WalletCoinRecordWithMetadata} from "../../cactus/wallet/wallet_coin_record";
+import {VCRecord} from "../../cactus/wallet/vc_wallet/vc_store";
+import {TransactionTypeFilter} from "../../cactus/wallet/util/quality_filter";
 
-export const chia_wallet_service = "chia_wallet";
-export type chia_wallet_service = typeof chia_wallet_service;
+export const cactus_wallet_service = "cactus_wallet";
+export type cactus_wallet_service = typeof cactus_wallet_service;
 
 // # Key management
 
@@ -55,10 +55,10 @@ export type TLoginResponse = {
   success: False;
   error: "Unknown Error";
 };
-export type WsLoginMessage = GetMessageType<chia_wallet_service, log_in_command, TLoginResponse>;
+export type WsLoginMessage = GetMessageType<cactus_wallet_service, log_in_command, TLoginResponse>;
 export async function log_in<T extends TRPCAgent | TDaemon>(agent: T, data: TLoginRequest){
   type R = ResType<T, TLoginResponse, WsLoginMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, log_in_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, log_in_command, data);
 }
 
 
@@ -68,10 +68,10 @@ export type get_logged_in_fingerprint_command = typeof get_logged_in_fingerprint
 export type TGetLoggedInFingerprintResponse = {
   fingerprint: Optional<int>;
 };
-export type WsGetLoggedInFingerprintMessage = GetMessageType<chia_wallet_service, get_logged_in_fingerprint_command, TGetLoggedInFingerprintResponse>;
+export type WsGetLoggedInFingerprintMessage = GetMessageType<cactus_wallet_service, get_logged_in_fingerprint_command, TGetLoggedInFingerprintResponse>;
 export async function get_logged_in_fingerprint<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetLoggedInFingerprintResponse, WsGetLoggedInFingerprintMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_logged_in_fingerprint_command);
+  return agent.sendMessage<R>(cactus_wallet_service, get_logged_in_fingerprint_command);
 }
 
 
@@ -85,10 +85,10 @@ export type TGetPublicKeysResponse = {
 } | {
   keyring_is_locked: True;
 };
-export type WsGetPublicKeysMessage = GetMessageType<chia_wallet_service, get_public_keys_command, TGetPublicKeysResponse>;
+export type WsGetPublicKeysMessage = GetMessageType<cactus_wallet_service, get_public_keys_command, TGetPublicKeysResponse>;
 export async function get_public_keys<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetPublicKeysResponse, WsGetPublicKeysMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_public_keys_command);
+  return agent.sendMessage<R>(cactus_wallet_service, get_public_keys_command);
 }
 
 
@@ -96,7 +96,7 @@ export async function get_public_keys<T extends TRPCAgent | TDaemon>(agent: T){
 export const get_private_key_command = "get_private_key";
 export type get_private_key_command = typeof get_private_key_command;
 export type TGetPrivateKeyRequest = {
-  fingerprint: int; // https://github.com/Chia-Network/bls-signatures/blob/main/python-impl/ec.py#L164
+  fingerprint: int; // https://github.com/Cactus-Network/bls-signatures/blob/main/python-impl/ec.py#L164
 };
 export type TGetPrivateKeyResponse = {
   private_key: {
@@ -113,10 +113,10 @@ export type TGetPrivateKeyResponse = {
     fingerprint: int;
   };
 };
-export type WsGetPrivateKeyMessage = GetMessageType<chia_wallet_service, get_private_key_command, TGetPrivateKeyResponse>;
+export type WsGetPrivateKeyMessage = GetMessageType<cactus_wallet_service, get_private_key_command, TGetPrivateKeyResponse>;
 export async function get_private_key<T extends TRPCAgent | TDaemon>(agent: T, data: TGetPrivateKeyRequest){
   type R = ResType<T, TGetPrivateKeyResponse, WsGetPrivateKeyMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_private_key_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_private_key_command, data);
 }
 
 
@@ -129,10 +129,10 @@ export type TGenerateMnemonicRequest = {
 export type TGenerateMnemonicResponse = {
   mnemonic: str[];
 };
-export type WsGenerateMnemonicMessage = GetMessageType<chia_wallet_service, generate_mnemonic_command, TGenerateMnemonicResponse>;
+export type WsGenerateMnemonicMessage = GetMessageType<cactus_wallet_service, generate_mnemonic_command, TGenerateMnemonicResponse>;
 export async function generate_mnemonic<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGenerateMnemonicResponse, WsGenerateMnemonicMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, generate_mnemonic_command);
+  return agent.sendMessage<R>(cactus_wallet_service, generate_mnemonic_command);
 }
 
 
@@ -150,10 +150,10 @@ export type TAddKeyResponse = {
 } | {
   fingerprint: int;
 };
-export type WsAddKeyMessage = GetMessageType<chia_wallet_service, add_key_command, TAddKeyResponse>;
+export type WsAddKeyMessage = GetMessageType<cactus_wallet_service, add_key_command, TAddKeyResponse>;
 export async function add_key<T extends TRPCAgent | TDaemon>(agent: T, data: TAddKeyRequest){
   type R = ResType<T, TAddKeyResponse, WsAddKeyMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, add_key_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, add_key_command, data);
 }
 
 
@@ -166,10 +166,10 @@ export type TDeleteKeyRequest = {
 };
 export type TDeleteKeyResponse = {
 };
-export type WsDeleteKeyMessage = GetMessageType<chia_wallet_service, delete_key_command, TDeleteKeyResponse>;
+export type WsDeleteKeyMessage = GetMessageType<cactus_wallet_service, delete_key_command, TDeleteKeyResponse>;
 export async function delete_key<T extends TRPCAgent | TDaemon>(agent: T, data: TDeleteKeyRequest){
   type R = ResType<T, TDeleteKeyResponse, WsDeleteKeyMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, delete_key_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, delete_key_command, data);
 }
 
 
@@ -187,10 +187,10 @@ export type TCheckDeleteKeyResponse = {
   used_for_pool_rewards: bool;
   wallet_balance: bool;
 };
-export type WsCheckDeleteKeyMessage = GetMessageType<chia_wallet_service, check_delete_key_command, TCheckDeleteKeyResponse>;
+export type WsCheckDeleteKeyMessage = GetMessageType<cactus_wallet_service, check_delete_key_command, TCheckDeleteKeyResponse>;
 export async function check_delete_key<T extends TRPCAgent | TDaemon>(agent: T, data: TCheckDeleteKeyRequest){
   type R = ResType<T, TCheckDeleteKeyResponse, WsCheckDeleteKeyMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, check_delete_key_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, check_delete_key_command, data);
 }
 
 
@@ -205,10 +205,10 @@ export type TDeleteAllKeysResponse = {} | {
   success: False;
   error: str;
 };
-export type WsDeleteAllKeysMessage = GetMessageType<chia_wallet_service, delete_all_keys_command, TDeleteAllKeysResponse>;
+export type WsDeleteAllKeysMessage = GetMessageType<cactus_wallet_service, delete_all_keys_command, TDeleteAllKeysResponse>;
 export async function delete_all_keys<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TDeleteAllKeysResponse, WsDeleteAllKeysMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, delete_all_keys_command);
+  return agent.sendMessage<R>(cactus_wallet_service, delete_all_keys_command);
 }
 
 
@@ -220,10 +220,10 @@ export type TSetWalletResyncOnStartupRequest = {
 export type TSetWalletResyncOnStartupResponse = {
   success: True;
 };
-export type WsSetWalletResyncOnStartupMessage = GetMessageType<chia_wallet_service, set_wallet_resync_on_startup_command, TSetWalletResyncOnStartupResponse>;
+export type WsSetWalletResyncOnStartupMessage = GetMessageType<cactus_wallet_service, set_wallet_resync_on_startup_command, TSetWalletResyncOnStartupResponse>;
 export async function set_wallet_resync_on_startup<T extends TRPCAgent | TDaemon>(agent: T) {
   type R = ResType<T, TSetWalletResyncOnStartupResponse, WsSetWalletResyncOnStartupMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, set_wallet_resync_on_startup_command);
+  return agent.sendMessage<R>(cactus_wallet_service, set_wallet_resync_on_startup_command);
 }
 
 
@@ -237,10 +237,10 @@ export type TGetSyncStatusResponse = {
   syncing: bool;
   genesis_initialized: bool;
 };
-export type WsGetSyncStatusMessage = GetMessageType<chia_wallet_service, get_sync_status_command, TGetSyncStatusResponse>;
+export type WsGetSyncStatusMessage = GetMessageType<cactus_wallet_service, get_sync_status_command, TGetSyncStatusResponse>;
 export async function get_sync_status<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetSyncStatusResponse, WsGetSyncStatusMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_sync_status_command);
+  return agent.sendMessage<R>(cactus_wallet_service, get_sync_status_command);
 }
 
 
@@ -252,10 +252,10 @@ export type TGetHeightInfoRequest = {
 export type TGetHeightInfoResponse = {
   height: uint32;
 };
-export type WsGetHeightInfoMessage = GetMessageType<chia_wallet_service, get_height_info_command, TGetHeightInfoResponse>;
+export type WsGetHeightInfoMessage = GetMessageType<cactus_wallet_service, get_height_info_command, TGetHeightInfoResponse>;
 export async function get_height_info<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetHeightInfoResponse, WsGetHeightInfoMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_height_info_command);
+  return agent.sendMessage<R>(cactus_wallet_service, get_height_info_command);
 }
 
 
@@ -266,10 +266,10 @@ export type TPushTxRequest = {
   spend_bundle: str; // SpendBundle serialized to hex string 
 };
 export type TPushTxResponse = {};
-export type WsPushTxMessageOfWallet = GetMessageType<chia_wallet_service, push_tx_command, TPushTxResponse>;
+export type WsPushTxMessageOfWallet = GetMessageType<cactus_wallet_service, push_tx_command, TPushTxResponse>;
 export async function push_tx<T extends TRPCAgent | TDaemon>(agent: T, data: TPushTxRequest){
   type R = ResType<T, TPushTxResponseOfWallet, WsPushTxMessageOfWallet>;
-  return agent.sendMessage<R>(chia_wallet_service, push_tx_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, push_tx_command, data);
 }
 
 
@@ -280,10 +280,10 @@ export type TPushTransactionsRequest = {
   transactions: str; // TransactionRecord serialized to hex string 
 };
 export type TPushTransactionsResponse = {};
-export type WsPushTransactionsMessage = GetMessageType<chia_wallet_service, push_transactions_command, TPushTransactionsResponse>;
+export type WsPushTransactionsMessage = GetMessageType<cactus_wallet_service, push_transactions_command, TPushTransactionsResponse>;
 export async function push_transactions<T extends TRPCAgent | TDaemon>(agent: T, data: TPushTransactionsRequest){
   type R = ResType<T, TPushTransactionsResponse, WsPushTransactionsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, push_transactions_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, push_transactions_command, data);
 }
 
 
@@ -295,10 +295,10 @@ export type TFarmBlockRequest = {
 };
 export type TFarmBlockResponse = {
 };
-export type WsFarmBlockMessage = GetMessageType<chia_wallet_service, farm_block_command, TFarmBlockResponse>;
+export type WsFarmBlockMessage = GetMessageType<cactus_wallet_service, farm_block_command, TFarmBlockResponse>;
 export async function farm_block<T extends TRPCAgent | TDaemon>(agent: T, data: TFarmBlockRequest){
   type R = ResType<T, TFarmBlockResponse, WsFarmBlockMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, farm_block_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, farm_block_command, data);
 }
 
 
@@ -308,10 +308,10 @@ export type get_timestamp_for_height_command = typeof get_timestamp_for_height_c
 export type TGetTimestampForHeightResponse = {
   timestamp: uint64;
 };
-export type WsGetTimestampForHeightMessage = GetMessageType<chia_wallet_service, get_timestamp_for_height_command, TGetTimestampForHeightResponse>;
+export type WsGetTimestampForHeightMessage = GetMessageType<cactus_wallet_service, get_timestamp_for_height_command, TGetTimestampForHeightResponse>;
 export async function get_timestamp_for_height<T extends TRPCAgent | TDaemon>(agent: T) {
   type R = ResType<T, TGetTimestampForHeightResponse, WsGetTimestampForHeightMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_timestamp_for_height_command);
+  return agent.sendMessage<R>(cactus_wallet_service, get_timestamp_for_height_command);
 }
 
 
@@ -320,20 +320,20 @@ export const set_auto_claim_command = "set_auto_claim";
 export type set_auto_claim_command = typeof set_auto_claim_command;
 export type TSetAutoClaimRequest = AutoClaimSettings;
 export type TSetAutoClaimResponse = AutoClaimSettings;
-export type WsSetAutoClaimMessage = GetMessageType<chia_wallet_service, set_auto_claim_command, TSetAutoClaimResponse>;
+export type WsSetAutoClaimMessage = GetMessageType<cactus_wallet_service, set_auto_claim_command, TSetAutoClaimResponse>;
 export async function set_auto_claim<T extends TRPCAgent | TDaemon>(agent: T, data: TSetAutoClaimRequest) {
   type R = ResType<T, TSetAutoClaimResponse, WsSetAutoClaimMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, set_auto_claim_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, set_auto_claim_command, data);
 }
 
 
 export const get_auto_claim_command = "get_auto_claim";
 export type get_auto_claim_command = typeof get_auto_claim_command;
 export type TGetAutoClaimResponse = AutoClaimSettings;
-export type WsGetAutoClaimMessage = GetMessageType<chia_wallet_service, get_auto_claim_command, TGetAutoClaimResponse>;
+export type WsGetAutoClaimMessage = GetMessageType<cactus_wallet_service, get_auto_claim_command, TGetAutoClaimResponse>;
 export async function get_auto_claim<T extends TRPCAgent | TDaemon>(agent: T) {
   type R = ResType<T, TGetAutoClaimResponse, WsGetAutoClaimMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_auto_claim_command);
+  return agent.sendMessage<R>(cactus_wallet_service, get_auto_claim_command);
 }
 
 
@@ -344,10 +344,10 @@ export type TGetInitialFreezePeriodRequestOfWallet = {
 export type TGetInitialFreezePeriodResponseOfWallet = {
   INITIAL_FREEZE_END_TIMESTAMP: 1620061200; // Mon May 03 2021 17:00:00 GMT+0000
 };
-export type WsGetInitialFreezePeriodMessageOfWallet = GetMessageType<chia_wallet_service, get_initial_freeze_period_command_of_wallet, TGetInitialFreezePeriodResponseOfWallet>;
+export type WsGetInitialFreezePeriodMessageOfWallet = GetMessageType<cactus_wallet_service, get_initial_freeze_period_command_of_wallet, TGetInitialFreezePeriodResponseOfWallet>;
 export async function get_initial_freeze_period_of_wallet<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetInitialFreezePeriodResponseOfWallet, WsGetInitialFreezePeriodMessageOfWallet>;
-  return agent.sendMessage<R>(chia_wallet_service, get_initial_freeze_period_command_of_wallet);
+  return agent.sendMessage<R>(cactus_wallet_service, get_initial_freeze_period_command_of_wallet);
 }
 
 
@@ -360,10 +360,10 @@ export type TGetNetworkInfoResponseOfWallet = {
   network_name: str;
   network_prefix: str;
 };
-export type WsGetNetworkInfoMessageOfWallet = GetMessageType<chia_wallet_service, get_network_info_command_of_wallet, TGetNetworkInfoResponseOfWallet>;
+export type WsGetNetworkInfoMessageOfWallet = GetMessageType<cactus_wallet_service, get_network_info_command_of_wallet, TGetNetworkInfoResponseOfWallet>;
 export async function get_network_info_of_wallet<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetNetworkInfoResponseOfWallet, WsGetNetworkInfoMessageOfWallet>;
-  return agent.sendMessage<R>(chia_wallet_service, get_network_info_command_of_wallet);
+  return agent.sendMessage<R>(cactus_wallet_service, get_network_info_command_of_wallet);
 }
 
 
@@ -379,10 +379,10 @@ export type TGetWalletsResponse = {
   wallets: WalletInfo[];
   fingerprint?: int;
 };
-export type WsGetWalletsMessage = GetMessageType<chia_wallet_service, get_wallets_command, TGetWalletsResponse>;
+export type WsGetWalletsMessage = GetMessageType<cactus_wallet_service, get_wallets_command, TGetWalletsResponse>;
 export async function get_wallets<T extends TRPCAgent | TDaemon>(agent: T, data: TGetWalletsRequest){
   type R = ResType<T, TGetWalletsResponse, WsGetWalletsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_wallets_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_wallets_command, data);
 }
 
 
@@ -519,10 +519,10 @@ export type TCreateNewWalletResponse = TCreate_New_CAT_WalletResponse
   | TCreate_New_NFT_WalletResponse
   | TCreate_New_Pool_WalletResponse
   | TCreateWalletErrorResponse;
-export type WsCreateNewWalletMessage = GetMessageType<chia_wallet_service, create_new_wallet_command, TCreateNewWalletResponse>;
+export type WsCreateNewWalletMessage = GetMessageType<cactus_wallet_service, create_new_wallet_command, TCreateNewWalletResponse>;
 export async function create_new_wallet<T extends TRPCAgent | TDaemon>(agent: T, data: TCreateNewWalletRequest){
   type R = ResType<T, TCreateNewWalletResponse, WsCreateNewWalletMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, create_new_wallet_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, create_new_wallet_command, data);
 }
 
 
@@ -541,10 +541,10 @@ export type TGetWalletBalanceRequest = {
 export type TGetWalletBalanceResponse = {
   wallet_balance: WalletBalance;
 };
-export type WsGetWalletBalanceMessage = GetMessageType<chia_wallet_service, get_wallet_balance_command, TGetWalletBalanceResponse>;
+export type WsGetWalletBalanceMessage = GetMessageType<cactus_wallet_service, get_wallet_balance_command, TGetWalletBalanceResponse>;
 export async function get_wallet_balance<T extends TRPCAgent | TDaemon>(agent: T, data: TGetWalletBalanceRequest){
   type R = ResType<T, TGetWalletBalanceResponse, WsGetWalletBalanceMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_wallet_balance_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_wallet_balance_command, data);
 }
 
 
@@ -556,10 +556,10 @@ export type TGetWalletBalancesRequest = {
 export type TGetWalletBalancesResponse = {
   wallet_balances: Record<uint32, WalletBalance>;
 };
-export type WsGetWalletBalancesMessage = GetMessageType<chia_wallet_service, get_wallet_balances_command, TGetWalletBalancesResponse>;
+export type WsGetWalletBalancesMessage = GetMessageType<cactus_wallet_service, get_wallet_balances_command, TGetWalletBalancesResponse>;
 export async function get_wallet_balances<T extends TRPCAgent | TDaemon>(agent: T, data: TGetWalletBalancesRequest) {
   type R = ResType<T, TGetWalletBalancesResponse, WsGetWalletBalancesMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_wallet_balances_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_wallet_balances_command, data);
 }
 
 
@@ -572,10 +572,10 @@ export type TGetTransactionResponse = {
   transaction: TransactionRecordConvenience;
   transaction_id: TransactionRecord["name"];
 };
-export type WsGetTransactionMessage = GetMessageType<chia_wallet_service, get_transaction_command, TGetTransactionResponse>;
+export type WsGetTransactionMessage = GetMessageType<cactus_wallet_service, get_transaction_command, TGetTransactionResponse>;
 export async function get_transaction<T extends TRPCAgent | TDaemon>(agent: T, data: TGetTransactionRequest){
   type R = ResType<T, TGetTransactionResponse, WsGetTransactionMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_transaction_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_transaction_command, data);
 }
 
 
@@ -597,10 +597,10 @@ export type TGetTransactionsResponse = {
   transactions: TransactionRecordConvenienceWithMetadata[];
   wallet_id: int;
 };
-export type WsGetTransactionsMessage = GetMessageType<chia_wallet_service, get_transactions_command, TGetTransactionsResponse>;
+export type WsGetTransactionsMessage = GetMessageType<cactus_wallet_service, get_transactions_command, TGetTransactionsResponse>;
 export async function get_transactions<T extends TRPCAgent | TDaemon>(agent: T, data: TGetTransactionsRequest){
   type R = ResType<T, TGetTransactionsResponse, WsGetTransactionsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_transactions_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_transactions_command, data);
 }
 
 
@@ -616,10 +616,10 @@ export type TGetNextAddressResponse = {
   wallet_id: uint32; // wallet_id in request is int, but response is uint32
   address: str;
 };
-export type WsGetNextAddressMessage = GetMessageType<chia_wallet_service, get_next_address_command, TGetNextAddressResponse>;
+export type WsGetNextAddressMessage = GetMessageType<cactus_wallet_service, get_next_address_command, TGetNextAddressResponse>;
 export async function get_next_address<T extends TRPCAgent | TDaemon>(agent: T, data: TGetNextAddressRequest){
   type R = ResType<T, TGetNextAddressResponse, WsGetNextAddressMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_next_address_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_next_address_command, data);
 }
 
 
@@ -644,10 +644,10 @@ export type TSendTransactionResponse = {
   transaction: TransactionRecordConvenience;
   transaction_id: TransactionRecord["name"];
 };
-export type WsSendTransactionMessage = GetMessageType<chia_wallet_service, send_transaction_command, TSendTransactionResponse>;
+export type WsSendTransactionMessage = GetMessageType<cactus_wallet_service, send_transaction_command, TSendTransactionResponse>;
 export async function send_transaction<T extends TRPCAgent | TDaemon>(agent: T, data: TSendTransactionRequest){
   type R = ResType<T, TSendTransactionResponse, WsSendTransactionMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, send_transaction_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, send_transaction_command, data);
 }
 
 
@@ -682,10 +682,10 @@ export type TSendTransactionMultiResponse = {
   transaction: TransactionRecordConvenience;
   transaction_id: TransactionRecordConvenience["name"];
 };
-export type WsSendTransactionMultiMessage = GetMessageType<chia_wallet_service, send_transaction_multi_command, TSendTransactionMultiResponse>;
+export type WsSendTransactionMultiMessage = GetMessageType<cactus_wallet_service, send_transaction_multi_command, TSendTransactionMultiResponse>;
 export async function send_transaction_multi<T extends TRPCAgent | TDaemon>(agent: T, data: TSendTransactionMultiRequest){
   type R = ResType<T, TSendTransactionMultiResponse, WsSendTransactionMultiMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, send_transaction_multi_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, send_transaction_multi_command, data);
 }
 
 
@@ -701,10 +701,10 @@ export type TSpendClawbackCoinsResponse = {
   success: True;
   transaction_ids: str[];
 };
-export type WsSpendClawbackCoinsMessage = GetMessageType<chia_wallet_service, spend_clawback_coins_command, TSpendClawbackCoinsResponse>;
+export type WsSpendClawbackCoinsMessage = GetMessageType<cactus_wallet_service, spend_clawback_coins_command, TSpendClawbackCoinsResponse>;
 export async function spend_clawback_coins<T extends TRPCAgent | TDaemon>(agent: T, data: TSpendClawbackCoinsRequest) {
   type R = ResType<T, TSpendClawbackCoinsResponse, WsSpendClawbackCoinsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, spend_clawback_coins_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, spend_clawback_coins_command, data);
 }
 
 
@@ -715,10 +715,10 @@ export type TGetCoinRecordsResponse = {
   coin_records: WalletCoinRecordWithMetadata[];
   total_count: uint32 | None;
 };
-export type WsGetCoinRecordsMessage = GetMessageType<chia_wallet_service, get_coin_records_command, TGetCoinRecordsResponse>;
+export type WsGetCoinRecordsMessage = GetMessageType<cactus_wallet_service, get_coin_records_command, TGetCoinRecordsResponse>;
 export async function get_coin_records<T extends TRPCAgent | TDaemon>(agent: T, data: TGetCoinRecordsRequest) {
   type R = ResType<T, TGetCoinRecordsResponse, WsGetCoinRecordsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_coin_records_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_coin_records_command, data);
 }
 
 
@@ -733,10 +733,10 @@ export type TGetTransactionCountResponse = {
   count: int;
   wallet_id: int;
 };
-export type WsGetTransactionCountMessage = GetMessageType<chia_wallet_service, get_transaction_count_command, TGetTransactionCountResponse>;
+export type WsGetTransactionCountMessage = GetMessageType<cactus_wallet_service, get_transaction_count_command, TGetTransactionCountResponse>;
 export async function get_transaction_count<T extends TRPCAgent | TDaemon>(agent: T, data: TGetTransactionCountRequest){
   type R = ResType<T, TGetTransactionCountResponse, WsGetTransactionCountMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_transaction_count_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_transaction_count_command, data);
 }
 
 
@@ -755,10 +755,10 @@ export type TGetFarmedAmountResponse = {
   last_time_farmed: uint32;
   blocks_won: uint32;
 };
-export type WsGetFarmedAmountMessage = GetMessageType<chia_wallet_service, get_farmed_amount_command, TGetFarmedAmountResponse>;
+export type WsGetFarmedAmountMessage = GetMessageType<cactus_wallet_service, get_farmed_amount_command, TGetFarmedAmountResponse>;
 export async function get_farmed_amount<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetFarmedAmountResponse, WsGetFarmedAmountMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_farmed_amount_command);
+  return agent.sendMessage<R>(cactus_wallet_service, get_farmed_amount_command);
 }
 
 
@@ -797,10 +797,10 @@ export type TCreateSignedTransactionResponse = {
   signed_txs: TransactionRecordConvenience[];
   signed_tx: TransactionRecordConvenience;
 };
-export type WsCreateSignedTransactionMessage = GetMessageType<chia_wallet_service, create_signed_transaction_command, TCreateSignedTransactionResponse>;
+export type WsCreateSignedTransactionMessage = GetMessageType<cactus_wallet_service, create_signed_transaction_command, TCreateSignedTransactionResponse>;
 export async function create_signed_transaction<T extends TRPCAgent | TDaemon>(agent: T, data: TCreateSignedTransactionRequest){
   type R = ResType<T, TCreateSignedTransactionResponse, WsCreateSignedTransactionMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, create_signed_transaction_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, create_signed_transaction_command, data);
 }
 
 
@@ -813,10 +813,10 @@ export type TDeleteUnconfirmedTransactionsRequest = {
 };
 export type TDeleteUnconfirmedTransactionsResponse = {
 };
-export type WsDeleteUnconfirmedTransactionsMessage = GetMessageType<chia_wallet_service, delete_unconfirmed_transactions_command, TDeleteUnconfirmedTransactionsResponse>;
+export type WsDeleteUnconfirmedTransactionsMessage = GetMessageType<cactus_wallet_service, delete_unconfirmed_transactions_command, TDeleteUnconfirmedTransactionsResponse>;
 export async function delete_unconfirmed_transactions<T extends TRPCAgent | TDaemon>(agent: T, data: TDeleteUnconfirmedTransactionsRequest){
   type R = ResType<T, TDeleteUnconfirmedTransactionsResponse, WsDeleteUnconfirmedTransactionsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, delete_unconfirmed_transactions_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, delete_unconfirmed_transactions_command, data);
 }
 
 
@@ -835,10 +835,10 @@ export type TSelectCoinsRequest = {
 export type TSelectCoinsResponse = {
   coins: Coin[];
 };
-export type WsSelectCoinsMessage = GetMessageType<chia_wallet_service, select_coins_command, TSelectCoinsResponse>;
+export type WsSelectCoinsMessage = GetMessageType<cactus_wallet_service, select_coins_command, TSelectCoinsResponse>;
 export async function select_coins<T extends TRPCAgent | TDaemon>(agent: T, data: TSelectCoinsRequest){
   type R = ResType<T, TSelectCoinsResponse, WsSelectCoinsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, select_coins_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, select_coins_command, data);
 }
 
 
@@ -857,10 +857,10 @@ export type TGetSpendableCoinsResponse = {
   unconfirmed_removals: CoinRecord[];
   unconfirmed_additions: Coin[];
 };
-export type WsGetSpendableCoinsMessage = GetMessageType<chia_wallet_service, get_spendable_coins_command, TGetSpendableCoinsResponse>;
+export type WsGetSpendableCoinsMessage = GetMessageType<cactus_wallet_service, get_spendable_coins_command, TGetSpendableCoinsResponse>;
 export async function get_spendable_coins<T extends TRPCAgent | TDaemon>(agent: T, data: TGetSpendableCoinsRequest) {
   type R = ResType<T, TGetSpendableCoinsResponse, WsGetSpendableCoinsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_spendable_coins_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_spendable_coins_command, data);
 }
 
 
@@ -875,10 +875,10 @@ export type TGetCoinRecordsByNamesRequest = {
 export type TGetCoinRecordsByNamesResponse = {
   coin_records: CoinRecord[];
 };
-export type WsGetCoinRecordsByNamesMessage = GetMessageType<chia_wallet_service, get_coin_records_by_names_command, TGetCoinRecordsByNamesResponse>;
+export type WsGetCoinRecordsByNamesMessage = GetMessageType<cactus_wallet_service, get_coin_records_by_names_command, TGetCoinRecordsByNamesResponse>;
 export async function get_coin_records_by_names<T extends TRPCAgent | TDaemon>(agent: T, data: TGetCoinRecordsByNamesRequest) {
   type R = ResType<T, TGetCoinRecordsByNamesResponse, WsGetCoinRecordsByNamesMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_coin_records_by_names_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_coin_records_by_names_command, data);
 }
 
 
@@ -888,10 +888,10 @@ export type TGetCurrentDerivationIndexResponse = {
   success: True;
   index: Optional<uint32>;
 };
-export type WsGetCurrentDerivationIndexMessage = GetMessageType<chia_wallet_service, get_current_derivation_index_command, TGetCurrentDerivationIndexResponse>;
+export type WsGetCurrentDerivationIndexMessage = GetMessageType<cactus_wallet_service, get_current_derivation_index_command, TGetCurrentDerivationIndexResponse>;
 export async function get_current_derivation_index<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetCurrentDerivationIndexResponse, WsGetCurrentDerivationIndexMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_current_derivation_index_command);
+  return agent.sendMessage<R>(cactus_wallet_service, get_current_derivation_index_command);
 }
 
 
@@ -906,10 +906,10 @@ export type TExtendDerivationIndexResponse = {
   success: True;
   index: Optional<uint32>;
 };
-export type WsExtendDerivationIndexMessage = GetMessageType<chia_wallet_service, extend_derivation_index_command, TExtendDerivationIndexResponse>;
+export type WsExtendDerivationIndexMessage = GetMessageType<cactus_wallet_service, extend_derivation_index_command, TExtendDerivationIndexResponse>;
 export async function extend_derivation_index<T extends TRPCAgent | TDaemon>(agent: T, data: TExtendDerivationIndexRequest){
   type R = ResType<T, TExtendDerivationIndexResponse, WsExtendDerivationIndexMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, extend_derivation_index_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, extend_derivation_index_command, data);
 }
 
 
@@ -930,10 +930,10 @@ export type TGetNotificationsResponse = {
     height: uint32;
   }>;
 };
-export type WsGetNotificationsMessage = GetMessageType<chia_wallet_service, get_notifications_command, TGetNotificationsResponse>;
+export type WsGetNotificationsMessage = GetMessageType<cactus_wallet_service, get_notifications_command, TGetNotificationsResponse>;
 export async function get_notifications<T extends TRPCAgent | TDaemon>(agent: T, data: TGetNotificationsRequest){
   type R = ResType<T, TGetNotificationsResponse, WsGetNotificationsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_notifications_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_notifications_command, data);
 }
 
 
@@ -946,10 +946,10 @@ export type TDeleteNotificationsRequest = {
 };
 export type TDeleteNotificationsResponse = {
 };
-export type WsDeleteNotificationsMessage = GetMessageType<chia_wallet_service, delete_notifications_command, TDeleteNotificationsResponse>;
+export type WsDeleteNotificationsMessage = GetMessageType<cactus_wallet_service, delete_notifications_command, TDeleteNotificationsResponse>;
 export async function delete_notifications<T extends TRPCAgent | TDaemon>(agent: T, data: TDeleteNotificationsRequest){
   type R = ResType<T, TDeleteNotificationsResponse, WsDeleteNotificationsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, delete_notifications_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, delete_notifications_command, data);
 }
 
 
@@ -966,10 +966,10 @@ export type TSendNotificationRequest = {
 export type TSendNotificationResponse = {
   tx: TransactionRecordConvenience;
 };
-export type WsSendNotificationMessage = GetMessageType<chia_wallet_service, send_notification_command, TSendNotificationResponse>;
+export type WsSendNotificationMessage = GetMessageType<cactus_wallet_service, send_notification_command, TSendNotificationResponse>;
 export async function send_notification<T extends TRPCAgent | TDaemon>(agent: T, data: TSendNotificationRequest){
   type R = ResType<T, TSendNotificationResponse, WsSendNotificationMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, send_notification_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, send_notification_command, data);
 }
 
 
@@ -988,10 +988,10 @@ export type TVerifySignatureResponse = {
   isValid: False;
   error: str;
 };
-export type WsVerifySignatureMessage = GetMessageType<chia_wallet_service, verify_signature_command, TVerifySignatureResponse>;
+export type WsVerifySignatureMessage = GetMessageType<cactus_wallet_service, verify_signature_command, TVerifySignatureResponse>;
 export async function verify_signature<T extends TRPCAgent | TDaemon>(agent: T, data: TVerifySignatureRequest) {
   type R = ResType<T, TVerifySignatureResponse, WsVerifySignatureMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, verify_signature_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, verify_signature_command, data);
 }
 
 
@@ -1005,10 +1005,10 @@ export type TGetTransactionMemoResponse = {
     [coin_id: string]: string[];
   };
 };
-export type WsGetTransactionMemoMessage = GetMessageType<chia_wallet_service, get_transaction_memo_command, TGetTransactionMemoResponse>;
+export type WsGetTransactionMemoMessage = GetMessageType<cactus_wallet_service, get_transaction_memo_command, TGetTransactionMemoResponse>;
 export async function get_transaction_memo<T extends TRPCAgent | TDaemon>(agent: T, data: TGetTransactionMemoRequest) {
   type R = ResType<T, TGetTransactionMemoResponse, WsGetTransactionMemoMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_transaction_memo_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_transaction_memo_command, data);
 }
 
 
@@ -1025,10 +1025,10 @@ export type TSignMessageByAddressResponse = {
   signature: str;
   signing_mode: SigningMode;
 };
-export type WsSignMessageByAddressMessage = GetMessageType<chia_wallet_service, sign_message_by_address_command, TSignMessageByAddressResponse>;
+export type WsSignMessageByAddressMessage = GetMessageType<cactus_wallet_service, sign_message_by_address_command, TSignMessageByAddressResponse>;
 export async function sign_message_by_address<T extends TRPCAgent | TDaemon>(agent: T, data: TSignMessageByAddressRequest){
   type R = ResType<T, TSignMessageByAddressResponse, WsSignMessageByAddressMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, sign_message_by_address_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, sign_message_by_address_command, data);
 }
 
 
@@ -1051,10 +1051,10 @@ export type TSignMessageByIdResponse = {
   latest_coin_id: str|None;
   signing_mode: SigningMode;
 };
-export type WsSignMessageByIdMessage = GetMessageType<chia_wallet_service, sign_message_by_id_command, TSignMessageByIdResponse>;
+export type WsSignMessageByIdMessage = GetMessageType<cactus_wallet_service, sign_message_by_id_command, TSignMessageByIdResponse>;
 export async function sign_message_by_id<T extends TRPCAgent | TDaemon>(agent: T, data: TSignMessageByIdRequest){
   type R = ResType<T, TSignMessageByIdResponse, WsSignMessageByIdMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, sign_message_by_id_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, sign_message_by_id_command, data);
 }
 
 
@@ -1066,10 +1066,10 @@ export type get_cat_list_command = typeof get_cat_list_command;
 export type TGetCatListResponse = {
   cat_list: CAT[];
 };
-export type WsGetCatListMessage = GetMessageType<chia_wallet_service, get_cat_list_command, TGetCatListResponse>;
+export type WsGetCatListMessage = GetMessageType<cactus_wallet_service, get_cat_list_command, TGetCatListResponse>;
 export async function get_cat_list<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetCatListResponse, WsGetCatListMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_cat_list_command);
+  return agent.sendMessage<R>(cactus_wallet_service, get_cat_list_command);
 }
 
 
@@ -1084,10 +1084,10 @@ export type TCatSetNameRequest = {
 export type TCatSetNameResponse = {
   wallet_id: uint32;
 };
-export type WsCatSetNameMessage = GetMessageType<chia_wallet_service, cat_set_name_command, TCatSetNameResponse>;
+export type WsCatSetNameMessage = GetMessageType<cactus_wallet_service, cat_set_name_command, TCatSetNameResponse>;
 export async function cat_set_name<T extends TRPCAgent | TDaemon>(agent: T, data: TCatSetNameRequest){
   type R = ResType<T, TCatSetNameResponse, WsCatSetNameMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, cat_set_name_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, cat_set_name_command, data);
 }
 
 
@@ -1102,10 +1102,10 @@ export type TCatAssetIdToNameResponse = {
   wallet_id: Optional<uint32>;
   name: str;
 };
-export type WsCatAssetIdToNameMessage = GetMessageType<chia_wallet_service, cat_asset_id_to_name_command, TCatAssetIdToNameResponse>;
+export type WsCatAssetIdToNameMessage = GetMessageType<cactus_wallet_service, cat_asset_id_to_name_command, TCatAssetIdToNameResponse>;
 export async function cat_asset_id_to_name<T extends TRPCAgent | TDaemon>(agent: T, data: TCatAssetIdToNameRequest){
   type R = ResType<T, TCatAssetIdToNameResponse, WsCatAssetIdToNameMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, cat_asset_id_to_name_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, cat_asset_id_to_name_command, data);
 }
 
 
@@ -1120,10 +1120,10 @@ export type TCatGetNameResponse = {
   wallet_id: uint32;
   name: str;
 };
-export type WsCatGetNameMessage = GetMessageType<chia_wallet_service, cat_get_name_command, TCatGetNameResponse>;
+export type WsCatGetNameMessage = GetMessageType<cactus_wallet_service, cat_get_name_command, TCatGetNameResponse>;
 export async function cat_get_name<T extends TRPCAgent | TDaemon>(agent: T, data: TCatGetNameRequest){
   type R = ResType<T, TCatGetNameResponse, WsCatGetNameMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, cat_get_name_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, cat_get_name_command, data);
 }
 
 
@@ -1139,10 +1139,10 @@ export type TGetStrayCatsResponse = {
     sender_puzzle_hash: str;
   }>;
 };
-export type WsGetStrayCatsMessage = GetMessageType<chia_wallet_service, get_stray_cats_command, TGetStrayCatsResponse>;
+export type WsGetStrayCatsMessage = GetMessageType<cactus_wallet_service, get_stray_cats_command, TGetStrayCatsResponse>;
 export async function get_stray_cats<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetStrayCatsResponse, WsGetStrayCatsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_stray_cats_command);
+  return agent.sendMessage<R>(cactus_wallet_service, get_stray_cats_command);
 }
 
 
@@ -1171,10 +1171,10 @@ export type TCatSpendResponse = {
   transaction: TransactionRecordConvenience;
   transaction_id: TransactionRecord["name"];
 };
-export type WsCatSpendMessage = GetMessageType<chia_wallet_service, cat_spend_command, TCatSpendResponse>;
+export type WsCatSpendMessage = GetMessageType<cactus_wallet_service, cat_spend_command, TCatSpendResponse>;
 export async function cat_spend<T extends TRPCAgent | TDaemon>(agent: T, data: TCatSpendRequest){
   type R = ResType<T, TCatSpendResponse, WsCatSpendMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, cat_spend_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, cat_spend_command, data);
 }
 
 
@@ -1189,10 +1189,10 @@ export type TCatGetAssetIdResponse = {
   asset_id: str;
   wallet_id: uint32;
 };
-export type WsCatGetAssetIdMessage = GetMessageType<chia_wallet_service, cat_get_asset_id_command, TCatGetAssetIdResponse>;
+export type WsCatGetAssetIdMessage = GetMessageType<cactus_wallet_service, cat_get_asset_id_command, TCatGetAssetIdResponse>;
 export async function cat_get_asset_id<T extends TRPCAgent | TDaemon>(agent: T, data: TCatGetAssetIdRequest){
   type R = ResType<T, TCatGetAssetIdResponse, WsCatGetAssetIdMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, cat_get_asset_id_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, cat_get_asset_id_command, data);
 }
 
 
@@ -1214,10 +1214,10 @@ export type TCreateOfferForIdsResponse = {
   offer: str;
   trade_record: TradeRecordConvenience;
 };
-export type WsCreateOfferForIdsMessage = GetMessageType<chia_wallet_service, create_offer_for_ids_command, TCreateOfferForIdsResponse>;
+export type WsCreateOfferForIdsMessage = GetMessageType<cactus_wallet_service, create_offer_for_ids_command, TCreateOfferForIdsResponse>;
 export async function create_offer_for_ids<T extends TRPCAgent | TDaemon>(agent: T, data: TCreateOfferForIdsRequest){
   type R = ResType<T, TCreateOfferForIdsResponse, WsCreateOfferForIdsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, create_offer_for_ids_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, create_offer_for_ids_command, data);
 }
 
 
@@ -1238,10 +1238,10 @@ export type TGetOfferSummaryResponse = {
   };
   id: bytes32;
 };
-export type WsGetOfferSummaryMessage = GetMessageType<chia_wallet_service, get_offer_summary_command, TGetOfferSummaryResponse>;
+export type WsGetOfferSummaryMessage = GetMessageType<cactus_wallet_service, get_offer_summary_command, TGetOfferSummaryResponse>;
 export async function get_offer_summary<T extends TRPCAgent | TDaemon>(agent: T, data: TGetOfferSummaryRequest){
   type R = ResType<T, TGetOfferSummaryResponse, WsGetOfferSummaryMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_offer_summary_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_offer_summary_command, data);
 }
 
 
@@ -1256,10 +1256,10 @@ export type TCheckOfferValidityResponse = {
   valid: bool;
   id: bytes32;
 };
-export type WsCheckOfferValidityMessage = GetMessageType<chia_wallet_service, check_offer_validity_command, TCheckOfferValidityResponse>;
+export type WsCheckOfferValidityMessage = GetMessageType<cactus_wallet_service, check_offer_validity_command, TCheckOfferValidityResponse>;
 export async function check_offer_validity<T extends TRPCAgent | TDaemon>(agent: T, data: TCheckOfferValidityRequest){
   type R = ResType<T, TCheckOfferValidityResponse, WsCheckOfferValidityMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, check_offer_validity_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, check_offer_validity_command, data);
 }
 
 
@@ -1278,10 +1278,10 @@ export type TTakeOfferRequest = {
 export type TTakeOfferResponse = {
   trade_record: TradeRecordConvenience;
 };
-export type WsTakeOfferMessage = GetMessageType<chia_wallet_service, take_offer_command, TTakeOfferResponse>;
+export type WsTakeOfferMessage = GetMessageType<cactus_wallet_service, take_offer_command, TTakeOfferResponse>;
 export async function take_offer<T extends TRPCAgent | TDaemon>(agent: T, data: TTakeOfferRequest){
   type R = ResType<T, TTakeOfferResponse, WsTakeOfferMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, take_offer_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, take_offer_command, data);
 }
 
 
@@ -1297,10 +1297,10 @@ export type TGetOfferResponse = {
   trade_record: TradeRecordConvenience;
   offer: Optional<str>;
 };
-export type WsGetOfferMessage = GetMessageType<chia_wallet_service, get_offer_command, TGetOfferResponse>;
+export type WsGetOfferMessage = GetMessageType<cactus_wallet_service, get_offer_command, TGetOfferResponse>;
 export async function get_offer<T extends TRPCAgent | TDaemon>(agent: T, data: TGetOfferRequest){
   type R = ResType<T, TGetOfferResponse, WsGetOfferMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_offer_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_offer_command, data);
 }
 
 
@@ -1322,10 +1322,10 @@ export type TGetAllOffersResponse = {
   trade_records: TradeRecordConvenience[];
   offers: Optional<str[]>;
 };
-export type WsGetAllOffersMessage = GetMessageType<chia_wallet_service, get_all_offers_command, TGetAllOffersResponse>;
+export type WsGetAllOffersMessage = GetMessageType<cactus_wallet_service, get_all_offers_command, TGetAllOffersResponse>;
 export async function get_all_offers<T extends TRPCAgent | TDaemon>(agent: T, data: TGetAllOffersRequest){
   type R = ResType<T, TGetAllOffersResponse, WsGetAllOffersMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_all_offers_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, get_all_offers_command, data);
 }
 
 
@@ -1338,10 +1338,10 @@ export type TGetOffersCountResponse = {
   my_offers_count: int;
   taken_offers_count: int;
 };
-export type WsGetOffersCountMessage = GetMessageType<chia_wallet_service, get_offers_count_command, TGetOffersCountResponse>;
+export type WsGetOffersCountMessage = GetMessageType<cactus_wallet_service, get_offers_count_command, TGetOffersCountResponse>;
 export async function get_offers_count<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetOffersCountResponse, WsGetOffersCountMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, get_offers_count_command);
+  return agent.sendMessage<R>(cactus_wallet_service, get_offers_count_command);
 }
 
 
@@ -1355,10 +1355,10 @@ export type TCancelOfferRequest = {
   fee?: uint64;
 };
 export type TCancelOfferResponse = {};
-export type WsCancelOfferMessage = GetMessageType<chia_wallet_service, cancel_offer_command, TCancelOfferResponse>;
+export type WsCancelOfferMessage = GetMessageType<cactus_wallet_service, cancel_offer_command, TCancelOfferResponse>;
 export async function cancel_offer<T extends TRPCAgent | TDaemon>(agent: T, data: TCancelOfferRequest){
   type R = ResType<T, TCancelOfferResponse, WsCancelOfferMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, cancel_offer_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, cancel_offer_command, data);
 }
 
 
@@ -1376,10 +1376,10 @@ export type TCancelOffersRequest = {
 export type TCancelOffersResponse = {
   success: True;
 };
-export type WsCancelOffersMessage = GetMessageType<chia_wallet_service , cancel_offers_command, TCancelOffersResponse>;
+export type WsCancelOffersMessage = GetMessageType<cactus_wallet_service , cancel_offers_command, TCancelOffersResponse>;
 export async function cancel_offers<T extends TRPCAgent | TDaemon>(agent: T, data: TCancelOffersRequest){
   type R = ResType<T, TCancelOffersResponse, WsCancelOffersMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, cancel_offers_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, cancel_offers_command, data);
 }
 
 
@@ -1399,10 +1399,10 @@ export type TDidSetWalletNameResponse = {
   success: False;
   error: str;
 };
-export type WsDidSetWalletNameMessage = GetMessageType<chia_wallet_service, did_set_wallet_name_command, TDidSetWalletNameResponse>;
+export type WsDidSetWalletNameMessage = GetMessageType<cactus_wallet_service, did_set_wallet_name_command, TDidSetWalletNameResponse>;
 export async function did_set_wallet_name<T extends TRPCAgent | TDaemon>(agent: T, data: TDidSetWalletNameRequest){
   type R = ResType<T, TDidSetWalletNameResponse, WsDidSetWalletNameMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_set_wallet_name_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_set_wallet_name_command, data);
 }
 
 
@@ -1418,10 +1418,10 @@ export type TDidGetWalletNameResponse = {
   wallet_id: uint32;
   name: str;
 };
-export type WsDidGetWalletNameMessage = GetMessageType<chia_wallet_service, did_get_wallet_name_command, TDidGetWalletNameResponse>;
+export type WsDidGetWalletNameMessage = GetMessageType<cactus_wallet_service, did_get_wallet_name_command, TDidGetWalletNameResponse>;
 export async function did_get_wallet_name<T extends TRPCAgent | TDaemon>(agent: T, data: TDidGetWalletNameRequest){
   type R = ResType<T, TDidGetWalletNameResponse, WsDidGetWalletNameMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_get_wallet_name_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_get_wallet_name_command, data);
 }
 
 
@@ -1438,10 +1438,10 @@ export type TDidUpdateRecoveryIdsRequest = {
 export type TDidUpdateRecoveryIdsResponse = {
   success: bool;
 };
-export type WsDidUpdateRecoveryIdsMessage = GetMessageType<chia_wallet_service, did_update_recovery_ids_command, TDidUpdateRecoveryIdsResponse>;
+export type WsDidUpdateRecoveryIdsMessage = GetMessageType<cactus_wallet_service, did_update_recovery_ids_command, TDidUpdateRecoveryIdsResponse>;
 export async function did_update_recovery_ids<T extends TRPCAgent | TDaemon>(agent: T, data: TDidUpdateRecoveryIdsRequest){
   type R = ResType<T, TDidUpdateRecoveryIdsResponse, WsDidUpdateRecoveryIdsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_update_recovery_ids_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_update_recovery_ids_command, data);
 }
 
 
@@ -1463,10 +1463,10 @@ export type TDidUpdateMetadataResponse = {
   success: False;
   error: str;
 };
-export type WsDidUpdateMetadataMessage = GetMessageType<chia_wallet_service, did_update_metadata_command, TDidUpdateMetadataResponse>;
+export type WsDidUpdateMetadataMessage = GetMessageType<cactus_wallet_service, did_update_metadata_command, TDidUpdateMetadataResponse>;
 export async function did_update_metadata<T extends TRPCAgent | TDaemon>(agent: T, data: TDidUpdateMetadataRequest){
   type R = ResType<T, TDidUpdateMetadataResponse, WsDidUpdateMetadataMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_update_metadata_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_update_metadata_command, data);
 }
 
 
@@ -1481,11 +1481,11 @@ export type TDidSpendRequest = {
 export type TDidSpendResponse = {
   success: bool;
 };
-export type WsDidSpendMessage = GetMessageType<chia_wallet_service, did_spend_command, TDidSpendResponse>;
+export type WsDidSpendMessage = GetMessageType<cactus_wallet_service, did_spend_command, TDidSpendResponse>;
 export async function did_spend<T extends TRPCAgent | TDaemon>(agent: T, data: TDidSpendRequest){
-  console.warn("did_spend was deprecated at chia-blockchain@1.2.8.");
+  console.warn("did_spend was deprecated at cactus-blockchain@1.2.8.");
   type R = ResType<T, TDidSpendResponse, WsDidSpendMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_spend_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_spend_command, data);
 }
 
 
@@ -1500,10 +1500,10 @@ export type TDidGetPubkeyResponse = {
   success: bool;
   pubkey: str;
 };
-export type WsDidGetPubkeyMessage = GetMessageType<chia_wallet_service, did_get_pubkey_command, TDidGetPubkeyResponse>;
+export type WsDidGetPubkeyMessage = GetMessageType<cactus_wallet_service, did_get_pubkey_command, TDidGetPubkeyResponse>;
 export async function did_get_pubkey<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TDidGetPubkeyResponse, WsDidGetPubkeyMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_get_pubkey_command);
+  return agent.sendMessage<R>(cactus_wallet_service, did_get_pubkey_command);
 }
 
 
@@ -1520,10 +1520,10 @@ export type TDidGetDidResponse = {
   my_did: str;
   coin_id?: bytes32;
 };
-export type WsDidGetDidMessage = GetMessageType<chia_wallet_service, did_get_did_command, TDidGetDidResponse>;
+export type WsDidGetDidMessage = GetMessageType<cactus_wallet_service, did_get_did_command, TDidGetDidResponse>;
 export async function did_get_did<T extends TRPCAgent | TDaemon>(agent: T, data: TDidGetDidRequest){
   type R = ResType<T, TDidGetDidResponse, WsDidGetDidMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_get_did_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_get_did_command, data);
 }
 
 
@@ -1543,10 +1543,10 @@ export type TDidRecoverySpendResponse = {
 } | {
   success: False;
 };
-export type WsDidRecoverySpendMessage = GetMessageType<chia_wallet_service, did_recovery_spend_command, TDidRecoverySpendResponse>;
+export type WsDidRecoverySpendMessage = GetMessageType<cactus_wallet_service, did_recovery_spend_command, TDidRecoverySpendResponse>;
 export async function did_recovery_spend<T extends TRPCAgent | TDaemon>(agent: T, data: TDidRecoverySpendRequest){
   type R = ResType<T, TDidRecoverySpendResponse, WsDidRecoverySpendMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_recovery_spend_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_recovery_spend_command, data);
 }
 
 
@@ -1563,10 +1563,10 @@ export type TDidGetRecoveryListResponse = {
   recovery_list: str[];
   num_required: uint64;
 };
-export type WsDidGetRecoveryListMessage = GetMessageType<chia_wallet_service, did_get_recovery_list_command, TDidGetRecoveryListResponse>;
+export type WsDidGetRecoveryListMessage = GetMessageType<cactus_wallet_service, did_get_recovery_list_command, TDidGetRecoveryListResponse>;
 export async function did_get_recovery_list<T extends TRPCAgent | TDaemon>(agent: T, data: TDidGetRecoveryListRequest){
   type R = ResType<T, TDidGetRecoveryListResponse, WsDidGetRecoveryListMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_get_recovery_list_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_get_recovery_list_command, data);
 }
 
 
@@ -1582,10 +1582,10 @@ export type TDidGetMetadataResponse = {
   wallet_id: uint32;
   metadata: Record<str, str>
 };
-export type WsDidGetMetadataMessage = GetMessageType<chia_wallet_service, did_get_metadata_command, TDidGetMetadataResponse>;
+export type WsDidGetMetadataMessage = GetMessageType<cactus_wallet_service, did_get_metadata_command, TDidGetMetadataResponse>;
 export async function did_get_metadata<T extends TRPCAgent | TDaemon>(agent: T, data: TDidGetMetadataRequest){
   type R = ResType<T, TDidGetMetadataResponse, WsDidGetMetadataMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_get_metadata_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_get_metadata_command, data);
 }
 
 
@@ -1606,10 +1606,10 @@ export type TDidCreateAttestResponse = {
 } | {
   success: False;
 };
-export type WsDidCreateAttestMessage = GetMessageType<chia_wallet_service, did_create_attest_command, TDidCreateAttestResponse>;
+export type WsDidCreateAttestMessage = GetMessageType<cactus_wallet_service, did_create_attest_command, TDidCreateAttestResponse>;
 export async function did_create_attest<T extends TRPCAgent | TDaemon>(agent: T, data: TDidCreateAttestRequest){
   type R = ResType<T, TDidCreateAttestResponse, WsDidCreateAttestMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_create_attest_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_create_attest_command, data);
 }
 
 
@@ -1628,10 +1628,10 @@ export type TDidGetInformationNeededForRecoveryResponse = {
   pubkey: Optional<bytes>;
   backup_dids: bytes[];
 };
-export type WsDidGetInformationNeededForRecoveryMessage = GetMessageType<chia_wallet_service, did_get_information_needed_for_recovery_command, TDidGetInformationNeededForRecoveryResponse>;
+export type WsDidGetInformationNeededForRecoveryMessage = GetMessageType<cactus_wallet_service, did_get_information_needed_for_recovery_command, TDidGetInformationNeededForRecoveryResponse>;
 export async function did_get_information_needed_for_recovery<T extends TRPCAgent | TDaemon>(agent: T, data: TDidGetInformationNeededForRecoveryRequest){
   type R = ResType<T, TDidGetInformationNeededForRecoveryResponse, WsDidGetInformationNeededForRecoveryMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_get_information_needed_for_recovery_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_get_information_needed_for_recovery_command, data);
 }
 
 
@@ -1649,10 +1649,10 @@ export type TDidGetCurrentCoinInfoResponse = {
   did_innerpuz: bytes32;
   did_amount: uint64;
 };
-export type WsDidGetCurrentCoinInfoMessage = GetMessageType<chia_wallet_service, did_get_current_coin_info_command, TDidGetCurrentCoinInfoResponse>;
+export type WsDidGetCurrentCoinInfoMessage = GetMessageType<cactus_wallet_service, did_get_current_coin_info_command, TDidGetCurrentCoinInfoResponse>;
 export async function did_get_current_coin_info<T extends TRPCAgent | TDaemon>(agent: T, data: TDidGetCurrentCoinInfoRequest){
   type R = ResType<T, TDidGetCurrentCoinInfoResponse, WsDidGetCurrentCoinInfoMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_get_current_coin_info_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_get_current_coin_info_command, data);
 }
 
 
@@ -1668,10 +1668,10 @@ export type TDidCreateBackupFileResponse = {
   success: True;
   backup_data: str;
 };
-export type WsDidCreateBackupFileMessage = GetMessageType<chia_wallet_service, did_create_backup_file_command, TDidCreateBackupFileResponse>;
+export type WsDidCreateBackupFileMessage = GetMessageType<cactus_wallet_service, did_create_backup_file_command, TDidCreateBackupFileResponse>;
 export async function did_create_backup_file<T extends TRPCAgent | TDaemon>(agent: T, data: TDidCreateBackupFileRequest){
   type R = ResType<T, TDidCreateBackupFileResponse, WsDidCreateBackupFileMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_create_backup_file_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_create_backup_file_command, data);
 }
 
 
@@ -1686,10 +1686,10 @@ export type TDidMessageSpendResponse = {
   success: True;
   spend_bundle: SpendBundle;
 };
-export type WsDidMessageSpendMessage = GetMessageType<chia_wallet_service, did_message_spend_command, TDidMessageSpendResponse>;
+export type WsDidMessageSpendMessage = GetMessageType<cactus_wallet_service, did_message_spend_command, TDidMessageSpendResponse>;
 export async function did_message_spend<T extends TRPCAgent | TDaemon>(agent: T, data: TDidMessageSpendRequest) {
   type R = ResType<T, TDidMessageSpendResponse, WsDidMessageSpendMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_message_spend_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_message_spend_command, data);
 }
 
 
@@ -1716,10 +1716,10 @@ export type TDidGetInfoResponse = {
   solution: any;
   hints: str[];
 };
-export type WsDidGetInfoMessage = GetMessageType<chia_wallet_service, did_get_info_command, TDidGetInfoResponse>;
+export type WsDidGetInfoMessage = GetMessageType<cactus_wallet_service, did_get_info_command, TDidGetInfoResponse>;
 export async function did_get_info<T extends TRPCAgent | TDaemon>(agent: T, data: TDidGetInfoRequest) {
   type R = ResType<T, TDidGetInfoResponse, WsDidGetInfoMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_get_info_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_get_info_command, data);
 }
 
 
@@ -1738,10 +1738,10 @@ export type TDidFindLostDidResponse = {
   success: True;
   latest_coin_id: str;
 };
-export type WsDidFindLostDidMessage = GetMessageType<chia_wallet_service, did_find_lost_did_command, TDidFindLostDidResponse>;
+export type WsDidFindLostDidMessage = GetMessageType<cactus_wallet_service, did_find_lost_did_command, TDidFindLostDidResponse>;
 export async function did_find_lost_did<T extends TRPCAgent | TDaemon>(agent: T, data: TDidFindLostDidRequest) {
   type R = ResType<T, TDidFindLostDidResponse, WsDidFindLostDidMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_find_lost_did_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_find_lost_did_command, data);
 }
 
 
@@ -1759,10 +1759,10 @@ export type TDidTransferDidResponse = {
   transaction: TransactionRecordConvenience;
   transaction_id: bytes32;
 };
-export type WsDidTransferDidMessage = GetMessageType<chia_wallet_service, did_transfer_did_command, TDidTransferDidResponse>;
+export type WsDidTransferDidMessage = GetMessageType<cactus_wallet_service, did_transfer_did_command, TDidTransferDidResponse>;
 export async function did_transfer_did<T extends TRPCAgent | TDaemon>(agent: T, data: TDidTransferDidRequest){
   type R = ResType<T, TDidTransferDidResponse, WsDidTransferDidMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, did_transfer_did_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, did_transfer_did_command, data);
 }
 
 
@@ -1775,9 +1775,9 @@ export type TNftMintNftRequest = {
   wallet_id: uint32;
   royalty_address?: str;
   target_address?: str;
-  uris: str[]; // Reference: NFTInfo.data_uris at chia/wallet/nft_wallet/nft_info.py
-  meta_uris: str[]; // Reference: chia/wallet/nft_wallet/nft_info.py
-  license_uris: str[]; // Reference: chia/wallet/nft_wallet/nft_info.py
+  uris: str[]; // Reference: NFTInfo.data_uris at cactus/wallet/nft_wallet/nft_info.py
+  meta_uris: str[]; // Reference: cactus/wallet/nft_wallet/nft_info.py
+  license_uris: str[]; // Reference: cactus/wallet/nft_wallet/nft_info.py
   hash: str;
   edition_number: uint64;
   edition_total: uint64;
@@ -1794,10 +1794,10 @@ export type TNftMintNftResponse = {
   spend_bundle: SpendBundle;
   nft_id: Optional<str>;
 };
-export type WsNftMintNftMessage = GetMessageType<chia_wallet_service, nft_mint_nft_command, TNftMintNftResponse>;
+export type WsNftMintNftMessage = GetMessageType<cactus_wallet_service, nft_mint_nft_command, TNftMintNftResponse>;
 export async function nft_mint_nft<T extends TRPCAgent | TDaemon>(agent: T, data: TNftMintNftRequest){
   type R = ResType<T, TNftMintNftResponse, WsNftMintNftMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_mint_nft_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_mint_nft_command, data);
 }
 
 
@@ -1815,10 +1815,10 @@ export type TNftCountNftsResponse = {
   success: True;
   count: int;
 };
-export type WsNftCountNftsMessage = GetMessageType<chia_wallet_service, nft_count_nfts_command, TNftCountNftsResponse>;
+export type WsNftCountNftsMessage = GetMessageType<cactus_wallet_service, nft_count_nfts_command, TNftCountNftsResponse>;
 export async function nft_count_nfts<T extends TRPCAgent | TDaemon>(agent: T, data: TNftCountNftsRequest) {
   type R = ResType<T, TNftCountNftsResponse, WsNftCountNftsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_count_nfts_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_count_nfts_command, data);
 }
 
 
@@ -1835,10 +1835,10 @@ export type TNftGetNftsResponse = {
   success: True;
   nft_list: NFTInfo[];
 };
-export type WsNftGetNftsMessage = GetMessageType<chia_wallet_service, nft_get_nfts_command, TNftGetNftsResponse>;
+export type WsNftGetNftsMessage = GetMessageType<cactus_wallet_service, nft_get_nfts_command, TNftGetNftsResponse>;
 export async function nft_get_nfts<T extends TRPCAgent | TDaemon>(agent: T, data: TNftGetNftsRequest){
   type R = ResType<T, TNftGetNftsResponse, WsNftGetNftsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_get_nfts_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_get_nfts_command, data);
 }
 
 
@@ -1861,10 +1861,10 @@ export type TNftSetNftDidResponse = {
   success: False;
   error: str;
 };
-export type WsNftSetNftDidMessage = GetMessageType<chia_wallet_service, nft_set_nft_did_command, TNftSetNftDidResponse>;
+export type WsNftSetNftDidMessage = GetMessageType<cactus_wallet_service, nft_set_nft_did_command, TNftSetNftDidResponse>;
 export async function nft_set_nft_did<T extends TRPCAgent | TDaemon>(agent: T, data: TNftSetNftDidRequest){
   type R = ResType<T, TNftSetNftDidResponse, WsNftSetNftDidMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_set_nft_did_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_set_nft_did_command, data);
 }
 
 
@@ -1885,10 +1885,10 @@ export type TNftSetDidBulkResponse = {
   spend_bundle: SpendBundle;
   tx_num: int;
 };
-export type WsNftSetDidBulkMessage = GetMessageType<chia_wallet_service, nft_set_did_bulk_command, TNftSetDidBulkResponse>;
+export type WsNftSetDidBulkMessage = GetMessageType<cactus_wallet_service, nft_set_did_bulk_command, TNftSetDidBulkResponse>;
 export async function nft_set_did_bulk<T extends TRPCAgent | TDaemon>(agent: T, data: TNftSetDidBulkRequest) {
   type R = ResType<T, TNftSetDidBulkResponse, WsNftSetDidBulkMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_set_did_bulk_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_set_did_bulk_command, data);
 }
 
 
@@ -1909,11 +1909,11 @@ export type TNftTransferBulkResponse = {
   spend_bundle: SpendBundle;
   tx_num: int;
 };
-export type WsNftTransferBulkMessage = GetMessageType<chia_wallet_service, nft_transfer_bulk_command, TNftTransferBulkResponse>;
+export type WsNftTransferBulkMessage = GetMessageType<cactus_wallet_service, nft_transfer_bulk_command, TNftTransferBulkResponse>;
 
 export async function nft_transfer_bulk<T extends TRPCAgent | TDaemon>(agent: T, data: TNftTransferBulkRequest) {
   type R = ResType<T, TNftTransferBulkResponse, WsNftTransferBulkMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_transfer_bulk_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_transfer_bulk_command, data);
 }
 
 
@@ -1929,10 +1929,10 @@ export type TNftGetByDidResponse = {
   success: False;
   error: str;
 };
-export type WsNftGetByDidMessage = GetMessageType<chia_wallet_service, nft_get_by_did_command, TNftGetByDidResponse>;
+export type WsNftGetByDidMessage = GetMessageType<cactus_wallet_service, nft_get_by_did_command, TNftGetByDidResponse>;
 export async function nft_get_by_did<T extends TRPCAgent | TDaemon>(agent: T, data: TNftGetByDidRequest){
   type R = ResType<T, TNftGetByDidResponse, WsNftGetByDidMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_get_by_did_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_get_by_did_command, data);
 }
 
 
@@ -1947,10 +1947,10 @@ export type TNftGetWalletDidResponse = {
   did_id: Optional<str>;
   success: True;
 };
-export type WsNftGetWalletDidMessage = GetMessageType<chia_wallet_service, nft_get_wallet_did_command, TNftGetWalletDidResponse>;
+export type WsNftGetWalletDidMessage = GetMessageType<cactus_wallet_service, nft_get_wallet_did_command, TNftGetWalletDidResponse>;
 export async function nft_get_wallet_did<T extends TRPCAgent | TDaemon>(agent: T, data: TNftGetWalletDidRequest){
   type R = ResType<T, TNftGetWalletDidResponse, WsNftGetWalletDidMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_get_wallet_did_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_get_wallet_did_command, data);
 }
 
 
@@ -1966,10 +1966,10 @@ export type TNftGetWalletsWithDidsResponse = {
     did_wallet_id: uint32;
   }>;
 };
-export type WsNftGetWalletsWithDidsMessage = GetMessageType<chia_wallet_service, nft_get_wallets_with_dids_command, TNftGetWalletsWithDidsResponse>;
+export type WsNftGetWalletsWithDidsMessage = GetMessageType<cactus_wallet_service, nft_get_wallets_with_dids_command, TNftGetWalletsWithDidsResponse>;
 export async function nft_get_wallets_with_dids<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TNftGetWalletsWithDidsResponse, WsNftGetWalletsWithDidsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_get_wallets_with_dids_command);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_get_wallets_with_dids_command);
 }
 
 
@@ -1985,10 +1985,10 @@ export type TNftSetNftStatusRequest = {
 export type TNftSetNftStatusResponse = {
   success: True;
 };
-export type WsNftSetNftStatusMessage = GetMessageType<chia_wallet_service, nft_set_nft_status_command, TNftSetNftStatusResponse>;
+export type WsNftSetNftStatusMessage = GetMessageType<cactus_wallet_service, nft_set_nft_status_command, TNftSetNftStatusResponse>;
 export async function nft_set_nft_status<T extends TRPCAgent | TDaemon>(agent: T, data: TNftSetNftStatusRequest){
   type R = ResType<T, TNftSetNftStatusResponse, WsNftSetNftStatusMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_set_nft_status_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_set_nft_status_command, data);
 }
 
 
@@ -2011,10 +2011,10 @@ export type TNftTransferNftResponse = {
   success: False;
   error: str;
 };
-export type WsNftTransferNftMessage = GetMessageType<chia_wallet_service, nft_transfer_nft_command, TNftTransferNftResponse>;
+export type WsNftTransferNftMessage = GetMessageType<cactus_wallet_service, nft_transfer_nft_command, TNftTransferNftResponse>;
 export async function nft_transfer_nft<T extends TRPCAgent | TDaemon>(agent: T, data: TNftTransferNftRequest){
   type R = ResType<T, TNftTransferNftResponse, WsNftTransferNftMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_transfer_nft_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_transfer_nft_command, data);
 }
 
 
@@ -2034,10 +2034,10 @@ export type TNftGetInfoResponse = {
   success: False;
   error: str;
 };
-export type WsNftGetInfoMessage = GetMessageType<chia_wallet_service, nft_get_info_command, TNftGetInfoResponse>;
+export type WsNftGetInfoMessage = GetMessageType<cactus_wallet_service, nft_get_info_command, TNftGetInfoResponse>;
 export async function nft_get_info<T extends TRPCAgent | TDaemon>(agent: T, data: TNftGetInfoRequest){
   type R = ResType<T, TNftGetInfoResponse, WsNftGetInfoMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_get_info_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_get_info_command, data);
 }
 
 
@@ -2058,10 +2058,10 @@ export type TNftAddUriResponse = {
   wallet_id: uint32;
   spend_bundle: SpendBundle;
 };
-export type WsNftAddUriMessage = GetMessageType<chia_wallet_service, nft_add_uri_command, TNftAddUriResponse>;
+export type WsNftAddUriMessage = GetMessageType<cactus_wallet_service, nft_add_uri_command, TNftAddUriResponse>;
 export async function nft_add_uri<T extends TRPCAgent | TDaemon>(agent: T, data: TNftAddUriRequest){
   type R = ResType<T, TNftAddUriResponse, WsNftAddUriMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_add_uri_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_add_uri_command, data);
 }
 
 
@@ -2085,10 +2085,10 @@ export type TNftCalculateRoyaltiesResponse = Record<str, Array<{
   address: str;
   amount: uint64;
 }>>;
-export type WsNftCalculateRoyaltiesMessage = GetMessageType<chia_wallet_service, nft_calculate_royalties_command, TNftCalculateRoyaltiesResponse>;
+export type WsNftCalculateRoyaltiesMessage = GetMessageType<cactus_wallet_service, nft_calculate_royalties_command, TNftCalculateRoyaltiesResponse>;
 export async function nft_calculate_royalties<T extends TRPCAgent | TDaemon>(agent: T, data: TNftCalculateRoyaltiesRequest){
   type R = ResType<T, TNftCalculateRoyaltiesResponse, WsNftCalculateRoyaltiesMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_calculate_royalties_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_calculate_royalties_command, data);
 }
 
 
@@ -2113,8 +2113,8 @@ export type TNftMintBulkRequest = {
   target_list?: str[];
   mint_number_start?: int;
   mint_total?: int;
-  xch_coins?: Coin[];
-  xch_change_target?: str;
+  cac_coins?: Coin[];
+  cac_change_target?: str;
   new_innerpuzhash?: str;
   new_p2_puzhash?: str;
   did_coin?: Coin;
@@ -2131,10 +2131,10 @@ export type TNftMintBulkResponse = {
   spend_bundle: SpendBundle;
   nft_id_list: str[];
 };
-export type WsNftMintBulkMessage = GetMessageType<chia_wallet_service, nft_mint_bulk_command, TNftMintBulkResponse>;
+export type WsNftMintBulkMessage = GetMessageType<cactus_wallet_service, nft_mint_bulk_command, TNftMintBulkResponse>;
 export async function nft_mint_bulk<T extends TRPCAgent | TDaemon>(agent: T, data: TNftMintBulkRequest){
   type R = ResType<T, TNftMintBulkResponse, WsNftMintBulkMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, nft_mint_bulk_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, nft_mint_bulk_command, data);
 }
 
 
@@ -2155,10 +2155,10 @@ export type TRlSetUserInfoRequest = {
 };
 export type TRlSetUserInfoResponse = {
 };
-export type WsRlSetUserInfoMessage = GetMessageType<chia_wallet_service, rl_set_user_info_command, TRlSetUserInfoResponse>;
+export type WsRlSetUserInfoMessage = GetMessageType<cactus_wallet_service, rl_set_user_info_command, TRlSetUserInfoResponse>;
 export async function rl_set_user_info<T extends TRPCAgent | TDaemon>(agent: T, data: TRlSetUserInfoRequest){
   type R = ResType<T, TRlSetUserInfoResponse, WsRlSetUserInfoMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, rl_set_user_info_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, rl_set_user_info_command, data);
 }
 
 
@@ -2174,10 +2174,10 @@ export type TSendClawbackTransactionResponse = {
   transaction: TransactionRecord;
   transaction_id: TransactionRecord["name"];
 };
-export type WsSendClawbackTransactionMessage = GetMessageType<chia_wallet_service, send_clawback_transaction_command, TSendClawbackTransactionResponse>;
+export type WsSendClawbackTransactionMessage = GetMessageType<cactus_wallet_service, send_clawback_transaction_command, TSendClawbackTransactionResponse>;
 export async function send_clawback_transaction<T extends TRPCAgent | TDaemon>(agent: T, data: TSendClawbackTransactionRequest){
   type R = ResType<T, TSendClawbackTransactionResponse, WsSendClawbackTransactionMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, send_clawback_transaction_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, send_clawback_transaction_command, data);
 }
 
 
@@ -2193,10 +2193,10 @@ export type TAddRateLimitedFundsRequest = {
 export type TAddRateLimitedFundsResponse = {
   status: "SUCCESS";
 };
-export type WsAddRateLimitedFundsMessage = GetMessageType<chia_wallet_service, add_rate_limited_funds_command, TAddRateLimitedFundsResponse>;
+export type WsAddRateLimitedFundsMessage = GetMessageType<cactus_wallet_service, add_rate_limited_funds_command, TAddRateLimitedFundsResponse>;
 export async function add_rate_limited_funds<T extends TRPCAgent | TDaemon>(agent: T, data: TAddRateLimitedFundsRequest){
   type R = ResType<T, TAddRateLimitedFundsResponse, WsAddRateLimitedFundsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, add_rate_limited_funds_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, add_rate_limited_funds_command, data);
 }
 
 
@@ -2219,10 +2219,10 @@ export type TPwJoinPoolResponse = {
   success: False;
   error: "not_initialized";
 };
-export type WsPwJoinPoolMessage = GetMessageType<chia_wallet_service, pw_join_pool_command, TPwJoinPoolResponse>;
+export type WsPwJoinPoolMessage = GetMessageType<cactus_wallet_service, pw_join_pool_command, TPwJoinPoolResponse>;
 export async function pw_join_pool<T extends TRPCAgent | TDaemon>(agent: T, data: TPwJoinPoolRequest){
   type R = ResType<T, TPwJoinPoolResponse, WsPwJoinPoolMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, pw_join_pool_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, pw_join_pool_command, data);
 }
 
 
@@ -2239,10 +2239,10 @@ export type TPwSelfPoolResponse = {
   transaction: TransactionRecord;
   fee_transaction: Optional<TransactionRecord>;
 };
-export type WsPwSelfPoolMessage = GetMessageType<chia_wallet_service, pw_self_pool_command, TPwSelfPoolResponse>;
+export type WsPwSelfPoolMessage = GetMessageType<cactus_wallet_service, pw_self_pool_command, TPwSelfPoolResponse>;
 export async function pw_self_pool<T extends TRPCAgent | TDaemon>(agent: T, data: TPwSelfPoolRequest){
   type R = ResType<T, TPwSelfPoolResponse, WsPwSelfPoolMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, pw_self_pool_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, pw_self_pool_command, data);
 }
 
 
@@ -2260,10 +2260,10 @@ export type TPwAbsorbRewardsResponse = {
   transaction: TransactionRecord;
   fee_transaction: Optional<TransactionRecord>;
 };
-export type WsPwAbsorbRewardsMessage = GetMessageType<chia_wallet_service, pw_absorb_rewards_command, TPwAbsorbRewardsResponse>;
+export type WsPwAbsorbRewardsMessage = GetMessageType<cactus_wallet_service, pw_absorb_rewards_command, TPwAbsorbRewardsResponse>;
 export async function pw_absorb_rewards<T extends TRPCAgent | TDaemon>(agent: T, data: TPwAbsorbRewardsRequest){
   type R = ResType<T, TPwAbsorbRewardsResponse, WsPwAbsorbRewardsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, pw_absorb_rewards_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, pw_absorb_rewards_command, data);
 }
 
 
@@ -2278,10 +2278,10 @@ export type TPwStatusResponse = {
   state: PoolWalletInfo;
   unconfirmed_transactions: TransactionRecord[];
 };
-export type WsPwStatusMessage = GetMessageType<chia_wallet_service, pw_status_command, TPwStatusResponse>;
+export type WsPwStatusMessage = GetMessageType<cactus_wallet_service, pw_status_command, TPwStatusResponse>;
 export async function pw_status<T extends TRPCAgent | TDaemon>(agent: T, data: TPwStatusRequest){
   type R = ResType<T, TPwStatusResponse, WsPwStatusMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, pw_status_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, pw_status_command, data);
 }
 
 
@@ -2301,10 +2301,10 @@ export type TCreateNewDlResponse = {
   transactions: TransactionRecordConvenience[];
   launcher_id: bytes32;
 };
-export type WsCreateNewDlMessage = GetMessageType<chia_wallet_service, create_new_dl_command, TCreateNewDlResponse>;
+export type WsCreateNewDlMessage = GetMessageType<cactus_wallet_service, create_new_dl_command, TCreateNewDlResponse>;
 export async function create_new_dl<T extends TRPCAgent | TDaemon>(agent: T, data: TCreateNewDlRequest){
   type R = ResType<T, TCreateNewDlResponse, WsCreateNewDlMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, create_new_dl_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, create_new_dl_command, data);
 }
 
 
@@ -2317,10 +2317,10 @@ export type TDlTrackNewRequest = {
 };
 export type TDlTrackNewResponse = {
 };
-export type WsDlTrackNewMessage = GetMessageType<chia_wallet_service, dl_track_new_command, TDlTrackNewResponse>;
+export type WsDlTrackNewMessage = GetMessageType<cactus_wallet_service, dl_track_new_command, TDlTrackNewResponse>;
 export async function dl_track_new<T extends TRPCAgent | TDaemon>(agent: T, data: TDlTrackNewRequest){
   type R = ResType<T, TDlTrackNewResponse, WsDlTrackNewMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, dl_track_new_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, dl_track_new_command, data);
 }
 
 
@@ -2333,10 +2333,10 @@ export type TDlStopTrackingRequest = {
 };
 export type TDlStopTrackingResponse = {
 };
-export type WsDlStopTrackingMessage = GetMessageType<chia_wallet_service, dl_stop_tracking_command, TDlStopTrackingResponse>;
+export type WsDlStopTrackingMessage = GetMessageType<cactus_wallet_service, dl_stop_tracking_command, TDlStopTrackingResponse>;
 export async function dl_stop_tracking<T extends TRPCAgent | TDaemon>(agent: T, data: TDlStopTrackingRequest){
   type R = ResType<T, TDlStopTrackingResponse, WsDlStopTrackingMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, dl_stop_tracking_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, dl_stop_tracking_command, data);
 }
 
 
@@ -2351,10 +2351,10 @@ export type TDlLatestSingletonRequest = {
 export type TDlLatestSingletonResponse = {
   singleton: Optional<SingletonRecord>;
 };
-export type WsDlLatestSingletonMessage = GetMessageType<chia_wallet_service, dl_latest_singleton_command, TDlLatestSingletonResponse>;
+export type WsDlLatestSingletonMessage = GetMessageType<cactus_wallet_service, dl_latest_singleton_command, TDlLatestSingletonResponse>;
 export async function dl_latest_singleton<T extends TRPCAgent | TDaemon>(agent: T, data: TDlLatestSingletonRequest){
   type R = ResType<T, TDlLatestSingletonResponse, WsDlLatestSingletonMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, dl_latest_singleton_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, dl_latest_singleton_command, data);
 }
 
 
@@ -2369,10 +2369,10 @@ export type TDlSingletonsByRootRequest = {
 export type TDlSingletonsByRootResponse = {
   singletons: SingletonRecord[];
 };
-export type WsDlSingletonsByRootMessage = GetMessageType<chia_wallet_service, dl_singletons_by_root_command, TDlSingletonsByRootResponse>;
+export type WsDlSingletonsByRootMessage = GetMessageType<cactus_wallet_service, dl_singletons_by_root_command, TDlSingletonsByRootResponse>;
 export async function dl_singletons_by_root<T extends TRPCAgent | TDaemon>(agent: T, data: TDlSingletonsByRootRequest){
   type R = ResType<T, TDlSingletonsByRootResponse, WsDlSingletonsByRootMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, dl_singletons_by_root_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, dl_singletons_by_root_command, data);
 }
 
 
@@ -2388,10 +2388,10 @@ export type TDlUpdateRootRequest = {
 export type TDlUpdateRootResponse = {
   tx_record: TransactionRecordConvenience;
 };
-export type WsDlUpdateRootMessage = GetMessageType<chia_wallet_service, dl_update_root_command, TDlUpdateRootResponse>;
+export type WsDlUpdateRootMessage = GetMessageType<cactus_wallet_service, dl_update_root_command, TDlUpdateRootResponse>;
 export async function dl_update_root<T extends TRPCAgent | TDaemon>(agent: T, data: TDlUpdateRootRequest){
   type R = ResType<T, TDlUpdateRootResponse, WsDlUpdateRootMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, dl_update_root_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, dl_update_root_command, data);
 }
 
 
@@ -2405,10 +2405,10 @@ export type TDlUpdateMultipleRequest = {
 export type TDlUpdateMultipleResponse = {
   tx_records: TransactionRecordConvenience[];
 };
-export type WsDlUpdateMultipleMessage = GetMessageType<chia_wallet_service, dl_update_multiple_command, TDlUpdateMultipleResponse>;
+export type WsDlUpdateMultipleMessage = GetMessageType<cactus_wallet_service, dl_update_multiple_command, TDlUpdateMultipleResponse>;
 export async function dl_update_multiple<T extends TRPCAgent | TDaemon>(agent: T, data: TDlUpdateMultipleRequest){
   type R = ResType<T, TDlUpdateMultipleResponse, WsDlUpdateMultipleMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, dl_update_multiple_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, dl_update_multiple_command, data);
 }
 
 
@@ -2426,10 +2426,10 @@ export type TDlHistoryResponse = {
   history: SingletonRecord[];
   count: int;
 };
-export type WsDlHistoryMessage = GetMessageType<chia_wallet_service, dl_history_command, TDlHistoryResponse>;
+export type WsDlHistoryMessage = GetMessageType<cactus_wallet_service, dl_history_command, TDlHistoryResponse>;
 export async function dl_history<T extends TRPCAgent | TDaemon>(agent: T, data: TDlHistoryRequest){
   type R = ResType<T, TDlHistoryResponse, WsDlHistoryMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, dl_history_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, dl_history_command, data);
 }
 
 
@@ -2441,10 +2441,10 @@ export type TDlOwnedSingletonsResponse = {
   singletons: SingletonRecord[];
   count: int;
 };
-export type WsDlOwnedSingletonsMessage = GetMessageType<chia_wallet_service, dl_owned_singletons_command, TDlOwnedSingletonsResponse>;
+export type WsDlOwnedSingletonsMessage = GetMessageType<cactus_wallet_service, dl_owned_singletons_command, TDlOwnedSingletonsResponse>;
 export async function dl_owned_singletons<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TDlOwnedSingletonsResponse, WsDlOwnedSingletonsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, dl_owned_singletons_command);
+  return agent.sendMessage<R>(cactus_wallet_service, dl_owned_singletons_command);
 }
 
 
@@ -2458,10 +2458,10 @@ export type TDlGetMirrorsRequest = {
 export type TDlGetMirrorsResponse = {
   mirrors: Mirror[];
 };
-export type WsDlGetMirrorsMessage = GetMessageType<chia_wallet_service, dl_get_mirrors_command, TDlGetMirrorsResponse>;
+export type WsDlGetMirrorsMessage = GetMessageType<cactus_wallet_service, dl_get_mirrors_command, TDlGetMirrorsResponse>;
 export async function dl_get_mirrors<T extends TRPCAgent | TDaemon>(agent: T, data: TDlGetMirrorsRequest){
   type R = ResType<T, TDlGetMirrorsResponse, WsDlGetMirrorsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, dl_get_mirrors_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, dl_get_mirrors_command, data);
 }
 
 
@@ -2478,10 +2478,10 @@ export type TDlNewMirrorRequest = {
 export type TDlNewMirrorResponse = {
   transactions: TransactionRecordConvenience[];
 };
-export type WsDlNewMirrorMessage = GetMessageType<chia_wallet_service, dl_new_mirror_command, TDlNewMirrorResponse>;
+export type WsDlNewMirrorMessage = GetMessageType<cactus_wallet_service, dl_new_mirror_command, TDlNewMirrorResponse>;
 export async function dl_new_mirror<T extends TRPCAgent | TDaemon>(agent: T, data: TDlNewMirrorRequest){
   type R = ResType<T, TDlNewMirrorResponse, WsDlNewMirrorMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, dl_new_mirror_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, dl_new_mirror_command, data);
 }
 
 
@@ -2496,10 +2496,10 @@ export type TDlDeleteMirrorRequest = {
 export type TDlDeleteMirrorResponse = {
   transactions: TransactionRecordConvenience[];
 };
-export type WsDlDeleteMirrorMessage = GetMessageType<chia_wallet_service, dl_delete_mirror_command, TDlDeleteMirrorResponse>;
+export type WsDlDeleteMirrorMessage = GetMessageType<cactus_wallet_service, dl_delete_mirror_command, TDlDeleteMirrorResponse>;
 export async function dl_delete_mirror<T extends TRPCAgent | TDaemon>(agent: T, data: TDlDeleteMirrorRequest){
   type R = ResType<T, TDlDeleteMirrorResponse, WsDlDeleteMirrorMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, dl_delete_mirror_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, dl_delete_mirror_command, data);
 }
 
 
@@ -2515,10 +2515,10 @@ export type TVcMintResponse = {
   vc_record: VCRecord;
   transactions: TransactionRecordConvenience[];
 };
-export type WsVcMintMessage = GetMessageType<chia_wallet_service, vc_mint_command, TVcMintResponse>;
+export type WsVcMintMessage = GetMessageType<cactus_wallet_service, vc_mint_command, TVcMintResponse>;
 export async function vc_mint<T extends TRPCAgent | TDaemon>(agent: T, data: TVcMintRequest) {
   type R = ResType<T, TVcMintResponse, WsVcMintMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, vc_mint_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, vc_mint_command, data);
 }
 
 
@@ -2531,10 +2531,10 @@ export type TVcGetRequest = VCGet;
 export type TVcGetResponse = {
   vc_record: VCRecord | None;
 };
-export type WsVcGetMessage = GetMessageType<chia_wallet_service, vc_get_command, TVcGetResponse>;
+export type WsVcGetMessage = GetMessageType<cactus_wallet_service, vc_get_command, TVcGetResponse>;
 export async function vc_get<T extends TRPCAgent | TDaemon>(agent: T, data: TVcGetRequest) {
   type R = ResType<T, TVcGetResponse, WsVcGetMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, vc_get_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, vc_get_command, data);
 }
 
 
@@ -2549,10 +2549,10 @@ export type TVcGetListResponse = {
   vc_records: Array<VCRecord & {coin_id: str;}>;
   proofs: Record<str, Record<str, str> | None>;
 };
-export type WsVcGetListMessage = GetMessageType<chia_wallet_service, vc_get_list_command, TVcGetListResponse>;
+export type WsVcGetListMessage = GetMessageType<cactus_wallet_service, vc_get_list_command, TVcGetListResponse>;
 export async function vc_get_list<T extends TRPCAgent | TDaemon>(agent: T, data: TVcGetListRequest) {
   type R = ResType<T, TVcGetListResponse, WsVcGetListMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, vc_get_list_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, vc_get_list_command, data);
 }
 
 
@@ -2570,10 +2570,10 @@ export type TVcSpendRequest = VcSpend;
 export type TVcSpendResponse = {
   transactions: TransactionRecordConvenience[];
 };
-export type WsVcSpendMessage = GetMessageType<chia_wallet_service, vc_spend_command, TVcSpendResponse>;
+export type WsVcSpendMessage = GetMessageType<cactus_wallet_service, vc_spend_command, TVcSpendResponse>;
 export async function vc_spend<T extends TRPCAgent | TDaemon>(agent: T, data: TVcSpendRequest) {
   type R = ResType<T, TVcSpendResponse, WsVcSpendMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, vc_spend_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, vc_spend_command, data);
 }
 
 
@@ -2585,10 +2585,10 @@ export type TVcAddProofsRequest = {
   };
 };
 export type TVcAddProofsResponse = {};
-export type WsVcAddProofsMessage = GetMessageType<chia_wallet_service, vc_add_proofs_command, TVcAddProofsResponse>;
+export type WsVcAddProofsMessage = GetMessageType<cactus_wallet_service, vc_add_proofs_command, TVcAddProofsResponse>;
 export async function vc_add_proofs<T extends TRPCAgent | TDaemon>(agent: T, data: TVcAddProofsRequest) {
   type R = ResType<T, TVcAddProofsResponse, WsVcAddProofsMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, vc_add_proofs_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, vc_add_proofs_command, data);
 }
 
 
@@ -2601,10 +2601,10 @@ export type TVcGetProofsForRootRequest = VCGetProofsForRoot;
 export type TVcGetProofsForRootResponse = {
   proofs: Record<str, str>;
 };
-export type WsVcGetProofsForRootMessage = GetMessageType<chia_wallet_service, vc_get_proofs_for_root_command, TVcGetProofsForRootResponse>;
+export type WsVcGetProofsForRootMessage = GetMessageType<cactus_wallet_service, vc_get_proofs_for_root_command, TVcGetProofsForRootResponse>;
 export async function vc_get_proofs_for_root<T extends TRPCAgent | TDaemon>(agent: T, data: TVcGetProofsForRootRequest) {
   type R = ResType<T, TVcGetProofsForRootResponse, WsVcGetProofsForRootMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, vc_get_proofs_for_root_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, vc_get_proofs_for_root_command, data);
 }
 
 
@@ -2619,10 +2619,10 @@ export type TVcRevokeRequest = VcRevoke;
 export type TVcRevokeResponse = {
   transactions: TransactionRecordConvenience[];
 };
-export type WsVcRevokeMessage = GetMessageType<chia_wallet_service, vc_revoke_command, TVcRevokeResponse>;
+export type WsVcRevokeMessage = GetMessageType<cactus_wallet_service, vc_revoke_command, TVcRevokeResponse>;
 export async function vc_revoke<T extends TRPCAgent | TDaemon>(agent: T, data: TVcRevokeRequest) {
   type R = ResType<T, TVcRevokeResponse, WsVcRevokeMessage>;
-  return agent.sendMessage<R>(chia_wallet_service, vc_revoke_command, data);
+  return agent.sendMessage<R>(cactus_wallet_service, vc_revoke_command, data);
 }
 
 export type RpcWalletMessage =

@@ -19,7 +19,7 @@ type EventListenerOf<T> =
 
 export type MessageListener<D extends WsMessage> = (msg: D) => unknown;
 
-const chia_agent_service = "chia_agent";
+const cactus_agent_service = "cactus_agent";
 
 let daemon: Daemon|null = null;
 
@@ -154,7 +154,7 @@ class Daemon {
       command,
       data,
       ack: false,
-      origin: chia_agent_service,
+      origin: cactus_agent_service,
       destination,
       request_id: randomBytes(32).toString("hex"),
     };
@@ -172,7 +172,7 @@ class Daemon {
         data: { success: true },
         ack: true,
         origin: "daemon",
-        destination: chia_agent_service,
+        destination: cactus_agent_service,
         request_id: "",
       } as T;
     }
@@ -242,7 +242,7 @@ class Daemon {
   
   /**
    * Add listener for message
-   * @param {string} origin - Can be chia_farmer, chia_full_node, chia_wallet, etc.
+   * @param {string} origin - Can be cactus_farmer, cactus_full_node, cactus_wallet, etc.
    * @param listener - Triggered when a message arrives.
    */
   public addMessageListener<D extends WsMessage>(origin: string|undefined, listener: MessageListener<D>){
@@ -280,7 +280,7 @@ class Daemon {
     this._connectedUrl = url;
     this._openEventListeners.forEach(l => l(event));
   
-    return this.subscribe(chia_agent_service);
+    return this.subscribe(cactus_agent_service);
   }
   
   protected onError(error: ErrorEvent){

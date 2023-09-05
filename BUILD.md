@@ -2,8 +2,8 @@
 
 ```shell
 $ cd <Directory you like>
-$ git clone https://github.com/Chia-Mine/chia-agent
-$ cd chia-agent
+$ git clone https://github.com/Cactus-Mine/cactus-agent
+$ cd cactus-agent
 $ git checkout <branch you like>
 $ npm run build # Build files into /build directory which git ignores
 

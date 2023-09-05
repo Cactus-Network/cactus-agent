@@ -1,7 +1,7 @@
 import type {WsFarmerMessage} from "./farmer/index";
 export {
-  chia_farmer_service,
-  TChiaFarmerBroadcast,
+  cactus_farmer_service,
+  TCactusFarmerBroadcast,
   TGetConnectionsBroadCast as TGetConnectionsFarmerBroadCast,
   TNewSignagePointBroadCast,
   TNewFarmingInfoBroadCast,
@@ -27,8 +27,8 @@ export {
 
 import type {WsFullNodeMessage} from "./full_node/index";
 export {
-  chia_full_node_service,
-  TChiaFullNodeBroadcast,
+  cactus_full_node_service,
+  TCactusFullNodeBroadcast,
   TGetConnectionsBroadCast as TGetConnectionsFullNodeBroadCast,
   TGetBlockchainStateBroadCast,
   TBlockBroadCast,
@@ -42,9 +42,9 @@ export {
 
 import type {WsHarvesterMessage} from "./harvester/index";
 export {
-  chia_harvester_service,
+  cactus_harvester_service,
   TGetConnectionsBroadCast as TGetConnectionsHarvesterBroadCast,
-  TChiaHarvesterBroadcast,
+  TCactusHarvesterBroadcast,
   TGetPlotsBroadCast,
   TFarmingInfoBroadCast,
   TAddConnectionBroadCast as TAddConnectionHarvesterBroadCast,
@@ -59,12 +59,12 @@ export {
 
 import type {WsWalletMessage} from "./wallet/index";
 export {
-  chia_wallet_service,
+  cactus_wallet_service,
   TGetConnectionsBroadCast as TGetConnectionsWalletBroadCast,
   TSyncChangedBroadCast,
   TStateChangedBroadCastOfWallet,
   TCoinAddedBroadCast,
-  TChiaWalletBroadcast,
+  TCactusWalletBroadcast,
   on_get_connections as on_get_connections_wallet,
   on_sync_changed,
   on_state_changed_of_wallet,
@@ -74,17 +74,17 @@ export {
   on_message_from_wallet,
 } from "./wallet/index";
 
-import type {WsPlotsMessage} from "./chia_plots_create/index";
+import type {WsPlotsMessage} from "./cactus_plots_create/index";
 export {
-  chia_plotter_service,
+  cactus_plotter_service,
   state_changed_command_of_plots,
   TStateChangedBroadCastOfPlots,
   on_state_changed_of_plots,
-} from "./chia_plots_create/index";
+} from "./cactus_plots_create/index";
 
 import type {WsCrawlerMessage} from "./crawler/index";
 export {
-  chia_crawler_service,
+  cactus_crawler_service,
   TLoadedInitialPeersBroadCast,
   TCrawlBatchCompletedBroadCast,
   TPeerCounts,
@@ -94,7 +94,7 @@ export {
 
 import type {WsTimelordMessage} from "./timelord/index";
 export {
-  chia_timelord_service,
+  cactus_timelord_service,
   TFinishedPotBroadCast,
   TNewCompactProofBroadCast,
   TSkippingPeakBroadCast,

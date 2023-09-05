@@ -1,11 +1,11 @@
-import {bool, int, str, True, uint32} from "../../chia/types/_python_types_";
+import {bool, int, str, True, uint32} from "../../cactus/types/_python_types_";
 import {TRPCAgent} from "../../../rpc";
-import {Plot} from "../../chia/harvester/harvester";
+import {Plot} from "../../cactus/harvester/harvester";
 import {GetMessageType, ResType} from "../../types";
 import {TDaemon} from "../../../daemon/index";
 
-export const chia_harvester_service = "chia_harvester";
-export type chia_harvester_service = typeof chia_harvester_service;
+export const cactus_harvester_service = "cactus_harvester";
+export type cactus_harvester_service = typeof cactus_harvester_service;
 
 export const get_plots_command = "get_plots";
 export type get_plots_command = typeof get_plots_command;
@@ -16,10 +16,10 @@ export type TGetPlotsResponse = {
   failed_to_open_filenames: str[];
   not_found_filenames: str[];
 };
-export type WsGetPlotsMessage = GetMessageType<chia_harvester_service, get_plots_command, TGetPlotsResponse>;
+export type WsGetPlotsMessage = GetMessageType<cactus_harvester_service, get_plots_command, TGetPlotsResponse>;
 export async function get_plots<T extends TRPCAgent | TDaemon>(agent: T) {
   type R = ResType<T, TGetPlotsResponse, WsGetPlotsMessage>;
-  return agent.sendMessage<R>(chia_harvester_service, get_plots_command);
+  return agent.sendMessage<R>(cactus_harvester_service, get_plots_command);
 }
 
 
@@ -31,10 +31,10 @@ export type TRefreshPlotsRequest = {
 };
 export type TRefreshPlotsResponse = {
 };
-export type WsRefreshPlotsMessage = GetMessageType<chia_harvester_service, refresh_plots_command, TRefreshPlotsResponse>;
+export type WsRefreshPlotsMessage = GetMessageType<cactus_harvester_service, refresh_plots_command, TRefreshPlotsResponse>;
 export async function refresh_plots<T extends TRPCAgent | TDaemon>(agent: T) {
   type R = ResType<T, TRefreshPlotsResponse, WsRefreshPlotsMessage>;
-  return agent.sendMessage<R>(chia_harvester_service, refresh_plots_command);
+  return agent.sendMessage<R>(cactus_harvester_service, refresh_plots_command);
 }
 
 
@@ -47,10 +47,10 @@ export type TDeletePlotRequest = {
 };
 export type TDeletePlotResponse = {
 };
-export type WsDeletePlotMessage = GetMessageType<chia_harvester_service, delete_plot_command, TDeletePlotResponse>;
+export type WsDeletePlotMessage = GetMessageType<cactus_harvester_service, delete_plot_command, TDeletePlotResponse>;
 export async function delete_plot<T extends TRPCAgent | TDaemon>(agent: T, data: TDeletePlotRequest) {
   type R = ResType<T, TDeletePlotResponse, WsDeletePlotMessage>;
-  return agent.sendMessage<R>(chia_harvester_service, delete_plot_command, data);
+  return agent.sendMessage<R>(cactus_harvester_service, delete_plot_command, data);
 }
 
 
@@ -63,10 +63,10 @@ export type TAddPlotDirectoryRequest = {
 };
 export type TAddPlotDirectoryResponse = {
 };
-export type WsAddPlotDirectoryMessage = GetMessageType<chia_harvester_service, add_plot_directory_command, TAddPlotDirectoryResponse>;
+export type WsAddPlotDirectoryMessage = GetMessageType<cactus_harvester_service, add_plot_directory_command, TAddPlotDirectoryResponse>;
 export async function add_plot_directory<T extends TRPCAgent | TDaemon>(agent: T, data: TAddPlotDirectoryRequest) {
   type R = ResType<T, TAddPlotDirectoryResponse, WsAddPlotDirectoryMessage>;
-  return agent.sendMessage<R>(chia_harvester_service, add_plot_directory_command, data);
+  return agent.sendMessage<R>(cactus_harvester_service, add_plot_directory_command, data);
 }
 
 
@@ -79,10 +79,10 @@ export type TGetPlotDirectoriesRequest = {
 export type TGetPlotDirectoriesResponse = {
   directories: str[];
 };
-export type WsGetPlotDirectoriesMessage = GetMessageType<chia_harvester_service, get_plot_directories_command, TGetPlotDirectoriesResponse>;
+export type WsGetPlotDirectoriesMessage = GetMessageType<cactus_harvester_service, get_plot_directories_command, TGetPlotDirectoriesResponse>;
 export async function get_plot_directories<T extends TRPCAgent | TDaemon>(agent: T) {
   type R = ResType<T, TGetPlotDirectoriesResponse, WsGetPlotDirectoriesMessage>;
-  return agent.sendMessage<R>(chia_harvester_service, get_plot_directories_command);
+  return agent.sendMessage<R>(cactus_harvester_service, get_plot_directories_command);
 }
 
 
@@ -95,10 +95,10 @@ export type TRemovePlotDirectoryRequest = {
 };
 export type TRemovePlotDirectoryResponse = {
 };
-export type WsRemovePlotDirectoryMessage = GetMessageType<chia_harvester_service, remove_plot_directory_command, TRemovePlotDirectoryResponse>;
+export type WsRemovePlotDirectoryMessage = GetMessageType<cactus_harvester_service, remove_plot_directory_command, TRemovePlotDirectoryResponse>;
 export async function remove_plot_directory<T extends TRPCAgent | TDaemon>(agent: T, data: TRemovePlotDirectoryRequest) {
   type R = ResType<T, TRemovePlotDirectoryResponse, WsRemovePlotDirectoryMessage>;
-  return agent.sendMessage<R>(chia_harvester_service, remove_plot_directory_command, data);
+  return agent.sendMessage<R>(cactus_harvester_service, remove_plot_directory_command, data);
 }
 
 
@@ -115,10 +115,10 @@ export type TGetHarvesterConfigResponse = {
   recursive_plot_scan: bool;
   refresh_parameter_interval_seconds: int;
 };
-export type WsGetHarvesterConfigMessage = GetMessageType<chia_harvester_service, get_harvester_config_command, TGetHarvesterConfigResponse>;
+export type WsGetHarvesterConfigMessage = GetMessageType<cactus_harvester_service, get_harvester_config_command, TGetHarvesterConfigResponse>;
 export async function get_harvester_config<T extends TRPCAgent | TDaemon>(agent: T) {
   type R = ResType<T, TGetHarvesterConfigResponse, WsGetHarvesterConfigMessage>;
-  return agent.sendMessage<R>(chia_harvester_service, get_harvester_config_command);
+  return agent.sendMessage<R>(cactus_harvester_service, get_harvester_config_command);
 }
 
 
@@ -136,10 +136,10 @@ export type TUpdateHarvesterConfigRequest = {
 };
 export type TUpdateHarvesterConfigResponse = {
 };
-export type WsUpdateHarvesterConfigMessage = GetMessageType<chia_harvester_service, update_harvester_config_command, TUpdateHarvesterConfigResponse>;
+export type WsUpdateHarvesterConfigMessage = GetMessageType<cactus_harvester_service, update_harvester_config_command, TUpdateHarvesterConfigResponse>;
 export async function update_harvester_config<T extends TRPCAgent | TDaemon>(agent: T, data: TUpdateHarvesterConfigRequest) {
   type R = ResType<T, TUpdateHarvesterConfigResponse, WsUpdateHarvesterConfigMessage>;
-  return agent.sendMessage<R>(chia_harvester_service, update_harvester_config_command, data);
+  return agent.sendMessage<R>(cactus_harvester_service, update_harvester_config_command, data);
 }
 
 export type RpcHarvesterMessage =

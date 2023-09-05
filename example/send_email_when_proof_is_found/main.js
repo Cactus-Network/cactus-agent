@@ -1,5 +1,5 @@
-const {getDaemon, setLogLevel} = require("chia-agent");
-const {on_new_farming_info} = require("chia-agent/api/ws");
+const {getDaemon, setLogLevel} = require("cactus-agent");
+const {on_new_farming_info} = require("cactus-agent/api/ws");
 const sendMail = require("./gmail/sendMail");
 
 main().catch(e => {
@@ -21,7 +21,7 @@ async function main(){
   
     if(proofs > 0){
       // Send email with Gmail
-      const subject = "[Chia] A proof has been found!";
+      const subject = "[Cactus] A proof has been found!";
       const mailBody = "Go check your wallet to see your earning";
       const from = "XXX <xxx@xxx.xxx>"; // Edit here
       const to = "YYY <yyy@yyy.yyy>"; // Edit here

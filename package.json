@@ -1,17 +1,17 @@
 {
-  "name": "chia-agent",
+  "name": "cactus-agent",
   "version": "13.0.0",
-  "author": "ChiaMineJP <admin@chiamine.jp>",
-  "description": "chia rpc/websocket client library",
+  "author": "CactusMineJP <admin@cactusmine.jp>",
+  "description": "cactus rpc/websocket client library",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Chia-Mine/chia-agent.git"
+    "url": "https://github.com/Cactus-Mine/cactus-agent.git"
   },
-  "bugs": "https://github.com/Chia-Mine/chia-agent/issues",
+  "bugs": "https://github.com/Cactus-Mine/cactus-agent/issues",
   "main": "./index.js",
   "bin": {
-    "chia-agent": "./bin/cli.js"
+    "cactus-agent": "./bin/cli.js"
   },
   "scripts": {
     "build": "node ./pre_publish.js && tsc --project tsconfig.json --allowJS false --declaration --declarationDir ./build --outDir ./build",
@@ -19,8 +19,8 @@
     "test": "jest"
   },
   "keywords": [
-    "chia",
-    "xch",
+    "cactus",
+    "cac",
     "crypto",
     "rpc",
     "websocket",
@@ -31,7 +31,7 @@
     "node": ">=12.13.0"
   },
   "dependencies": {
-    "@chiamine/json-bigint": "^1.0.3",
+    "@cactusmine/json-bigint": "^1.0.3",
     "ws": "^8.5.0",
     "yaml": "^2.2.2"
   },

@@ -1,6 +1,6 @@
 import type {RpcFarmerMessage} from "./farmer/index";
 export {
-  chia_farmer_service,
+  cactus_farmer_service,
   RpcFarmerMessage,
   TGetRewardTargetRequest,
   TGetRewardTargetResponse,
@@ -44,7 +44,7 @@ export {
 
 import type {RpcFullNodeMessage} from "./full_node/index";
 export {
-  chia_full_node_service,
+  cactus_full_node_service,
   TGetAdditionsAndRemovalsRequest,
   TGetAdditionsAndRemovalsResponse,
   get_additions_and_removals,
@@ -149,7 +149,7 @@ export {
 
 import type {RpcHarvesterMessage} from "./harvester/index";
 export {
-  chia_harvester_service,
+  cactus_harvester_service,
   TAddPlotDirectoryRequest,
   TAddPlotDirectoryResponse,
   add_plot_directory,
@@ -177,7 +177,7 @@ export {
 
 import type {RpcWalletMessage} from "./wallet/index";
 export {
-  chia_wallet_service,
+  cactus_wallet_service,
   TAddKeyRequest,
   TAddKeyResponse,
   add_key,
@@ -528,7 +528,7 @@ export {
 
 import type {RpcDataLayerMessage} from "./data_layer/index"
 export {
-  chia_data_layer_service,
+  cactus_data_layer_service,
   TCreateDataStoreRequest,
   TCreateDataStoreResponse,
   create_data_store,
@@ -617,7 +617,7 @@ export {
 
 import type {RpcCrawlerMessage} from "./crawler/index";
 export {
-  chia_crawler_service,
+  cactus_crawler_service,
   TGetIpsAfterTimestampRequest,
   TGetIpsAfterTimestampResponse,
   TGetPeerCountsResponse,
@@ -628,7 +628,7 @@ export {
 
 import type {RpcCommonMessage} from "./common/index";
 export {
-  chia_common_service,
+  cactus_common_service,
   TGetConnectionsRequest,
   TGetConnectionsResponse,
   TOpenConnectionRequest,

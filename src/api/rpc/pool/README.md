@@ -4,8 +4,8 @@
 You need to create RPC connection before actually sending rpc request to the service.  
 Please remember that all rpc API is provided as an async function.
 ```js
-const {RPCAgent} = require("chia-agent");
-const {pool_info} = require("chia-agent/api/rpc/pool");
+const {RPCAgent} = require("cactus-agent");
+const {pool_info} = require("cactus-agent/api/rpc/pool");
 const agent = new RPCAgent({
   protocol: "https", // or "http"
   host: "some.pool.com",
@@ -28,7 +28,7 @@ They may use self-signed certificate and requires root CA cert on connection, or
 Past testnet implementation is this case. Connection between pool and client does not require any certificates thus not secure.  
 
 ```js
-const {RPCAgent} = require("chia-agent");
+const {RPCAgent} = require("cactus-agent");
 const agent = new RPCAgent({
   protocol: "http",
   host: "some.pool.com",
@@ -40,7 +40,7 @@ const agent = new RPCAgent({
 This may be the most popular case after the pool protocol releases to mainnet.  
 This is as simple as case1 because it does not require private root CA certs nor client certs.
 ```js
-const {RPCAgent} = require("chia-agent");
+const {RPCAgent} = require("cactus-agent");
 const agent = new RPCAgent({
   protocol: "https",
   host: "some.pool.com",
@@ -54,7 +54,7 @@ In this case, you need to have the private root CA certs, your client certs sign
 
 If you don't have valid client certs authorized by those private pool servers, https connection to those pools will be rejected.
 ```js
-const {RPCAgent} = require("chia-agent");
+const {RPCAgent} = require("cactus-agent");
 const agent = new RPCAgent({
   protocol: "https",
   host: "private.pool.com",
@@ -70,8 +70,8 @@ const agent = new RPCAgent({
 ## `pool_info(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {pool_info} = require("chia-agent/api/rpc/pool");
+const {RPCAgent} = require("cactus-agent");
+const {pool_info} = require("cactus-agent/api/rpc/pool");
 const agent = new RPCAgent(connectionInfo);
 const response = await pool_info(agent);
 ```
@@ -79,12 +79,12 @@ const response = await pool_info(agent);
 ```typescript
 {
   name: str; // "The Reference Pool"
-  logo_url: str; // "https://www.chia.net/img/chia_logo.svg"
+  logo_url: str; // "https://www.cactus.net/img/cactus_logo.svg"
   minimum_difficulty: uint64; // 10
   relative_lock_height: uint32; // 100
   protocol_version: str; // "1.0"
   fee: str; // "0.01"
-  description: str; // "(example) The Reference Pool allows you to pool with low fees, paying out daily using Chia."
+  description: str; // "(example) The Reference Pool allows you to pool with low fees, paying out daily using Cactus."
   target_puzzle_hash: bytes32; // "0x344587cf06a39db471d2cc0..."
   authentication_token_timeout: uint8;
 }
@@ -95,8 +95,8 @@ const response = await pool_info(agent);
 ## `get_farmer(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_farmer} = require("chia-agent/api/rpc/pool");
+const {RPCAgent} = require("cactus-agent");
+const {get_farmer} = require("cactus-agent/api/rpc/pool");
 const agent = new RPCAgent(connectionInfo);
 const response = await get_farmer(agent, params);
 ```
@@ -123,8 +123,8 @@ const response = await get_farmer(agent, params);
 ## `post_farmer(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {post_farmer} = require("chia-agent/api/rpc/pool");
+const {RPCAgent} = require("cactus-agent");
+const {post_farmer} = require("cactus-agent/api/rpc/pool");
 const agent = new RPCAgent(connectionInfo);
 const response = await post_farmer(agent, params);
 ```
@@ -151,15 +151,15 @@ const response = await post_farmer(agent, params);
 }
 ```
 For content of `G1Element` / `G2Element`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/_python_types_.ts  
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/_python_types_.ts  
 
 ---
 
 ## `put_farmer(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {put_farmer} = require("chia-agent/api/rpc/pool");
+const {RPCAgent} = require("cactus-agent");
+const {put_farmer} = require("cactus-agent/api/rpc/pool");
 const agent = new RPCAgent(connectionInfo);
 const response = await put_farmer(agent, params);
 ```
@@ -188,15 +188,15 @@ const response = await put_farmer(agent, params);
 }
 ```
 For content of `G1Element` / `G2Element`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/_python_types_.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/_python_types_.ts
 
 ---
 
 ## `partial(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {partial} = require("chia-agent/api/rpc/pool");
+const {RPCAgent} = require("cactus-agent");
+const {partial} = require("cactus-agent/api/rpc/pool");
 const agent = new RPCAgent(connectionInfo);
 const response = await partial(agent, params);
 ```
@@ -224,17 +224,17 @@ const response = await partial(agent, params);
 }
 ```
 For content of `G2Element`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/_python_types_.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/_python_types_.ts
 For content of `ProofOfSpace`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/blockchain_format/proof_of_space.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/proof_of_space.ts
 
 ---
 
 ## `login(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {login} = require("chia-agent/api/rpc/pool");
+const {RPCAgent} = require("cactus-agent");
+const {login} = require("cactus-agent/api/rpc/pool");
 const agent = new RPCAgent(connectionInfo);
 const response = await login(agent, params);
 ```

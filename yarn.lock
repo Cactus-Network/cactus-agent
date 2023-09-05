@@ -314,9 +314,9 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@chiamine/json-bigint@^1.0.3":
+"@cactusmine/json-bigint@^1.0.3":
   version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@chiamine/json-bigint/-/json-bigint-1.0.3.tgz#68e73302aa78fb8edb1e362520ee1fdfc6bc5d11"
+  resolved "https://registry.yarnpkg.com/@cactusmine/json-bigint/-/json-bigint-1.0.3.tgz#68e73302aa78fb8edb1e362520ee1fdfc6bc5d11"
   integrity sha512-ZwlvmRUvN5XOqGqaNjXISfy38xaR+qO3njpDo7DVdd29MAawA87NmToYEEQhbCFqv5lJLAliQdBzxlxptAAn0g==
   dependencies:
     bignumber.js "^9.0.0"

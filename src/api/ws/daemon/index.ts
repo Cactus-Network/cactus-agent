@@ -1,11 +1,11 @@
 // The daemon service currently does not provide state_change event as of v1.1.5.
 import {GetMessageType, wallet_ui_service} from "../../types";
 import {TDaemon} from "../../../daemon/index";
-import {bool, False, int, None, Optional, str, True, uint32} from "../../chia/types/_python_types_";
-import {chiapos_install_info} from "../../chia/plotters/chiapos";
-import {bladebit_install_info} from "../../chia/plotters/bladebit";
-import {madmax_install_info} from "../../chia/plotters/maxmax";
-import {KeyData} from "../../chia/util/keychain";
+import {bool, False, int, None, Optional, str, True, uint32} from "../../cactus/types/_python_types_";
+import {chiapos_install_info} from "../../cactus/plotters/chiapos";
+import {bladebit_install_info} from "../../cactus/plotters/bladebit";
+import {madmax_install_info} from "../../cactus/plotters/maxmax";
+import {KeyData} from "../../cactus/util/keychain";
 
 export const daemon_service = "daemon";
 export type daemon_service = typeof daemon_service;
@@ -25,8 +25,8 @@ export async function ping(daemon: TDaemon) {
 
 
 
-export type TService = "chia"|"chia_wallet"|"chia_full_node"|"chia_harvester"|"chia_farmer"
-  |"chia_introducer"|"chia_timelord"|"chia_timelord_launcher"|"chia_full_node_simulator";
+export type TService = "cactus"|"cactus_wallet"|"cactus_full_node"|"cactus_harvester"|"cactus_farmer"
+  |"cactus_introducer"|"cactus_timelord"|"cactus_timelord_launcher"|"cactus_full_node_simulator";
 export const start_service_command = "start_service";
 export type start_service_command = typeof start_service_command;
 export type TStartServiceRequest = {
@@ -48,7 +48,7 @@ export async function start_service(daemon: TDaemon, data: TStartServiceRequest)
 export const start_plotting_command = "start_plotting";
 export type start_plotting_command = typeof start_plotting_command;
 export type TCommonPlottingParams = {
-  service: "chia_plotter";
+  service: "cactus_plotter";
   delay?: int; // delay in seconds. Default: 0
   parallel?: bool; // parallel or serialize. Default: False
   k: int; // size. 32, 33, ...
@@ -125,7 +125,7 @@ export type TStartPlottingRequest = TCommonPlottingParams &
 export type TStartPlottingResponse = {
   success: bool;
   ids: str[];
-  service_name: str; // should be 'chia_plotter'
+  service_name: str; // should be 'cactus_plotter'
 };
 export type WsStartPlottingMessage = GetMessageType<daemon_service, start_plotting_command, TStartPlottingResponse>;
 export async function start_plotting(daemon: TDaemon, data: TStartPlottingRequest) {

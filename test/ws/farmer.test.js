@@ -46,7 +46,7 @@ test("get_harvesters", (done) => {
     
     const res = await get_harvesters(daemon);
   
-    expect(res.origin).toBe("chia_farmer");
+    expect(res.origin).toBe("cactus_farmer");
     expect(res.ack).toBeTruthy();
     expect(res.command).toBe("get_harvesters");
     expect(Array.isArray(res.data.harvesters)).toBeTruthy();

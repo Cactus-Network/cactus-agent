@@ -47,8 +47,8 @@ export type PoolState = {
   pool_errors_24h: Array<[uint32, ErrorResponse]>;
   authentication_token_timeout: uint8;
   pool_config: PoolWalletConfig;
-  p2_singleton_puzzle_hash: str; // This property is added at `get_pool_state()` in chia/rpc/farmer_rpc_api.py
-  plot_count: int; // This property is added at `get_pool_state()` in chia/rpc/farmer_rpc_api.py
+  p2_singleton_puzzle_hash: str; // This property is added at `get_pool_state()` in cactus/rpc/farmer_rpc_api.py
+  plot_count: int; // This property is added at `get_pool_state()` in cactus/rpc/farmer_rpc_api.py
 };
 
 // depends: rpc_response in get_plots, by: get_plots of Farmer API

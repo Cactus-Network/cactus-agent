@@ -6,18 +6,18 @@ import {parse} from "yaml";
 // Suppress noisy YAML warning
 process.env.YAML_SILENCE_WARNINGS = "true";
 
-const defaultChiaRoot = path.resolve(homedir(), ".chia", "mainnet");
+const defaultCactusRoot = path.resolve(homedir(), ".cactus", "mainnet");
 
-export const chiaRoot = process.env.CHIA_ROOT ? path.resolve(process.env.CHIA_ROOT) : defaultChiaRoot;
+export const cactusRoot = process.env.CACTUS_ROOT ? path.resolve(process.env.CACTUS_ROOT) : defaultCactusRoot;
 
 // config 
-export const configPath = path.resolve(chiaRoot, "config", "config.yaml");
+export const configPath = path.resolve(cactusRoot, "config", "config.yaml");
 
 // log
-export const logDir = path.resolve(chiaRoot, "log");
+export const logDir = path.resolve(cactusRoot, "log");
 
 // plotter
-export const plotterDir = path.resolve(chiaRoot, "plotter");
+export const plotterDir = path.resolve(cactusRoot, "plotter");
 
 export type TConfig = Record<string, string|number|Array<string|number>|null>;
 
@@ -30,9 +30,9 @@ let config: TConfig|undefined;
  * @example
    ```
    {
-    '/ALERTS_URL': 'https://download.chia.net/notify/mainnet_alert.txt',
+    '/ALERTS_URL': 'https://download.cactus.net/notify/mainnet_alert.txt',
     '/daemon_port': 55400,
-    '/farmer/network_overrides/config/testnet0/address_prefix': 'txch',
+    '/farmer/network_overrides/config/testnet0/address_prefix': 'tcac',
     ...
    }
    ```
@@ -82,15 +82,15 @@ export function buildConfigObj(
   return product;
 }
 
-export const defaultDaemonKeyPath = path.resolve(chiaRoot, "config", "ssl", "daemon", "private_daemon.key");
-export const defaultDaemonCertPath = path.resolve(chiaRoot, "config", "ssl", "daemon", "private_daemon.crt");
+export const defaultDaemonKeyPath = path.resolve(cactusRoot, "config", "ssl", "daemon", "private_daemon.key");
+export const defaultDaemonCertPath = path.resolve(cactusRoot, "config", "ssl", "daemon", "private_daemon.crt");
 
-export function resolveFromChiaRoot(pathFromChiaRoot: string[]){
-  return path.resolve(chiaRoot, ...pathFromChiaRoot);
+export function resolveFromCactusRoot(pathFromCactusRoot: string[]){
+  return path.resolve(cactusRoot, ...pathFromCactusRoot);
 }
 
 /**
- * Get path string resolved based on CHIA_ROOT dir.
+ * Get path string resolved based on CACTUS_ROOT dir.
  * 
  * @param {string} yPath - Canonical path for yaml. See @description.
  * @param {string?} configFilePath - If you want to specify path for config file, use this param.
@@ -106,5 +106,5 @@ export function resolveFromChiaRoot(pathFromChiaRoot: string[]){
  */
 export function getPathFromConfig(yPath: string, configFilePath?: string){
   const config = getConfig(configFilePath);
-  return resolveFromChiaRoot([config[yPath]] as string[]);
+  return resolveFromCactusRoot([config[yPath]] as string[]);
 }

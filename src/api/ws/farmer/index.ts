@@ -1,28 +1,28 @@
-import {ProofOfSpace} from "../../chia/types/blockchain_format/proof_of_space";
-import {DeclareProofOfSpace, NewSignagePoint} from "../../chia/protocols/farmer_protocol";
-import {bytes32} from "../../chia/types/blockchain_format/sized_bytes";
-import {bool, float, Optional, str, uint32, uint64} from "../../chia/types/_python_types_";
+import {ProofOfSpace} from "../../cactus/types/blockchain_format/proof_of_space";
+import {DeclareProofOfSpace, NewSignagePoint} from "../../cactus/protocols/farmer_protocol";
+import {bytes32} from "../../cactus/types/blockchain_format/sized_bytes";
+import {bool, float, Optional, str, uint32, uint64} from "../../cactus/types/_python_types_";
 import {TDaemon} from "../../../daemon/index";
 import {GetMessageType, TConnectionGeneral, wallet_ui_service, metrics_service} from "../../types";
-import {Receiver} from "../../chia/plot-sync/receiver";
+import {Receiver} from "../../cactus/plot-sync/receiver";
 
-export const chia_farmer_service = "chia_farmer";
-export type chia_farmer_service = typeof chia_farmer_service;
+export const cactus_farmer_service = "cactus_farmer";
+export type cactus_farmer_service = typeof cactus_farmer_service;
 
 export const get_connections_command = "get_connections";
 export type get_connections_command = typeof get_connections_command;
 export type TGetConnectionsBroadCast = {
   connections: TConnectionGeneral[];
 };
-export type WsGetConnectionFarmerMessage = GetMessageType<chia_farmer_service, get_connections_command, TGetConnectionsBroadCast>;
+export type WsGetConnectionFarmerMessage = GetMessageType<cactus_farmer_service, get_connections_command, TGetConnectionsBroadCast>;
 export async function on_get_connections(daemon: TDaemon, callback: (e: WsGetConnectionFarmerMessage) => unknown){
   await daemon.subscribe(wallet_ui_service);
   const messageListener = (e: WsFarmerMessage) => {
-    if(e.origin === chia_farmer_service && e.command === get_connections_command){
+    if(e.origin === cactus_farmer_service && e.command === get_connections_command){
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_farmer_service, messageListener);
+  return daemon.addMessageListener(cactus_farmer_service, messageListener);
 }
 
 export const new_farming_info_command = "new_farming_info";
@@ -39,15 +39,15 @@ export type TNewFarmingInfoBroadCast = {
     lookup_time: uint64;
   }
 };
-export type WsNewFarmingInfoMessage = GetMessageType<chia_farmer_service, new_farming_info_command, TNewFarmingInfoBroadCast>;
+export type WsNewFarmingInfoMessage = GetMessageType<cactus_farmer_service, new_farming_info_command, TNewFarmingInfoBroadCast>;
 export async function on_new_farming_info(daemon: TDaemon, callback: (e: WsNewFarmingInfoMessage) => unknown){
   await daemon.subscribe(wallet_ui_service);
   const messageListener = (e: WsFarmerMessage) => {
-    if(e.origin === chia_farmer_service && e.command === new_farming_info_command){
+    if(e.origin === cactus_farmer_service && e.command === new_farming_info_command){
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_farmer_service, messageListener);
+  return daemon.addMessageListener(cactus_farmer_service, messageListener);
 }
 
 export const new_signage_point_command = "new_signage_point";
@@ -57,29 +57,29 @@ export type TNewSignagePointBroadCast = {
   signage_point: NewSignagePoint;
   missing_signage_points: Optional<[uint64, uint32]>;
 };
-export type WsNewSignagePointMessage = GetMessageType<chia_farmer_service, new_signage_point_command, TNewSignagePointBroadCast>;
+export type WsNewSignagePointMessage = GetMessageType<cactus_farmer_service, new_signage_point_command, TNewSignagePointBroadCast>;
 export async function on_new_signage_point(daemon: TDaemon, callback: (e: WsNewSignagePointMessage) => unknown){
   await daemon.subscribe(wallet_ui_service);
   const messageListener = (e: WsFarmerMessage) => {
-    if(e.origin === chia_farmer_service && e.command === new_signage_point_command){
+    if(e.origin === cactus_farmer_service && e.command === new_signage_point_command){
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_farmer_service, messageListener);
+  return daemon.addMessageListener(cactus_farmer_service, messageListener);
 }
 
 export const harvester_update_command = "harvester_update";
 export type harvester_update_command = typeof harvester_update_command;
 export type THarvesterUpdateBroadCast = Receiver<true>;
-export type WsHarvesterUpdateMessage = GetMessageType<chia_farmer_service, harvester_update_command, THarvesterUpdateBroadCast>;
+export type WsHarvesterUpdateMessage = GetMessageType<cactus_farmer_service, harvester_update_command, THarvesterUpdateBroadCast>;
 export async function on_harvester_update(daemon: TDaemon, callback: (e: WsHarvesterUpdateMessage) => unknown){
   await daemon.subscribe(wallet_ui_service);
   const messageListener = (e: WsFarmerMessage) => {
-    if(e.origin === chia_farmer_service && e.command === harvester_update_command){
+    if(e.origin === cactus_farmer_service && e.command === harvester_update_command){
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_farmer_service, messageListener);
+  return daemon.addMessageListener(cactus_farmer_service, messageListener);
 }
 
 export const harvester_removed_command = "harvester_removed";
@@ -87,15 +87,15 @@ export type harvester_removed_command = typeof harvester_removed_command;
 export type THarvesterRemovedBroadCast = {
   node_id: bytes32;
 };
-export type WsHarvesterRemovedMessage = GetMessageType<chia_farmer_service, harvester_removed_command, THarvesterRemovedBroadCast>;
+export type WsHarvesterRemovedMessage = GetMessageType<cactus_farmer_service, harvester_removed_command, THarvesterRemovedBroadCast>;
 export async function on_harvester_removed(daemon: TDaemon, callback: (e: WsHarvesterRemovedMessage) => unknown){
   await daemon.subscribe(wallet_ui_service);
   const messageListener = (e: WsFarmerMessage) => {
-    if(e.origin === chia_farmer_service && e.command === harvester_removed_command){
+    if(e.origin === cactus_farmer_service && e.command === harvester_removed_command){
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_farmer_service, messageListener);
+  return daemon.addMessageListener(cactus_farmer_service, messageListener);
 }
 
 export const proof_command = "proof";
@@ -104,15 +104,15 @@ export type TProofBroadCast = {
   proof: DeclareProofOfSpace;
   passed_filter: bool;
 };
-export type WsProofMessage = GetMessageType<chia_farmer_service, proof_command, TProofBroadCast>;
+export type WsProofMessage = GetMessageType<cactus_farmer_service, proof_command, TProofBroadCast>;
 export async function on_proof(daemon: TDaemon, callback: (e: WsProofMessage) => unknown){
   await daemon.subscribe(wallet_ui_service);
   const messageListener = (e: WsFarmerMessage) => {
-    if(e.origin === chia_farmer_service && e.command === proof_command){
+    if(e.origin === cactus_farmer_service && e.command === proof_command){
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_farmer_service, messageListener);
+  return daemon.addMessageListener(cactus_farmer_service, messageListener);
 }
 
 export const submitted_partial_command = "submitted_partial";
@@ -124,15 +124,15 @@ export type TSubmittedPartialBroadCast = {
   points_acknowledged_since_start: uint64;
   points_acknowledged_24h: Array<[float, uint64]>; // [(time.time(), new_difficulty)]
 };
-export type WsSubmittedPartialMessage = GetMessageType<chia_farmer_service, submitted_partial_command, TSubmittedPartialBroadCast>;
+export type WsSubmittedPartialMessage = GetMessageType<cactus_farmer_service, submitted_partial_command, TSubmittedPartialBroadCast>;
 export async function on_submitted_partial(daemon: TDaemon, callback: (e: WsSubmittedPartialMessage) => unknown){
   await daemon.subscribe(metrics_service);
   const messageListener = (e: WsFarmerMessage) => {
-    if(e.origin === chia_farmer_service && e.command === submitted_partial_command){
+    if(e.origin === cactus_farmer_service && e.command === submitted_partial_command){
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_farmer_service, messageListener);
+  return daemon.addMessageListener(cactus_farmer_service, messageListener);
 }
 
 export const failed_partial_command = "failed_partial";
@@ -140,43 +140,43 @@ export type failed_partial_command = typeof failed_partial_command;
 export type TFailedPartialBroadCast = {
   p2_singleton_puzzle_hash: str;
 };
-export type WsFailedPartialMessage = GetMessageType<chia_farmer_service, failed_partial_command, TFailedPartialBroadCast>;
+export type WsFailedPartialMessage = GetMessageType<cactus_farmer_service, failed_partial_command, TFailedPartialBroadCast>;
 export async function on_failed_partial(daemon: TDaemon, callback: (e: WsFailedPartialMessage) => unknown) {
   await daemon.subscribe(metrics_service);
   const messageListener = (e: WsFarmerMessage) => {
-    if (e.origin === chia_farmer_service && e.command === failed_partial_command) {
+    if (e.origin === cactus_farmer_service && e.command === failed_partial_command) {
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_farmer_service, messageListener);
+  return daemon.addMessageListener(cactus_farmer_service, messageListener);
 }
 
 export const add_connection_command = "add_connection";
 export type add_connection_command = typeof add_connection_command;
 export type TAddConnectionBroadCast = {};
-export type WsAddConnectionMessage = GetMessageType<chia_farmer_service, add_connection_command, TAddConnectionBroadCast>;
+export type WsAddConnectionMessage = GetMessageType<cactus_farmer_service, add_connection_command, TAddConnectionBroadCast>;
 export async function on_add_connection(daemon: TDaemon, callback: (e: WsAddConnectionMessage) => unknown) {
   await daemon.subscribe(metrics_service);
   const messageListener = (e: WsFarmerMessage) => {
-    if (e.origin === chia_farmer_service && e.command === add_connection_command) {
+    if (e.origin === cactus_farmer_service && e.command === add_connection_command) {
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_farmer_service, messageListener);
+  return daemon.addMessageListener(cactus_farmer_service, messageListener);
 }
 
 export const close_connection_command = "close_connection";
 export type close_connection_command = typeof close_connection_command;
 export type TCloseConnectionBroadCast = {};
-export type WsCloseConnectionMessage = GetMessageType<chia_farmer_service, close_connection_command, TCloseConnectionBroadCast>;
+export type WsCloseConnectionMessage = GetMessageType<cactus_farmer_service, close_connection_command, TCloseConnectionBroadCast>;
 export async function on_close_connection(daemon: TDaemon, callback: (e: WsCloseConnectionMessage) => unknown) {
   await daemon.subscribe(metrics_service);
   const messageListener = (e: WsFarmerMessage) => {
-    if (e.origin === chia_farmer_service && e.command === close_connection_command) {
+    if (e.origin === cactus_farmer_service && e.command === close_connection_command) {
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_farmer_service, messageListener);
+  return daemon.addMessageListener(cactus_farmer_service, messageListener);
 }
 
 
@@ -194,7 +194,7 @@ export type WsFarmerMessage =
   ;
 
 // Whole commands for the service
-export type chia_farmer_commands = get_connections_command
+export type cactus_farmer_commands = get_connections_command
   | new_farming_info_command
   | new_signage_point_command
   | harvester_update_command
@@ -204,7 +204,7 @@ export type chia_farmer_commands = get_connections_command
   | add_connection_command
   | close_connection_command
 ;
-export type TChiaFarmerBroadcast = TGetConnectionsBroadCast
+export type TCactusFarmerBroadcast = TGetConnectionsBroadCast
   | TNewFarmingInfoBroadCast
   | TNewSignagePointBroadCast
   | THarvesterUpdateBroadCast
@@ -220,9 +220,9 @@ export async function on_message_from_farmer(daemon: TDaemon, callback: (e: WsFa
     daemon.subscribe(metrics_service),
   ]);
   const messageListener = (e: WsFarmerMessage) => {
-    if(e.origin === chia_farmer_service){
+    if(e.origin === cactus_farmer_service){
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_farmer_service, messageListener);
+  return daemon.addMessageListener(cactus_farmer_service, messageListener);
 }

@@ -7,7 +7,7 @@ You can modify this script to develop more complex plotter program.
 ```shell
 cd <Wherever directory you want>
 npm init . # or 'yarn init . -y'
-npm install chia-agent # or 'yarn add chia-agent'
+npm install cactus-agent # or 'yarn add cactus-agent'
 ```
 
 Create `index.js` in the directory shown above. 
@@ -20,7 +20,7 @@ main().catch(e => {
 
 function createPlotOption(opt){
   return {
-    service: "chia_plotter",
+    service: "cactus_plotter",
     delay: ((opt.delay || 0)*60), // delay in seconds
     parallel: false, // parallel or serialize
     k: 32, // size
@@ -44,8 +44,8 @@ function createPlotOption(opt){
 
 async function main(){
   const path = require("path");
-  const {setLogLevel, getDaemon} = require("chia-agent");
-  const {start_plotting} = require("chia-agent/api/ws/daemon");
+  const {setLogLevel, getDaemon} = require("cactus-agent");
+  const {start_plotting} = require("cactus-agent/api/ws/daemon");
 
   setLogLevel("debug"); // none/error/warning/info/debug is available.
 
@@ -56,14 +56,14 @@ async function main(){
   // MODIFY Plotter params here
   ////////////////////////////////
   const jobConfigs = [
-    {t: path.resolve("D:", "chia_plot"), d: path.resolve("S:"), r: 3, q: "S1", n: 1, delay: 0},
-    {t: path.resolve("D:", "chia_plot"), d: path.resolve("T:"), r: 2, q: "T1", n: 1, delay: 30},
-    {t: path.resolve("D:", "chia_plot"), d: path.resolve("S:"), r: 3, q: "S2", n: 1, delay: 0},
-    {t: path.resolve("D:", "chia_plot"), d: path.resolve("T:"), r: 2, q: "T2", n: 1, delay: 30},
-    {t: path.resolve("E:", "chia_plot"), d: path.resolve("S:"), r: 3, q: "S3", n: 1, delay: 0},
-    {t: path.resolve("E:", "chia_plot"), d: path.resolve("T:"), r: 2, q: "T3", n: 1, delay: 30},
-    {t: path.resolve("E:", "chia_plot"), d: path.resolve("S:"), r: 3, q: "S4", n: 1, delay: 0},
-    {t: path.resolve("E:", "chia_plot"), d: path.resolve("T:"), r: 2, q: "T4", n: 1, delay: 30},
+    {t: path.resolve("D:", "cactus_plot"), d: path.resolve("S:"), r: 3, q: "S1", n: 1, delay: 0},
+    {t: path.resolve("D:", "cactus_plot"), d: path.resolve("T:"), r: 2, q: "T1", n: 1, delay: 30},
+    {t: path.resolve("D:", "cactus_plot"), d: path.resolve("S:"), r: 3, q: "S2", n: 1, delay: 0},
+    {t: path.resolve("D:", "cactus_plot"), d: path.resolve("T:"), r: 2, q: "T2", n: 1, delay: 30},
+    {t: path.resolve("E:", "cactus_plot"), d: path.resolve("S:"), r: 3, q: "S3", n: 1, delay: 0},
+    {t: path.resolve("E:", "cactus_plot"), d: path.resolve("T:"), r: 2, q: "T3", n: 1, delay: 30},
+    {t: path.resolve("E:", "cactus_plot"), d: path.resolve("S:"), r: 3, q: "S4", n: 1, delay: 0},
+    {t: path.resolve("E:", "cactus_plot"), d: path.resolve("T:"), r: 2, q: "T4", n: 1, delay: 30},
   ];
 
   let error;
@@ -111,7 +111,7 @@ Specify host and port of remote server to `daemon.connect` function as below.
 # Cancel plotting
 Check target task's uuid in plotter log file name. 
 ```shell
-ls -l $CHIA_HOME/plotter
+ls -l $CACTUS_HOME/plotter
 ```
 You can find a bunch of plotter log files like:  
 `plotter_log_0cda2be3-88c7-4f9a-ab06-b3dcc5130aac.txt`  
@@ -126,8 +126,8 @@ main().catch(e => {
 
 async function main(){
   const path = require("path");
-  const {setLogLevel, getDaemon} = require("chia-agent");
-  const {stop_plotting} = require("chia-agent/api/ws/daemon");
+  const {setLogLevel, getDaemon} = require("cactus-agent");
+  const {stop_plotting} = require("cactus-agent/api/ws/daemon");
 
   setLogLevel("debug"); // none/error/warning/info/debug is available.
 
@@ -137,7 +137,7 @@ async function main(){
   const cancelingIds = [
     // uuidv4 style plot id. Can only be found in plotter log file name at this time.
     // I submit a PR to get plotter task uuid on requesting start_plotting.
-    // https://github.com/Chia-Network/chia-blockchain/pull/6241
+    // https://github.com/Cactus-Network/cactus-blockchain/pull/6241
     "0cda2be3-88c7-4f9a-ab06-b3dcc5130aac",
   ];
 
@@ -176,17 +176,17 @@ node cancel.js
 # Farmer public key and Pool public key
 
 In case you want to specify `-p` option for pool public key or `-f` option for farmer public key,  
-you need to execute `chia keys show` command to get those key values.
+you need to execute `cactus keys show` command to get those key values.
 ```
-PS C:\Users\SomeUser\.chia\mainnet> chia keys show
+PS C:\Users\SomeUser\.cactus\mainnet> cactus keys show
 Showing all public keys derived from your private keys:
 
 Fingerprint: 9937766107
 Master public key (m): d6f644b19812e97b5d871658d6d3400ecd4787faeb9b8990c1e7608288664be77257104a58d033bcf1a0e0945ff06468
 Farmer public key (m/12381/8444/0/0): 8e07e5bdd64aa37536c1f257a6b44963cc327b7d7dcb2cb47a22073d33414462bfa184487cf372ce0a19dfc83f8336d8
 Pool public key (m/12381/8444/1/0): 0fc10e05716f56b665d3692dc9f09e3f2d14868a479fdccaee02e1357a0337cee5a944db65efa29b6eaea163f8b0a137
-First wallet address: xch13f5abff5ed39eh9hg60qpzhzmgs73lgvd8a7v5240nxgyat4p00ytzkd99
-PS C:\Users\SomeUser\.chia\mainnet>
+First wallet address: cac13f5abff5ed39eh9hg60qpzhzmgs73lgvd8a7v5240nxgyat4p00ytzkd99
+PS C:\Users\SomeUser\.cactus\mainnet>
 ```
 
 As you see, you get  
@@ -196,14 +196,14 @@ pool public key: `0fc10e05716f56b665d3692dc9f09e3f2d14868a479fdccaee02e1357a0337
 Then just copy and paste those strings as values of `-f`/`-p` options.
 ```js
   const plot_option = {
-    service: "chia_plotter",
+    service: "cactus_plotter",
     delay: 0, // delay in seconds
     parallel: false, // parallel or serialize
     k: 33, // size
     n: 1, // count of creating plot
     queue: "default", // queue name
-    t: path.resolve("Z:", "chia_plots"), // tmp dir. Adjust this for your environment.
-    t2: path.resolve("Z:", "chia_plots"), // tmp dir 2. Adjust this for your environment.
+    t: path.resolve("Z:", "cactus_plots"), // tmp dir. Adjust this for your environment.
+    t2: path.resolve("Z:", "cactus_plots"), // tmp dir 2. Adjust this for your environment.
     d: path.resolve("E:"), // final dir. Adjust this for your environment.
     b: 4600, // memory buffer size
     u: 128, // number of buckets

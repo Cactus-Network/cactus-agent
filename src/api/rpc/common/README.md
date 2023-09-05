@@ -6,8 +6,8 @@ Common RPC APIs are available in all RPC services like full_node, farmer, harves
 You need to create RPC connection before actually sending rpc request to the service.  
 Please remember that all rpc API is provided as an async function.
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_connections} = require("chia-agent/api/rpc/common");
+const {RPCAgent} = require("cactus-agent");
+const {get_connections} = require("cactus-agent/api/rpc/common");
 const agent = new RPCAgent({
   service: "full_node", // Can be any services. i.e. full_node, farmer, harvester, wallet, crawler
 });
@@ -20,7 +20,7 @@ const response = await get_connections(agent, {...});
 
 /*
  * You can instantiate `agent` with hostname/port.
- * See https://github.com/Chia-Mine/chia-agent/blob/main/src/rpc/index.ts
+ * See https://github.com/Cactus-Mine/cactus-agent/blob/main/src/rpc/index.ts
  */
 const agent = new RPCAgent({
   protocol: "https",
@@ -37,8 +37,8 @@ const agent = new RPCAgent({
 ## `get_connections(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_connections} = require("chia-agent/api/rpc/common");
+const {RPCAgent} = require("cactus-agent");
+const {get_connections} = require("cactus-agent/api/rpc/common");
 const agent = new RPCAgent({service: "farmer"}); // Can be any service like full_node, harvester, etc...
 const response = await get_connections(agent, params);
 ```
@@ -55,17 +55,17 @@ const response = await get_connections(agent, params);
 }
 ```
 For content of `TConnectionGeneral`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/types.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/types.ts
 For content of `TConnectionFullNode`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/ws/full_node/index.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/ws/full_node/index.ts
 
 ---
 
 ## `open_connection(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {open_connection} = require("chia-agent/api/rpc/common");
+const {RPCAgent} = require("cactus-agent");
+const {open_connection} = require("cactus-agent/api/rpc/common");
 const agent = new RPCAgent({service: "crawler"}); // Can be any service like full_node, harvester, etc...
 const response = await open_connection(agent, params);
 ```
@@ -91,8 +91,8 @@ const response = await open_connection(agent, params);
 ## `close_connection(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {close_connection} = require("chia-agent/api/rpc/common");
+const {RPCAgent} = require("cactus-agent");
+const {close_connection} = require("cactus-agent/api/rpc/common");
 const agent = new RPCAgent({service: "crawler"}); // Can be any service like full_node, harvester, etc...
 const response = await close_connection(agent, params);
 ```
@@ -112,8 +112,8 @@ const response = await close_connection(agent, params);
 ## `stop_node(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {stop_node} = require("chia-agent/api/rpc/common");
+const {RPCAgent} = require("cactus-agent");
+const {stop_node} = require("cactus-agent/api/rpc/common");
 const agent = new RPCAgent({service: "crawler"}); // Can be any service like full_node, harvester, etc...
 const response = await stop_node(agent);
 ```
@@ -127,8 +127,8 @@ const response = await stop_node(agent);
 ## `get_routes(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_routes} = require("chia-agent/api/rpc/common");
+const {RPCAgent} = require("cactus-agent");
+const {get_routes} = require("cactus-agent/api/rpc/common");
 const agent = new RPCAgent({service: "crawler"}); // Can be any service like full_node, harvester, etc...
 const response = await get_routes(agent);
 ```
@@ -144,8 +144,8 @@ const response = await get_routes(agent);
 ## `healthz(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {healthz} = require("chia-agent/api/rpc/common");
+const {RPCAgent} = require("cactus-agent");
+const {healthz} = require("cactus-agent/api/rpc/common");
 const agent = new RPCAgent({service: "crawler"}); // Can be any service like full_node, harvester, etc...
 const response = await healthz(agent);
 ```

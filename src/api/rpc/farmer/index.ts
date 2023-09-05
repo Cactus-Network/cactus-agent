@@ -1,15 +1,15 @@
-import {ProofOfSpace} from "../../chia/types/blockchain_format/proof_of_space";
-import {bool, int, Optional, str, uint32, uint64, uint8} from "../../chia/types/_python_types_";
-import {bytes32} from "../../chia/types/blockchain_format/sized_bytes";
+import {ProofOfSpace} from "../../cactus/types/blockchain_format/proof_of_space";
+import {bool, int, Optional, str, uint32, uint64, uint8} from "../../cactus/types/_python_types_";
+import {bytes32} from "../../cactus/types/blockchain_format/sized_bytes";
 import {TRPCAgent} from "../../../rpc/index";
-import {PoolState} from "../../chia/farmer/farmer";
-import {Receiver} from "../../chia/plot-sync/receiver";
-import {Plot} from "../../chia/protocols/harvester_protocol";
+import {PoolState} from "../../cactus/farmer/farmer";
+import {Receiver} from "../../cactus/plot-sync/receiver";
+import {Plot} from "../../cactus/protocols/harvester_protocol";
 import {GetMessageType, ResType} from "../../types";
 import {TDaemon} from "../../../daemon/index";
 
-export const chia_farmer_service = "chia_farmer";
-export type chia_farmer_service = typeof chia_farmer_service;
+export const cactus_farmer_service = "cactus_farmer";
+export type cactus_farmer_service = typeof cactus_farmer_service;
 
 export const get_signage_point_command = "get_signage_point";
 export type get_signage_point_command = typeof get_signage_point_command;
@@ -27,10 +27,10 @@ export type TGetSignagePointResponse = {
   };
   proofs: [string, ProofOfSpace];
 };
-export type WsGetSignagePointMessage = GetMessageType<chia_farmer_service, get_signage_point_command, TGetSignagePointResponse>;
+export type WsGetSignagePointMessage = GetMessageType<cactus_farmer_service, get_signage_point_command, TGetSignagePointResponse>;
 export async function get_signage_point<T extends TRPCAgent|TDaemon>(agent: T, params: TGetSignagePointRequest) {
   type R = ResType<T, TGetSignagePointResponse, WsGetSignagePointMessage>;
-  return agent.sendMessage<R>(chia_farmer_service, get_signage_point_command, params);
+  return agent.sendMessage<R>(cactus_farmer_service, get_signage_point_command, params);
 }
 
 
@@ -41,10 +41,10 @@ export type TGetSignagePointsRequest = {
 export type TGetSignagePointsResponse = {
   signage_points: TGetSignagePointResponse[];
 };
-export type WsGetSignagePointsMessage = GetMessageType<chia_farmer_service, get_signage_points_command, TGetSignagePointsResponse>;
+export type WsGetSignagePointsMessage = GetMessageType<cactus_farmer_service, get_signage_points_command, TGetSignagePointsResponse>;
 export async function get_signage_points<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetSignagePointsResponse, WsGetSignagePointsMessage>;
-  return agent.sendMessage<R>(chia_farmer_service, get_signage_points_command);
+  return agent.sendMessage<R>(cactus_farmer_service, get_signage_points_command);
 }
 
 
@@ -64,10 +64,10 @@ export type TGetRewardTargetResponse = {
   farmer_target: str;
   pool_target: str;
 };
-export type WsGetRewardTargetsMessage = GetMessageType<chia_farmer_service, get_reward_targets_command, TGetRewardTargetResponse>;
+export type WsGetRewardTargetsMessage = GetMessageType<cactus_farmer_service, get_reward_targets_command, TGetRewardTargetResponse>;
 export async function get_reward_targets<T extends TRPCAgent | TDaemon>(agent: T, params: TGetRewardTargetRequest){
   type R = ResType<T, TGetRewardTargetResponse, WsGetRewardTargetsMessage>;
-  return agent.sendMessage<R>(chia_farmer_service, get_reward_targets_command, params);
+  return agent.sendMessage<R>(cactus_farmer_service, get_reward_targets_command, params);
 }
 
 
@@ -80,10 +80,10 @@ export type TSetRewardTargetRequest = {
 };
 export type TSetRewardTargetResponse = {
 };
-export type WsSetRewardTargetsMessage = GetMessageType<chia_farmer_service, set_reward_targets_command, TSetRewardTargetResponse>;
+export type WsSetRewardTargetsMessage = GetMessageType<cactus_farmer_service, set_reward_targets_command, TSetRewardTargetResponse>;
 export async function set_reward_targets<T extends TRPCAgent | TDaemon>(agent: T, params: TSetRewardTargetRequest){
   type R = ResType<T, TSetRewardTargetResponse, WsSetRewardTargetsMessage>;
-  return agent.sendMessage<R>(chia_farmer_service, set_reward_targets_command, params);
+  return agent.sendMessage<R>(cactus_farmer_service, set_reward_targets_command, params);
 }
 
 
@@ -95,10 +95,10 @@ export type TGetPoolStateRequest = {
 export type TGetPoolStateResponse = {
   pool_state: PoolState[];
 };
-export type WsGetPoolStateMessage = GetMessageType<chia_farmer_service, get_pool_state_command, TGetPoolStateResponse>;
+export type WsGetPoolStateMessage = GetMessageType<cactus_farmer_service, get_pool_state_command, TGetPoolStateResponse>;
 export async function get_pool_state<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetPoolStateResponse, WsGetPoolStateMessage>;
-  return agent.sendMessage<R>(chia_farmer_service, get_pool_state_command);
+  return agent.sendMessage<R>(cactus_farmer_service, get_pool_state_command);
 }
 
 
@@ -111,10 +111,10 @@ export type TSetPayoutInstructionsRequest = {
 };
 export type TSetPayoutInstructionsResponse = {
 };
-export type WsSetPayoutInstructionsMessage = GetMessageType<chia_farmer_service, set_payout_instructions_command, TSetPayoutInstructionsResponse>;
+export type WsSetPayoutInstructionsMessage = GetMessageType<cactus_farmer_service, set_payout_instructions_command, TSetPayoutInstructionsResponse>;
 export async function set_pool_payout_instructions<T extends TRPCAgent | TDaemon>(agent: T, params: TSetPayoutInstructionsRequest){
   type R = ResType<T, TSetPayoutInstructionsResponse, WsSetPayoutInstructionsMessage>;
-  return agent.sendMessage<R>(chia_farmer_service, set_payout_instructions_command, params);
+  return agent.sendMessage<R>(cactus_farmer_service, set_payout_instructions_command, params);
 }
 
 
@@ -125,10 +125,10 @@ export type TGetHarvestersRequest = {
 export type TGetHarvestersResponse = {
   harvesters: Receiver[];
 };
-export type WsGetHarvestersMessage = GetMessageType<chia_farmer_service, get_harvesters_command, TGetHarvestersResponse>;
+export type WsGetHarvestersMessage = GetMessageType<cactus_farmer_service, get_harvesters_command, TGetHarvestersResponse>;
 export async function get_harvesters<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetHarvestersResponse, WsGetHarvestersMessage>;
-  return agent.sendMessage<R>(chia_farmer_service, get_harvesters_command);
+  return agent.sendMessage<R>(cactus_farmer_service, get_harvesters_command);
 }
 
 
@@ -138,10 +138,10 @@ export type get_harvesters_summary_command = typeof get_harvesters_summary_comma
 export type TGetHarvestersSummaryResponse = {
   harvesters: Receiver<true>[];
 };
-export type WsGetHarvestersSummaryMessage = GetMessageType<chia_farmer_service, get_harvesters_summary_command, TGetHarvestersSummaryResponse>;
+export type WsGetHarvestersSummaryMessage = GetMessageType<cactus_farmer_service, get_harvesters_summary_command, TGetHarvestersSummaryResponse>;
 export async function get_harvesters_summary<T extends TRPCAgent | TDaemon>(agent: T){
   type R = ResType<T, TGetHarvestersSummaryResponse, WsGetHarvestersSummaryMessage>;
-  return agent.sendMessage<R>(chia_farmer_service, get_harvesters_summary_command);
+  return agent.sendMessage<R>(cactus_farmer_service, get_harvesters_summary_command);
 }
 
 
@@ -163,10 +163,10 @@ export type TGetHarvesterPlotsValidResponse = {
   total_count: int;
   plots: Plot[];
 };
-export type WsGetHarvesterPlotsValidMessage = GetMessageType<chia_farmer_service, get_harvester_plots_valid_command, TGetHarvesterPlotsValidResponse>;
+export type WsGetHarvesterPlotsValidMessage = GetMessageType<cactus_farmer_service, get_harvester_plots_valid_command, TGetHarvesterPlotsValidResponse>;
 export async function get_harvester_plots_valid<T extends TRPCAgent | TDaemon>(agent: T, param: TGetHarvesterPlotsValidRequest){
   type R = ResType<T, TGetHarvesterPlotsValidResponse, WsGetHarvesterPlotsValidMessage>;
-  return agent.sendMessage<R>(chia_farmer_service, get_harvester_plots_valid_command, param);
+  return agent.sendMessage<R>(cactus_farmer_service, get_harvester_plots_valid_command, param);
 }
 
 
@@ -187,10 +187,10 @@ export type TGetHarvesterPlotsInvalidResponse = {
   total_count: int;
   plots: str[];
 };
-export type WsGetHarvesterPlotsInvalidMessage = GetMessageType<chia_farmer_service, get_harvester_plots_invalid_command, TGetHarvesterPlotsInvalidResponse>;
+export type WsGetHarvesterPlotsInvalidMessage = GetMessageType<cactus_farmer_service, get_harvester_plots_invalid_command, TGetHarvesterPlotsInvalidResponse>;
 export async function get_harvester_plots_invalid<T extends TRPCAgent | TDaemon>(agent: T, param: TGetHarvesterPlotsInvalidRequest){
   type R = ResType<T, TGetHarvesterPlotsInvalidResponse, WsGetHarvesterPlotsInvalidMessage>;
-  return agent.sendMessage<R>(chia_farmer_service, get_harvester_plots_invalid_command, param);
+  return agent.sendMessage<R>(cactus_farmer_service, get_harvester_plots_invalid_command, param);
 }
 
 
@@ -211,10 +211,10 @@ export type TGetHarvesterPlotsKeysMissingResponse = {
   total_count: int;
   plots: str[];
 };
-export type WsGetHarvesterPlotsKeysMissingMessage = GetMessageType<chia_farmer_service, get_harvester_plots_keys_missing_command, TGetHarvesterPlotsKeysMissingResponse>;
+export type WsGetHarvesterPlotsKeysMissingMessage = GetMessageType<cactus_farmer_service, get_harvester_plots_keys_missing_command, TGetHarvesterPlotsKeysMissingResponse>;
 export async function get_harvester_plots_keys_missing<T extends TRPCAgent | TDaemon>(agent: T, param: TGetHarvesterPlotsKeysMissingRequest){
   type R = ResType<T, TGetHarvesterPlotsKeysMissingResponse, WsGetHarvesterPlotsKeysMissingMessage>;
-  return agent.sendMessage<R>(chia_farmer_service, get_harvester_plots_keys_missing_command, param);
+  return agent.sendMessage<R>(cactus_farmer_service, get_harvester_plots_keys_missing_command, param);
 }
 
 
@@ -235,10 +235,10 @@ export type TGetHarvesterPlotsDuplicatesResponse = {
   total_count: int;
   plots: str[];
 };
-export type WsGetHarvesterPlotsDuplicatesMessage = GetMessageType<chia_farmer_service, get_harvester_plots_duplicates_command, TGetHarvesterPlotsDuplicatesResponse>;
+export type WsGetHarvesterPlotsDuplicatesMessage = GetMessageType<cactus_farmer_service, get_harvester_plots_duplicates_command, TGetHarvesterPlotsDuplicatesResponse>;
 export async function get_harvester_plots_duplicates<T extends TRPCAgent | TDaemon>(agent: T, param: TGetHarvesterPlotsDuplicatesRequest){
   type R = ResType<T, TGetHarvesterPlotsDuplicatesResponse, WsGetHarvesterPlotsDuplicatesMessage>;
-  return agent.sendMessage<R>(chia_farmer_service, get_harvester_plots_duplicates_command, param);
+  return agent.sendMessage<R>(cactus_farmer_service, get_harvester_plots_duplicates_command, param);
 }
 
 
@@ -251,10 +251,10 @@ export type TGetPoolLinkRequest = {
 export type TGetPoolLinkResponse = {
   login_link: str;
 };
-export type WsGetPoolLinkMessage = GetMessageType<chia_farmer_service, get_pool_login_link_command, TGetPoolLinkResponse>;
+export type WsGetPoolLinkMessage = GetMessageType<cactus_farmer_service, get_pool_login_link_command, TGetPoolLinkResponse>;
 export async function get_pool_login_link<T extends TRPCAgent | TDaemon>(agent: T, params: TGetPoolLinkRequest){
   type R = ResType<T, TGetPoolLinkResponse, WsGetPoolLinkMessage>;
-  return agent.sendMessage<R>(chia_farmer_service, get_pool_login_link_command, params);
+  return agent.sendMessage<R>(cactus_farmer_service, get_pool_login_link_command, params);
 }
 
 export type RpcFarmerMessage =

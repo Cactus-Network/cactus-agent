@@ -4,8 +4,8 @@
 You need to create RPC connection before actually sending rpc request to the service.  
 Please remember that all rpc API is provided as an async function.
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_block} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_block} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({
   service: "full_node", // connect to local full_node service using config file.
 });
@@ -16,7 +16,7 @@ const response = await get_block(agent, {...});
 
 /*
  * You can instantiate `agent` with hostname/port.
- * See https://github.com/Chia-Mine/chia-agent/blob/main/src/rpc/index.ts
+ * See https://github.com/Cactus-Mine/cactus-agent/blob/main/src/rpc/index.ts
  */
 const agent = new RPCAgent({
   protocol: "https",
@@ -33,8 +33,8 @@ const agent = new RPCAgent({
 ## `get_blockchain_state(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_blockchain_state} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_blockchain_state} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_blockchain_state(agent);
 ```
@@ -67,17 +67,17 @@ const response = await get_blockchain_state(agent);
 }
 ```
 For content of `BlockRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/consensus/block_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/consensus/block_record.ts
 For content of `CLVMCost`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/clvm_cost.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/clvm_cost.ts
 
 ---
 
 ## `get_block(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_block} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_block} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_block(agent, params);
 ```
@@ -94,15 +94,15 @@ const response = await get_block(agent, params);
 }
 ```
 For content of `FullBlock`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/full_block.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/full_block.ts
 
 ---
 
 ## `get_blocks(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_blocks} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_blocks} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_blocks(agent, params);
 ```
@@ -122,15 +122,15 @@ const response = await get_blocks(agent, params);
 }
 ```
 For content of `FullBlock`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/full_block.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/full_block.ts
 
 ---
 
 ## `get_block_count_metrics(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_block_count_metrics} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_block_count_metrics} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_block_count_metrics(agent);
 ```
@@ -150,8 +150,8 @@ const response = await get_block_count_metrics(agent);
 ## `get_block_record_by_height(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_block_record_by_height} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_block_record_by_height} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_block_record_by_height(agent, params);
 ```
@@ -168,15 +168,15 @@ const response = await get_block_record_by_height(agent, params);
 }
 ```
 For content of `BlockRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/consensus/block_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/consensus/block_record.ts
 
 ---
 
 ## `get_block_record(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_block_record} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_block_record} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_block_record(agent, params);
 ```
@@ -193,15 +193,15 @@ const response = await get_block_record(agent, params);
 }
 ```
 For content of `BlockRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/consensus/block_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/consensus/block_record.ts
 
 ---
 
 ## `get_block_records(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_block_records} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_block_records} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_block_records(agent, params);
 ```
@@ -219,15 +219,15 @@ const response = await get_block_records(agent, params);
 }
 ```
 For content of `BlockRecord`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/consensus/block_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/consensus/block_record.ts
 
 ---
 
 ## `get_block_spends(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_block_spends} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_block_spends} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_block_spends(agent, params);
 ```
@@ -244,15 +244,15 @@ const response = await get_block_spends(agent, params);
 }
 ```
 For content of `CoinSpend`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/coin_spend.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/coin_spend.ts
 
 ---
 
 ## `get_unfinished_block_headers(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_unfinished_block_headers} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_unfinished_block_headers} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_unfinished_block_headers(agent);
 ```
@@ -263,15 +263,15 @@ const response = await get_unfinished_block_headers(agent);
 }
 ```
 For content of `UnfinishedHeaderBlock`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/unfinished_header_block.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/unfinished_header_block.ts
 
 ---
 
 ## `get_network_space(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_network_space} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_network_space} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_network_space(agent, params);
 ```
@@ -294,8 +294,8 @@ const response = await get_network_space(agent, params);
 ## `get_additions_and_removals(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_additions_and_removals} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_additions_and_removals} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_additions_and_removals(agent, params);
 ```
@@ -313,15 +313,15 @@ const response = await get_additions_and_removals(agent, params);
 }
 ```
 For content of `CoinRecordBackwardCompatible`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/coin_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/coin_record.ts
 
 ---
 
 ## `get_initial_freeze_period_of_full_node(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_initial_freeze_period_of_full_node} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_initial_freeze_period_of_full_node} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_initial_freeze_period_of_full_node(agent);
 ```
@@ -337,8 +337,8 @@ const response = await get_initial_freeze_period_of_full_node(agent);
 ## `get_network_info_of_full_node(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_network_info_of_full_node} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_network_info_of_full_node} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_network_info_of_full_node(agent);
 ```
@@ -355,8 +355,8 @@ const response = await get_network_info_of_full_node(agent);
 ## `get_recent_signage_point_or_eos(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_recent_signage_point_or_eos} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_recent_signage_point_or_eos} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_recent_signage_point_or_eos(agent, params);
 ```
@@ -381,18 +381,18 @@ const response = await get_recent_signage_point_or_eos(agent, params);
 }
 ```
 For content of `EndOfSubSlotBundle`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/end_of_slot_bundle.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/end_of_slot_bundle.ts
 
 For content of `SignagePoint`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/full_node/signage_point.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/full_node/signage_point.ts
 
 ---
 
 ## `get_coin_records_by_puzzle_hash(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_coin_records_by_puzzle_hash} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_coin_records_by_puzzle_hash} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_coin_records_by_puzzle_hash(agent, params);
 ```
@@ -412,15 +412,15 @@ const response = await get_coin_records_by_puzzle_hash(agent, params);
 }
 ```
 For content of `CoinRecordBackwardCompatible`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/coin_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/coin_record.ts
 
 ---
 
 ## `get_coin_records_by_puzzle_hashes(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_coin_records_by_puzzle_hashes} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_coin_records_by_puzzle_hashes} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_coin_records_by_puzzle_hashes(agent, params);
 ```
@@ -440,15 +440,15 @@ const response = await get_coin_records_by_puzzle_hashes(agent, params);
 }
 ```
 For content of `CoinRecordBackwardCompatible`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/coin_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/coin_record.ts
 
 ---
 
 ## `get_coin_record_by_name(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_coin_record_by_name} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_coin_record_by_name} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_coin_record_by_name(agent, params);
 ```
@@ -465,15 +465,15 @@ const response = await get_coin_record_by_name(agent, params);
 }
 ```
 For content of `CoinRecordBackwardCompatible`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/coin_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/coin_record.ts
 
 ---
 
 ## `get_coin_records_by_names(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_coin_records_by_names} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_coin_records_by_names} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_coin_records_by_names(agent, params);
 ```
@@ -493,7 +493,7 @@ const response = await get_coin_records_by_names(agent, params);
 }
 ```
 For content of `CoinRecordBackwardCompatible`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/coin_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/coin_record.ts
 
 
 ---
@@ -501,8 +501,8 @@ see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/coin_re
 ## `get_coin_records_by_parent_ids(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_coin_records_by_parent_ids} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_coin_records_by_parent_ids} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_coin_records_by_parent_ids(agent, params);
 ```
@@ -522,7 +522,7 @@ const response = await get_coin_records_by_parent_ids(agent, params);
 }
 ```
 For content of `CoinRecordBackwardCompatible`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/coin_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/coin_record.ts
 
 
 ---
@@ -530,8 +530,8 @@ see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/coin_re
 ## `get_coin_records_by_hint(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_coin_records_by_hint} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_coin_records_by_hint} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_coin_records_by_hint(agent, params);
 ```
@@ -551,15 +551,15 @@ const response = await get_coin_records_by_hint(agent, params);
 }
 ```
 For content of `CoinRecordBackwardCompatible`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/coin_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/coin_record.ts
 
 ---
 
 ## `push_tx(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {push_tx} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {push_tx} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await push_tx(agent, params);
 ```
@@ -576,15 +576,15 @@ const response = await push_tx(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/spend_bundle.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 
 ---
 
 ## `get_puzzle_and_solution(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_puzzle_and_solution} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_puzzle_and_solution} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_puzzle_and_solution(agent, params);
 ```
@@ -602,15 +602,15 @@ const response = await get_puzzle_and_solution(agent, params);
 }
 ```
 For content of `CoinSpend`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/coin_spend.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/coin_spend.ts
 
 ---
 
 ## `get_all_mempool_tx_ids(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_all_mempool_tx_ids} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_all_mempool_tx_ids} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_all_mempool_tx_ids(agent);
 ```
@@ -626,8 +626,8 @@ const response = await get_all_mempool_tx_ids(agent);
 ## `get_all_mempool_items(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_all_mempool_items} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_all_mempool_items} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_all_mempool_items(agent);
 ```
@@ -638,15 +638,15 @@ const response = await get_all_mempool_items(agent);
 }
 ```
 For content of `MempoolItemInJsonDict`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/mempool_item.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/mempool_item.ts
 
 ---
 
 ## `get_mempool_item_by_tx_id(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_mempool_item_by_tx_id} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_mempool_item_by_tx_id} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_mempool_item_by_tx_id(agent, params);
 ```
@@ -664,15 +664,15 @@ const response = await get_mempool_item_by_tx_id(agent, params);
 }
 ```
 For content of `MempoolItemInJsonDict`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/mempool_item.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/mempool_item.ts
 
 ---
 
 ## `get_fee_estimate(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_fee_estimate} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_fee_estimate} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_fee_estimate(agent, params);
 ```
@@ -681,7 +681,7 @@ const response = await get_fee_estimate(agent, params);
 {
   spend_bundle?: SpendBundle;
   cost?: uint64;
-  spend_type ? : "send_xch_transaction" | "cat_spend" | "take_offer" | "cancel_offer" | "nft_set_nft_did"
+  spend_type ? : "send_cac_transaction" | "cat_spend" | "take_offer" | "cancel_offer" | "nft_set_nft_did"
     | "nft_transfer_nft" | "create_new_pool_wallet" | "pw_absorb_rewards" | "create_new_did_wallet";
   spend_count ? : uint64;
   target_times: int[];
@@ -708,19 +708,19 @@ const response = await get_fee_estimate(agent, params);
 }
 ```
 For content of `SpendBundle`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/spend_bundle.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/spend_bundle.ts
 For content of `CLVMCost`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/clvm_cost.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/clvm_cost.ts
 For content of `Mojos`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/mojos.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/mojos.ts
 
 ---
 
 ## `get_all_blocks(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_all_blocks} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_all_blocks} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_all_blocks(agent);
 ```
@@ -732,15 +732,15 @@ const response = await get_all_blocks(agent);
 }
 ```
 For content of `FullBlock`,
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/full_block.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/full_block.ts
 
 ---
 
 ## `farm_block(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {farm_block} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {farm_block} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await farm_block(agent, params);
 ```
@@ -765,8 +765,8 @@ const response = await farm_block(agent, params);
 ## `set_auto_farming(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {set_auto_farming} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {set_auto_farming} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await set_auto_farming(agent, params);
 ```
@@ -789,8 +789,8 @@ const response = await set_auto_farming(agent, params);
 ## `get_auto_farming(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_auto_farming} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_auto_farming} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_auto_farming(agent);
 ```
@@ -807,8 +807,8 @@ const response = await get_auto_farming(agent);
 ## `get_farming_ph(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_farming_ph} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_farming_ph} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_farming_ph(agent);
 ```
@@ -825,8 +825,8 @@ const response = await get_farming_ph(agent);
 ## `get_all_coins(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_all_coins} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_all_coins} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_all_coins(agent, params);
 ```
@@ -844,15 +844,15 @@ const response = await get_all_coins(agent, params);
 }
 ```
 For content of `CoinRecord`,
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/coin_record.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/coin_record.ts
 
 ---
 
 ## `get_all_puzzle_hashes(agent)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {get_all_puzzle_hashes} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {get_all_puzzle_hashes} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await get_all_puzzle_hashes(agent);
 ```
@@ -869,8 +869,8 @@ const response = await get_all_puzzle_hashes(agent);
 ## `revert_blocks(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {revert_blocks} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {revert_blocks} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await revert_blocks(agent, params);
 ```
@@ -894,8 +894,8 @@ const response = await revert_blocks(agent, params);
 ## `reorg_blocks(agent, params)`
 ### Usage
 ```js
-const {RPCAgent} = require("chia-agent");
-const {reorg_blocks} = require("chia-agent/api/rpc/full_node");
+const {RPCAgent} = require("cactus-agent");
+const {reorg_blocks} = require("cactus-agent/api/rpc/full_node");
 const agent = new RPCAgent({service: "full_node"});
 const response = await reorg_blocks(agent, params);
 ```

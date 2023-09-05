@@ -3,8 +3,8 @@
 This is just a code sample showing how to use RPC API.
 
 ```js
-const {RPCAgent, setLogLevel} = require("chia-agent");
-const {get_block_record_by_height} = require("chia-agent/api/rpc");
+const {RPCAgent, setLogLevel} = require("cactus-agent");
+const {get_block_record_by_height} = require("cactus-agent/api/rpc");
 
 main().catch(e => {
   console.error(e);

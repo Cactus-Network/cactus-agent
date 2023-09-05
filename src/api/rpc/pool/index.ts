@@ -1,4 +1,4 @@
-import {str, uint64} from "../../chia/types/_python_types_";
+import {str, uint64} from "../../cactus/types/_python_types_";
 import {TRPCAgent} from "../../../rpc";
 import {
   ErrorResponse,
@@ -10,8 +10,8 @@ import {
   PostPartialResponse,
   PutFarmerRequest,
   PutFarmerResponse
-} from "../../chia/protocols/pool_protocol";
-import {FarmerRecord} from "../../chia/pool/store";
+} from "../../cactus/protocols/pool_protocol";
+import {FarmerRecord} from "../../cactus/pool/store";
 
 
 

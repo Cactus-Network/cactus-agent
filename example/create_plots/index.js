@@ -4,7 +4,7 @@ main().catch(e => {
 
 function createPlotOption(opt){
   return {
-    service: "chia_plotter",
+    service: "cactus_plotter",
     delay: ((opt.delay || 0)*60), // delay in seconds
     parallel: false, // parallel or serialize
     k: 32, // size
@@ -28,8 +28,8 @@ function createPlotOption(opt){
 
 async function main(){
   const path = require("path");
-  const {setLogLevel, getDaemon} = require("chia-agent");
-  const {start_plotting} = require("chia-agent/api/ws/daemon");
+  const {setLogLevel, getDaemon} = require("cactus-agent");
+  const {start_plotting} = require("cactus-agent/api/ws/daemon");
   
   setLogLevel("debug"); // none/error/warning/info/debug is available.
   
@@ -37,14 +37,14 @@ async function main(){
   await daemon.connect(); // connect to local daemon using config file.
   
   const jobConfigs = [
-    {t: path.resolve("D:", "chia_plot"), d: path.resolve("U:"), r: 2, q: "U1", n: 1, delay: 0},
-    {t: path.resolve("D:", "chia_plot"), d: path.resolve("V:"), r: 2, q: "V1", n: 1, delay: 0},
-    {t: path.resolve("D:", "chia_plot"), d: path.resolve("U:"), r: 3, q: "U2", n: 1, delay: 0},
-    {t: path.resolve("D:", "chia_plot"), d: path.resolve("V:"), r: 3, q: "V2", n: 1, delay: 0},
-    {t: path.resolve("E:", "chia_plot"), d: path.resolve("V:"), r: 3, q: "V3", n: 1, delay: 0},
-    {t: path.resolve("E:", "chia_plot"), d: path.resolve("V:"), r: 2, q: "V4", n: 1, delay: 0},
-    {t: path.resolve("E:", "chia_plot"), d: path.resolve("V:"), r: 2, q: "V5", n: 1, delay: 0},
-    // {t: path.resolve("E:", "chia_plot"), d: path.resolve("V:"), r: 2, q: "V4", n: 1, delay: 30},
+    {t: path.resolve("D:", "cactus_plot"), d: path.resolve("U:"), r: 2, q: "U1", n: 1, delay: 0},
+    {t: path.resolve("D:", "cactus_plot"), d: path.resolve("V:"), r: 2, q: "V1", n: 1, delay: 0},
+    {t: path.resolve("D:", "cactus_plot"), d: path.resolve("U:"), r: 3, q: "U2", n: 1, delay: 0},
+    {t: path.resolve("D:", "cactus_plot"), d: path.resolve("V:"), r: 3, q: "V2", n: 1, delay: 0},
+    {t: path.resolve("E:", "cactus_plot"), d: path.resolve("V:"), r: 3, q: "V3", n: 1, delay: 0},
+    {t: path.resolve("E:", "cactus_plot"), d: path.resolve("V:"), r: 2, q: "V4", n: 1, delay: 0},
+    {t: path.resolve("E:", "cactus_plot"), d: path.resolve("V:"), r: 2, q: "V5", n: 1, delay: 0},
+    // {t: path.resolve("E:", "cactus_plot"), d: path.resolve("V:"), r: 2, q: "V4", n: 1, delay: 30},
   ];
   
   let error;

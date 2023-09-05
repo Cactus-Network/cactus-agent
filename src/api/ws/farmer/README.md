@@ -1,18 +1,18 @@
 # Websocket Message from Farmer service
 
 ### `on_message_from_farmer`
-Capture all broadcast messages coming from `chia_farmer` service.
+Capture all broadcast messages coming from `cactus_farmer` service.
 
 #### Usage
 You need to create Websocket connection before subscribing websocket messages.
 ```js
-const {getDaemon} = require("chia-agent");
-const {on_message_from_farmer} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_message_from_farmer} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 
-// Capture all messages from `chia_farmer`
+// Capture all messages from `cactus_farmer`
 const unsubscribe = await on_message_from_farmer(daemon, (event) => {
   console.log(e.data);
 
@@ -27,12 +27,12 @@ const unsubscribe = await on_message_from_farmer(daemon, (event) => {
 ---
 
 ### `on_get_connections`
-Capture broadcast message of command `get_connections` from `chia_farmer` service.
+Capture broadcast message of command `get_connections` from `cactus_farmer` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_get_connections} = require("chia-agent/api/ws/farmer");
+const {getDaemon} = require("cactus-agent");
+const {on_get_connections} = require("cactus-agent/api/ws/farmer");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -47,7 +47,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_farmer";
+  origin: "cactus_farmer";
   command: "get_connections";
   ack: boolean;
   data: /*See below*/;
@@ -62,17 +62,17 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `TConnectionGeneral`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/types.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/types.ts
 
 ---
 
 ### `on_new_farming_info`
-Capture broadcast message of command `new_farming_info` from `chia_farmer` service.
+Capture broadcast message of command `new_farming_info` from `cactus_farmer` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_new_farming_info} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_new_farming_info} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -87,7 +87,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_farmer";
+  origin: "cactus_farmer";
   command: "new_farming_info";
   ack: boolean;
   data: /*See below*/;
@@ -114,12 +114,12 @@ unsubscribe(); // Stop subscribing messages
 ---
 
 ### `on_new_signage_point`
-Capture broadcast message of command `new_signage_point` from `chia_farmer` service.
+Capture broadcast message of command `new_signage_point` from `cactus_farmer` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_new_signage_point} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_new_signage_point} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -134,7 +134,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_farmer";
+  origin: "cactus_farmer";
   command: "new_signage_point";
   ack: boolean;
   data: /*See below*/;
@@ -151,19 +151,19 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `ProofOfSpace`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/types/blockchain_format/proof_of_space.ts  
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/types/blockchain_format/proof_of_space.ts  
 For content of `NewSignagePoint`  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/protocols/farmer_protocol.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/farmer_protocol.ts
 
 ---
 
 ### `on_harvester_update`
-Capture broadcast message of command `on_harvester_update` from `chia_farmer` service.
+Capture broadcast message of command `on_harvester_update` from `cactus_farmer` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_harvester_update} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_harvester_update} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -178,7 +178,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_farmer";
+  origin: "cactus_farmer";
   command: "harvester_update";
   ack: boolean;
   data: /*See below*/;
@@ -208,17 +208,17 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `Plot`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/protocols/harvester_protocol.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/harvester_protocol.ts
 
 ---
 
 ### `on_harvester_removed`
-Capture broadcast message of command `on_harvester_removed` from `chia_farmer` service.
+Capture broadcast message of command `on_harvester_removed` from `cactus_farmer` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_harvester_removed} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_harvester_removed} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -233,7 +233,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_farmer";
+  origin: "cactus_farmer";
   command: "harvester_removed";
   ack: boolean;
   data: /*See below*/;
@@ -251,12 +251,12 @@ unsubscribe(); // Stop subscribing messages
 ---
 
 ### `on_proof`
-Capture broadcast message of command `on_proof` from `chia_farmer` service.
+Capture broadcast message of command `on_proof` from `cactus_farmer` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_proof} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_proof} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -271,7 +271,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_farmer";
+  origin: "cactus_farmer";
   command: "proof";
   ack: boolean;
   data: /*See below*/;
@@ -287,17 +287,17 @@ unsubscribe(); // Stop subscribing messages
 }
 ```
 For content of `DeclareProofOfSpace`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/protocols/farmer_protocol.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/protocols/farmer_protocol.ts
 
 ---
 
 ### `on_submitted_partial`
-Capture broadcast message of command `on_submitted_partial` from `chia_farmer` service.
+Capture broadcast message of command `on_submitted_partial` from `cactus_farmer` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_submitted_partial} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_submitted_partial} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -312,7 +312,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_farmer";
+  origin: "cactus_farmer";
   command: "submitted_partial";
   ack: boolean;
   data: /*See below*/;
@@ -334,11 +334,11 @@ unsubscribe(); // Stop subscribing messages
 ---
 
 ### `on_failed_partial`
-Capture broadcast message of command `on_failed_partial` from `chia_farmer` service.
+Capture broadcast message of command `on_failed_partial` from `cactus_farmer` service.
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_failed_partial} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_failed_partial} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -352,7 +352,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_farmer";
+  origin: "cactus_farmer";
   command: "failed_partial";
   ack: boolean;
   data: /*See below*/;
@@ -370,12 +370,12 @@ unsubscribe(); // Stop subscribing messages
 ---
 
 ### `on_add_connection`
-Capture broadcast message of command `on_add_connection` from `chia_farmer` service.
+Capture broadcast message of command `on_add_connection` from `cactus_farmer` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_add_connection} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_add_connection} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -390,7 +390,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_farmer";
+  origin: "cactus_farmer";
   command: "on_add_connection";
   ack: boolean;
   data: /*See below*/;
@@ -407,12 +407,12 @@ unsubscribe(); // Stop subscribing messages
 ---
 
 ### `on_close_connection`
-Capture broadcast message of command `on_close_connection` from `chia_farmer` service.
+Capture broadcast message of command `on_close_connection` from `cactus_farmer` service.
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_close_connection} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_close_connection} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();
@@ -427,7 +427,7 @@ unsubscribe(); // Stop subscribing messages
 #### event:
 ```typescript
 {
-  origin: "chia_farmer";
+  origin: "cactus_farmer";
   command: "on_close_connection";
   ack: boolean;
   data: /*See below*/;

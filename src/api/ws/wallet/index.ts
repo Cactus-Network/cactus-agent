@@ -1,25 +1,25 @@
 import {TDaemon} from "../../../daemon/index";
 import {GetMessageType, metrics_service, TConnectionGeneral, wallet_ui_service} from "../../types";
-import {int, str, uint32} from "../../chia/types/_python_types_";
-import {TransactionRecord} from "../../chia/wallet/transaction_record";
+import {int, str, uint32} from "../../cactus/types/_python_types_";
+import {TransactionRecord} from "../../cactus/wallet/transaction_record";
 
-export const chia_wallet_service = "chia_wallet";
-export type chia_wallet_service = typeof chia_wallet_service;
+export const cactus_wallet_service = "cactus_wallet";
+export type cactus_wallet_service = typeof cactus_wallet_service;
 
 export const get_connections_command = "get_connections";
 export type get_connections_command = typeof get_connections_command;
 export type TGetConnectionsBroadCast = {
   connections: TConnectionGeneral[];
 };
-export type WsGetConnectionsWalletMessage = GetMessageType<chia_wallet_service, get_connections_command, TGetConnectionsBroadCast>;
+export type WsGetConnectionsWalletMessage = GetMessageType<cactus_wallet_service, get_connections_command, TGetConnectionsBroadCast>;
 export async function on_get_connections(daemon: TDaemon, callback: (e: WsGetConnectionsWalletMessage) => unknown){
   await daemon.subscribe(wallet_ui_service);
   const messageListener = (e: WsWalletMessage) => {
-    if(e.origin === chia_wallet_service && e.command === get_connections_command){
+    if(e.origin === cactus_wallet_service && e.command === get_connections_command){
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_wallet_service, messageListener);
+  return daemon.addMessageListener(cactus_wallet_service, messageListener);
 }
 
 export const state_changed_command_of_wallet = "state_changed";
@@ -39,15 +39,15 @@ export type TStateChangedBroadCastOfWallet = {
   state: "new_derivation_index",
   additional_data: {index: uint32};
 };
-export type WsStateChangedWalletMessage = GetMessageType<chia_wallet_service, state_changed_command_of_wallet, TStateChangedBroadCastOfWallet>;
+export type WsStateChangedWalletMessage = GetMessageType<cactus_wallet_service, state_changed_command_of_wallet, TStateChangedBroadCastOfWallet>;
 export async function on_state_changed_of_wallet(daemon: TDaemon, callback: (e: WsStateChangedWalletMessage) => unknown){
   await daemon.subscribe(wallet_ui_service);
   const messageListener = (e: WsWalletMessage) => {
-    if(e.origin === chia_wallet_service && e.command === state_changed_command_of_wallet){
+    if(e.origin === cactus_wallet_service && e.command === state_changed_command_of_wallet){
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_wallet_service, messageListener);
+  return daemon.addMessageListener(cactus_wallet_service, messageListener);
 }
 
 // "sync_changed", "coin_added", "add_connection" and "close_connection" below are for metrics services.
@@ -55,15 +55,15 @@ export async function on_state_changed_of_wallet(daemon: TDaemon, callback: (e: 
 export const sync_changed_command = "sync_changed";
 export type sync_changed_command = typeof sync_changed_command;
 export type TSyncChangedBroadCast = {};
-export type WsSyncChangedWalletMessage = GetMessageType<chia_wallet_service, sync_changed_command, TSyncChangedBroadCast>;
+export type WsSyncChangedWalletMessage = GetMessageType<cactus_wallet_service, sync_changed_command, TSyncChangedBroadCast>;
 export async function on_sync_changed(daemon: TDaemon, callback: (e: WsSyncChangedWalletMessage) => unknown){
   await daemon.subscribe(metrics_service);
   const messageListener = (e: WsWalletMessage) => {
-    if(e.origin === chia_wallet_service && e.command === sync_changed_command){
+    if(e.origin === cactus_wallet_service && e.command === sync_changed_command){
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_wallet_service, messageListener);
+  return daemon.addMessageListener(cactus_wallet_service, messageListener);
 }
 
 export const coin_added_command = "coin_added";
@@ -72,15 +72,15 @@ export type TCoinAddedBroadCast = {
   state: "coin_added";
   wallet_id: uint32;
 };
-export type WsCoinAddedMessage = GetMessageType<chia_wallet_service, coin_added_command, TCoinAddedBroadCast>;
+export type WsCoinAddedMessage = GetMessageType<cactus_wallet_service, coin_added_command, TCoinAddedBroadCast>;
 export async function on_coin_added(daemon: TDaemon, callback: (e: WsCoinAddedMessage) => unknown){
   await daemon.subscribe(metrics_service);
   const messageListener = (e: WsWalletMessage) => {
-    if(e.origin === chia_wallet_service && e.command === coin_added_command){
+    if(e.origin === cactus_wallet_service && e.command === coin_added_command){
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_wallet_service, messageListener);
+  return daemon.addMessageListener(cactus_wallet_service, messageListener);
 }
 
 export const add_connection_command = "add_connection";
@@ -88,15 +88,15 @@ export type add_connection_command = typeof add_connection_command;
 export type TAddConnectionBroadCast = {
   state: "add_connection";
 };
-export type WsAddConnectionMessage = GetMessageType<chia_wallet_service, add_connection_command, TAddConnectionBroadCast>;
+export type WsAddConnectionMessage = GetMessageType<cactus_wallet_service, add_connection_command, TAddConnectionBroadCast>;
 export async function on_add_connection(daemon: TDaemon, callback: (e: WsAddConnectionMessage) => unknown) {
   await daemon.subscribe(metrics_service);
   const messageListener = (e: WsWalletMessage) => {
-    if (e.origin === chia_wallet_service && e.command === add_connection_command) {
+    if (e.origin === cactus_wallet_service && e.command === add_connection_command) {
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_wallet_service, messageListener);
+  return daemon.addMessageListener(cactus_wallet_service, messageListener);
 }
 
 export const close_connection_command = "close_connection";
@@ -104,15 +104,15 @@ export type close_connection_command = typeof close_connection_command;
 export type TCloseConnectionBroadCast = {
   state: "close_connection";
 };
-export type WsCloseConnectionMessage = GetMessageType<chia_wallet_service, close_connection_command, TCloseConnectionBroadCast>;
+export type WsCloseConnectionMessage = GetMessageType<cactus_wallet_service, close_connection_command, TCloseConnectionBroadCast>;
 export async function on_close_connection(daemon: TDaemon, callback: (e: WsCloseConnectionMessage) => unknown) {
   await daemon.subscribe(metrics_service);
   const messageListener = (e: WsWalletMessage) => {
-    if (e.origin === chia_wallet_service && e.command === close_connection_command) {
+    if (e.origin === cactus_wallet_service && e.command === close_connection_command) {
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_wallet_service, messageListener);
+  return daemon.addMessageListener(cactus_wallet_service, messageListener);
 }
 
 export type WsWalletMessage = WsGetConnectionsWalletMessage
@@ -123,7 +123,7 @@ export type WsWalletMessage = WsGetConnectionsWalletMessage
   | WsCloseConnectionMessage
 ;
 // Whole commands for the service
-export type chia_wallet_commands =
+export type cactus_wallet_commands =
   get_connections_command
   | sync_changed_command
   | state_changed_command_of_wallet
@@ -131,7 +131,7 @@ export type chia_wallet_commands =
   | add_connection_command
   | close_connection_command
 ;
-export type TChiaWalletBroadcast =
+export type TCactusWalletBroadcast =
   TGetConnectionsBroadCast
   | TSyncChangedBroadCast
   | TStateChangedBroadCastOfWallet
@@ -145,9 +145,9 @@ export async function on_message_from_wallet(daemon: TDaemon, callback: (e: WsWa
     daemon.subscribe(metrics_service),
   ]);
   const messageListener = (e: WsWalletMessage) => {
-    if(e.origin === chia_wallet_service){
+    if(e.origin === cactus_wallet_service){
       callback(e);
     }
   };
-  return daemon.addMessageListener(chia_wallet_service, messageListener);
+  return daemon.addMessageListener(cactus_wallet_service, messageListener);
 }

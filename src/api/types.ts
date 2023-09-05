@@ -1,6 +1,6 @@
-import {NodeType} from "./chia/server/outbound_message";
-import {float, int, str, uint16} from "./chia/types/_python_types_";
-import {bytes32} from "./chia/types/blockchain_format/sized_bytes";
+import {NodeType} from "./cactus/server/outbound_message";
+import {float, int, str, uint16} from "./cactus/types/_python_types_";
+import {bytes32} from "./cactus/types/blockchain_format/sized_bytes";
 import {TRPCAgent} from "../rpc/index";
 import {TDaemon} from "../daemon/index";
 

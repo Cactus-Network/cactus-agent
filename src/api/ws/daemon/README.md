@@ -3,10 +3,10 @@
 ## Usage
 You need to create Websocket connection before subscribing websocket messages.  
 Unlike other websocket APIs, daemon websocket API is based on `request/response` style rather than `subscribe/listen`.  
-Note: `subscribe/listen` style WebSocket API for daemon was introduced at `chia-blockchain@1.2.8`. See detail [here](./#usagesubscription)
+Note: `subscribe/listen` style WebSocket API for daemon was introduced at `cactus-blockchain@1.2.8`. See detail [here](./#usagesubscription)
 ```js
-const {getDaemon} = require("chia-agent");
-const {start_plotting, is_running} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {start_plotting, is_running} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response1 = await start_plotting(daemon, {...});
@@ -26,8 +26,8 @@ await daemon.connect("wss://host.name:1234");
 ## `ping(daemon)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {ping} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {ping} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await ping(daemon);
@@ -45,8 +45,8 @@ const response = await ping(daemon);
 ## `start_service(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {start_service} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {start_service} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await start_service(daemon, {service: "..."});
@@ -60,8 +60,8 @@ const response = await start_service(daemon, {service: "..."});
 ```
 where `TService` is one of
 ```typescript
-"chia"|"chia_wallet"|"chia_full_node"|"chia_harvester"|"chia_farmer"
-  |"chia_introducer"|"chia_timelord"|"chia_timelord_launcher"|"chia_full_node_simulator";
+"cactus"|"cactus_wallet"|"cactus_full_node"|"cactus_harvester"|"cactus_farmer"
+  |"cactus_introducer"|"cactus_timelord"|"cactus_timelord_launcher"|"cactus_full_node_simulator";
 ```
 ### response:
 ```typescript
@@ -77,8 +77,8 @@ where `TService` is one of
 ## `start_plotting(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {start_plotting} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {start_plotting} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await start_plotting(daemon, params);
@@ -86,7 +86,7 @@ const response = await start_plotting(daemon, params);
 ### params:
 ```typescript
 {
-  service: "chia_plotter";
+  service: "cactus_plotter";
   delay?: int; // delay in seconds. Default: 0
   parallel?: bool; // parallel or serialize. Default: False
   k: int; // size. 32, 33, ...
@@ -179,7 +179,7 @@ const response = await start_plotting(daemon, params);
 {
   success: bool;
   ids: str[];
-  service_name: str; // should be 'chia_plotter'
+  service_name: str; // should be 'cactus_plotter'
 }
 ```
 
@@ -188,8 +188,8 @@ const response = await start_plotting(daemon, params);
 ## `stop_plotting(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {stop_plotting} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {stop_plotting} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await stop_plotting(daemon, {id: "..."});
@@ -212,8 +212,8 @@ const response = await stop_plotting(daemon, {id: "..."});
 ## `stop_service(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {stop_service} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {stop_service} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await stop_service(daemon, {service: "..."});
@@ -221,7 +221,7 @@ const response = await stop_service(daemon, {service: "..."});
 ### params:
 ```typescript
 {
-  service: str; // "chia_farmer", "chia_full_node", "chia_harvester", "chia_wallet"
+  service: str; // "cactus_farmer", "cactus_full_node", "cactus_harvester", "cactus_wallet"
 }
 ```
 ### response:
@@ -236,8 +236,8 @@ const response = await stop_service(daemon, {service: "..."});
 ## `running_services(daemon)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {running_services} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {running_services} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await running_services(daemon);
@@ -255,16 +255,16 @@ const response = await running_services(daemon);
 ## `is_running(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {is_running} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {is_running} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
-const response = await is_running(daemon, {service: "chia_farmer"});
+const response = await is_running(daemon, {service: "cactus_farmer"});
 ```
 ### params:
 ```typescript
 {
-  service: str; // "chia_farmer", "chia_full_node", "chia_harvester", "chia_wallet"
+  service: str; // "cactus_farmer", "cactus_full_node", "cactus_harvester", "cactus_wallet"
 }
 ```
 ### response:
@@ -281,8 +281,8 @@ const response = await is_running(daemon, {service: "chia_farmer"});
 ## `add_private_key(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {add_private_key} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {add_private_key} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await add_private_key(daemon, params);
@@ -310,8 +310,8 @@ const response = await add_private_key(daemon, params);
 ## `check_keys(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {check_keys} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {check_keys} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await check_keys(daemon, params);
@@ -338,8 +338,8 @@ const response = await check_keys(daemon, params);
 ## `delete_all_keys(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {delete_all_keys} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {delete_all_keys} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await delete_all_keys(daemon, params);
@@ -365,8 +365,8 @@ const response = await delete_all_keys(daemon, params);
 ## `delete_key_by_fingerprint(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {delete_key_by_fingerprint} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {delete_key_by_fingerprint} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await delete_key_by_fingerprint(daemon, params);
@@ -393,8 +393,8 @@ const response = await delete_key_by_fingerprint(daemon, params);
 ## `get_all_private_keys(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {get_all_private_keys} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {get_all_private_keys} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await get_all_private_keys(daemon, params);
@@ -420,8 +420,8 @@ const response = await get_all_private_keys(daemon, params);
 ## `get_first_private_key(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {get_first_private_key} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {get_first_private_key} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await get_first_private_key(daemon, params);
@@ -447,8 +447,8 @@ const response = await get_first_private_key(daemon, params);
 ## `get_key_for_fingerprint(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {get_key_for_fingerprint} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {get_key_for_fingerprint} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await get_key_for_fingerprint(daemon, params);
@@ -476,8 +476,8 @@ const response = await get_key_for_fingerprint(daemon, params);
 ## `get_key(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {get_key} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {get_key} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await get_key(daemon, params);
@@ -501,15 +501,15 @@ const response = await get_key(daemon, params);
 }
 ```
 For content of `KeyData`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/util/keychain.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/util/keychain.ts
 
 ---
 
 ## `get_keys(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {get_keys} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {get_keys} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await get_keys(daemon, params);
@@ -532,15 +532,15 @@ const response = await get_keys(daemon, params);
 }
 ```
 For content of `KeyData`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/util/keychain.ts
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/util/keychain.ts
 
 ---
 
 ## `set_label(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {set_label} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {set_label} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await set_label(daemon, params);
@@ -568,8 +568,8 @@ const response = await set_label(daemon, params);
 ## `delete_label(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {delete_label} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {delete_label} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await delete_label(daemon, params);
@@ -596,8 +596,8 @@ const response = await delete_label(daemon, params);
 ## `is_keyring_locked(daemon)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {is_keyring_locked} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {is_keyring_locked} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await is_keyring_locked(daemon);
@@ -615,8 +615,8 @@ const response = await is_keyring_locked(daemon);
 ## `keyring_status(daemon)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {keyring_status} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {keyring_status} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await keyring_status(daemon);
@@ -643,8 +643,8 @@ const response = await keyring_status(daemon);
 ## `unlock_keyring(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {unlock_keyring} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {unlock_keyring} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await unlock_keyring(daemon, params);
@@ -668,8 +668,8 @@ const response = await unlock_keyring(daemon, params);
 ## `validate_keyring_passphrase(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {validate_keyring_passphrase} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {validate_keyring_passphrase} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await validate_keyring_passphrase(daemon, params);
@@ -693,8 +693,8 @@ const response = await validate_keyring_passphrase(daemon, params);
 ## `set_keyring_passphrase(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {set_keyring_passphrase} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {set_keyring_passphrase} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await set_keyring_passphrase(daemon, params);
@@ -721,8 +721,8 @@ const response = await set_keyring_passphrase(daemon, params);
 ## `remove_keyring_passphrase(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {remove_keyring_passphrase} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {remove_keyring_passphrase} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await remove_keyring_passphrase(daemon, params);
@@ -746,8 +746,8 @@ const response = await remove_keyring_passphrase(daemon, params);
 ## `exit(daemon)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {exit} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {exit} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await exit(daemon);
@@ -764,8 +764,8 @@ const response = await exit(daemon);
 ## `register_service(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {register_service} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {register_service} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await register_service(daemon, {service: "wallet_ui"});
@@ -773,7 +773,7 @@ const response = await register_service(daemon, {service: "wallet_ui"});
 ### params:
 ```typescript
 {
-  service: str; // typically "wallet_ui" or "chia_plotter"
+  service: str; // typically "wallet_ui" or "cactus_plotter"
 }
 ```
 ### response:
@@ -803,8 +803,8 @@ const response = await register_service(daemon, {service: "wallet_ui"});
 ## `get_status(daemon)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {get_status} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {get_status} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await get_status(daemon);
@@ -822,8 +822,8 @@ const response = await get_status(daemon);
 ## `get_version(daemon)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {get_version} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {get_version} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await get_version(daemon);
@@ -841,8 +841,8 @@ const response = await get_version(daemon);
 ## `get_plotters(daemon)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {get_plotters} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {get_plotters} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await get_plotters(daemon);
@@ -859,15 +859,15 @@ const response = await get_plotters(daemon);
 }
 ```
 For content of `chiapos_install_info`, `bladebit_install_info`, `madmax_install_info`,  
-see https://github.com/Chia-Mine/chia-agent/blob/main/src/api/chia/plotters/
+see https://github.com/Cactus-Mine/cactus-agent/blob/main/src/api/cactus/plotters/
 
 ---
 
 ## `get_routes(daemon)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {get_routes} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {get_routes} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await get_routes(daemon);
@@ -885,8 +885,8 @@ const response = await get_routes(daemon);
 ## `get_wallet_addresses(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {get_wallet_addresses} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {get_wallet_addresses} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await get_wallet_addresses(daemon, params);
@@ -916,8 +916,8 @@ const response = await get_wallet_addresses(daemon, params);
 ## `get_keys_for_plotting(daemon, params)`
 ### Usage
 ```js
-const {getDaemon} = require("chia-agent");
-const {get_keys_for_plotting} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {get_keys_for_plotting} = require("cactus-agent/api/ws");
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
 const response = await get_keys_for_plotting(daemon, params);
@@ -942,11 +942,11 @@ const response = await get_keys_for_plotting(daemon, params);
 ---
 
 ## Usage(Subscription)
-Starting from `chia-blockchain@1.2.8`, `subscribe/listen` style WebSocket API was introduced to `daemon` service.  
+Starting from `cactus-blockchain@1.2.8`, `subscribe/listen` style WebSocket API was introduced to `daemon` service.  
 Here's an example.
 ```js
-const {getDaemon} = require("chia-agent");
-const {on_keyring_status_changed} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_keyring_status_changed} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon(); // This is the websocket connection handler
 await daemon.connect(); // connect to local daemon using config file.
@@ -969,8 +969,8 @@ Capture broadcast message of command `on_keyring_status_changed` from `daemon` s
 
 #### Usage
 ```typescript
-const {getDaemon} = require("chia-agent");
-const {on_keyring_status_changed} = require("chia-agent/api/ws");
+const {getDaemon} = require("cactus-agent");
+const {on_keyring_status_changed} = require("cactus-agent/api/ws");
 
 const daemon = getDaemon();
 await daemon.connect();

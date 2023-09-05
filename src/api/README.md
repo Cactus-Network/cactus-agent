@@ -1,10 +1,10 @@
 # API
 
-There are 2 kinds of APIs in chia.  
+There are 2 kinds of APIs in cactus.  
 `RPC API` and `Websocket API`
 
 ### RPC API
-RPC API is used to send message directly to chia services like `farmer`, `harvester`, `full_node`,
+RPC API is used to send message directly to cactus services like `farmer`, `harvester`, `full_node`,
 `wallet`, `data_layer`, `crawler`.
 
 RPC API is just an async function with a traditional request/response style.
@@ -251,9 +251,9 @@ In order to keep description simple, the above error response is omitted in RPC 
 - [`get_routes`](./rpc/common/README.md#get_routesagent)
 
 ### Websocket API
-Websocket API is used to connect to chia `daemon`.  
+Websocket API is used to connect to cactus `daemon`.  
 
-With websocket API, you can request chia daemon to start/stop plotting or other services,  
+With websocket API, you can request cactus daemon to start/stop plotting or other services,  
 or capture various broadcast messages like:  
 - Plotting progress
 - Farming info such as passed filter, proofs found, etc.
@@ -300,14 +300,14 @@ See how to get Daemon instance before requesting Websocket API [**>>here**](../d
 
 Please note that Websocket APIs below is not request/response style but subscribe/listen style.  
 You cannot ask services to reply requested data immediately.  
-After subscribing message channels like `wallet_ui`, `metrics` or `chia_plotter`,
+After subscribing message channels like `wallet_ui`, `metrics` or `cactus_plotter`,
 you need to wait messages in the channel are arrived to your message listener.
 
 #### [daemon](./ws/daemon/README.md#usagesubscription)
 - [`keyring_status_changed`](./ws/daemon/README.md#on_keyring_status_changed)
 
-#### [chia_plots_create](./ws/chia_plots_create/README.md#usage)
-- [`state_changed`](./ws/chia_plots_create/README.md#on_state_changed_of_plots)
+#### [cactus_plots_create](./ws/cactus_plots_create/README.md#usage)
+- [`state_changed`](./ws/cactus_plots_create/README.md#on_state_changed_of_plots)
 
 #### [farmer](./ws/farmer/README.md#usage)
 - [`get_connections`](./ws/farmer/README.md#on_get_connections)
@@ -358,7 +358,7 @@ You can change log level to suppress/output various internal logs.
 ```js
 // Log level can be: "error", "warning", "info", "debug", "none"
 // Default log level is "error"
-const {setLogLevel} = require("chia-agent");
+const {setLogLevel} = require("cactus-agent");
 
 setLogLevel("debug"); // show all available logs.
 setLogLevel("info"); // show except for debug logs.
