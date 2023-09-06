@@ -112,7 +112,7 @@
 
 ## [12.0.1]
 ### Changed
-- Replace the npm module `json-bigint` to `@cactusmine/json-bigint`.
+- Replace the npm module `json-bigint` to `@chiamine/json-bigint`.
 ### Fixed
 - Fixed the type of `int64`, `uint64`, `uint128`, `uint512` to `number | bigint`.
 
