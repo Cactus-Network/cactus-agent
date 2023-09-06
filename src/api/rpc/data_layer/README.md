@@ -23,7 +23,7 @@ const response = await create_data_store(agent, {...});
 const agent = new RPCAgent({
   protocol: "https",
   host: "aaa.bbb.ccc",
-  port: 8559,
+  port: 11559,
   ca_cert: fs.readFileSync(...),
   client_cert: fs.readFileSync(...),
   client_key: fs.readFileSync(...),

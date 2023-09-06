@@ -31,7 +31,7 @@ let config: TConfig|undefined;
    ```
    {
     '/ALERTS_URL': 'https://download.cactus.net/notify/mainnet_alert.txt',
-    '/daemon_port': 55400,
+    '/daemon_port': 58400,
     '/farmer/network_overrides/config/testnet0/address_prefix': 'tcac',
     ...
    }
